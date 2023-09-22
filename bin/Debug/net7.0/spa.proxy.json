@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:44488",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "/home/staffnerluca/Dokumente/MathMaster/ClientApp/",
+"MaxTimeoutInSeconds": "120"
+}
+}
