@@ -13,7 +13,6 @@ function CreateTwoRandomNumbers(maxf, maxs, condition = () => true){
     }
 }
 
-
 function CreateMultiplication(){
     let max = 9;
     let min = 1;
@@ -32,14 +31,13 @@ function CreateDivision(){
     )
 }
 
+
+
 function CreateHundredCalculations(Type){
-    let i = 0;
-    let out = "";
-    while(i < 100){
-        out+="<h1>Hallo Luggi</h1>";
-        i++;
-    }
-    return(out);
+    const hundredComp = Array.from({length: 100}, (_, index) => (
+        <Type key={index} />
+    ));
+    return <div>{hundredComp}</div>
 }
 
 
