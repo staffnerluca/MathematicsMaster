@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
 
-function createRandomNums(max){
-    let first = Math.floor(Math.random()*max);
-    let second = Math.floor(Math.random()*max)
-    return (first, second)
+function CreateTwoRandomNumbers(maxf, maxs, condition = () => true){
+    let maxTrys = 100;
+    let i = 0;
+    while(i > maxTrys){
+        let first = Math.floor(Math.random() * maxf);
+        let second = Math.floor(Math.random() * maxs);
+        if(condition(first, second)){
+            return [first, second];
+        }
+        i++;
+    }
 }
 
-function condition(){
 
+function CreateMultiplication(){
+    let max = 9;
+    let min = 1;
+    let [first, second] = createTwoRandomNumbers(max, min);
+    return(
+        <p>{first} * {second} </p>
+    )
 }
 
-function createMultiplicatoin(){
-
+function CreateDivision(){
+    let maxf = 100;
+    let maxs = 10;
+    let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x % y === 0)
+    return(
+        <p>{first} : {second}</p>
+    )
 }
 
-function createDivision(){
-
+function CreateHundredCalculations(Type){
+    let i = 0;
+    let out = "";
+    while(i < 100){
+        out+="<h1>Hallo Luggi</h1>";
+        i++;
+    }
+    return(out);
 }
 
-function createAddition(){
 
-}
+export class CreateCalculationsForPrimarySchool extends Component {
 
-function createSubtraction(){
 
-}
-
-export class Calculations extends Component {
-    render(){
-        return(
-            <h1>Hello Luggi</h1>
-        )
+    render() {
+        return (
+            <div>
+                <h1>Calculations</h1>
+                {CreateHundredCalculations()}
+            </div>
+      
+        );
     }
 }
