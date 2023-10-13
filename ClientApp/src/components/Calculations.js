@@ -51,8 +51,7 @@ function CreateAddition(){
 }
 
 
-function CreateHundredCalculations() {
-    const type = getNumberInCombobox();
+function CreateHundredCalculations(type) {
 
     if(type == "1"){
         for(let i = 0; i < 100; i++){
@@ -83,25 +82,30 @@ function getNumberInCombobox(){
   }
 
 export class CreateCalculationsForPrimarySchool extends Component {
-    constructor(){
-        super();
-        this.forcreUpdateHandler = this.forcreUpdateHandler.bind(this);
+    constructor(props){
+        super(props);
+        this.state = {option: "1"}
+        this.selectionChagne = this.selectionChagne.bind(this)
     }
-    forcreUpdateHandler(){
-        this.forceUpdate();
+
+    selectionChagne(){
+        let op = getNumberInCombobox();
+        this.setState({
+            option: op
+        });
     }
     
     render() {
         return (
             <div>
                 <h1>Calculations</h1>
-                <select id="comType" onChange={this.forceUpdate()}>
+                <select id="comType" onChange={this.selectionChagne()}>
                     <option value="1">Addition</option>
                     <option value="2">Subtraction</option>
                     <option value="3">Multiplication</option>
                     <option value="4">Division</option>
                 </select>
-                <CreateHundredCalculations/>
+                <CreateHundredCalculations type={this.type}/>
             </div>
       
         );
