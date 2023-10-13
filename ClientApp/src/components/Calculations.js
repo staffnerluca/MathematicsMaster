@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+
+var comps = [];
+
 function createTwoRandomNumbers(maxf, maxs, condition = () => true){
     let maxTrys = 100;
     let i = 0;
@@ -40,19 +43,20 @@ function CreateSubtraction(){
     )
 }
 
-function CreateAdditino(){
+function CreateAddition(){
     let maxf = 99;
     let maxs = 99;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x+y < 100)
     return <p>{first} + {second} = <input></input></p>
 }
 
+
 function CreateHundredCalculations() {
-    const comps = [];
     const type = getNumberInCombobox();
+
     if(type == "1"){
         for(let i = 0; i < 100; i++){
-            comps.push(<CreateAdditino key={i}/>)
+            comps.push(<CreateAddition key={i}/>)
         }
     }
     else if(type == "2"){
@@ -75,22 +79,29 @@ function CreateHundredCalculations() {
   }
 
 function getNumberInCombobox(){
-        return "1";
-    
+    return document.getElementById("comType").value;
   }
 
-
 export class CreateCalculationsForPrimarySchool extends Component {
+    constructor(){
+        super();
+        this.forcreUpdateHandler = this.forcreUpdateHandler.bind(this);
+    }
+    forcreUpdateHandler(){
+        this.forceUpdate();
+    }
+    
     render() {
         return (
             <div>
                 <h1>Calculations</h1>
-                <select id="comType" onChange={CreateHundredCalculations}>
+                <select id="comType" onChange={this.forceUpdate()}>
                     <option value="1">Addition</option>
                     <option value="2">Subtraction</option>
                     <option value="3">Multiplication</option>
                     <option value="4">Division</option>
                 </select>
+                <CreateHundredCalculations/>
             </div>
       
         );
