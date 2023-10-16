@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 
-var comps = [];
-
 function createTwoRandomNumbers(maxf, maxs, condition = () => true){
     let maxTrys = 100;
     let i = 0;
@@ -43,16 +41,16 @@ function CreateSubtraction(){
     )
 }
 
-function CreateAddition(){
+function CreateAddition({key}){
     let maxf = 99;
     let maxs = 99;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x+y < 100)
-    return <p>{first} + {second} = <input></input></p>
+    return <p>{key}:{first} + {second} = <input></input></p>
 }
 
 
 function CreateHundredCalculations(type) {
-
+    let comps = [];
     if(type == "1"){
         for(let i = 0; i < 100; i++){
             comps.push(<CreateAddition key={i}/>)
@@ -77,37 +75,38 @@ function CreateHundredCalculations(type) {
 
   }
 
-function getNumberInCombobox(){
-    return document.getElementById("comType").value;
-  }
+function CheckCalculations(option){
+    
+}
+
 
 export class CreateCalculationsForPrimarySchool extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {option: "1"}
-        this.selectionChagne = this.selectionChagne.bind(this)
+        this.state = { option: "1" };
     }
 
-    selectionChagne(){
-        let op = getNumberInCombobox();
+    selectionChange = (event) => {
         this.setState({
-            option: op
+            option: event.target.value
         });
-    }
-    
+    };
+
     render() {
+        const { option } = this.state;
+
         return (
             <div>
                 <h1>Calculations</h1>
-                <select id="comType" onChange={this.selectionChagne()}>
+                <select id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
                     <option value="2">Subtraction</option>
                     <option value="3">Multiplication</option>
                     <option value="4">Division</option>
                 </select>
-                <CreateHundredCalculations type={this.type}/>
+                {CreateHundredCalculations(option)}
+                <button>Check</button>
             </div>
-      
         );
     }
 }

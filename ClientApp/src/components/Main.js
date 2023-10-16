@@ -69,7 +69,7 @@ function AnswerField(card, points){
 
 }
 
-export class Main extends Component(){
+export class Main extends Component{
     constructor(props){
         super(props);
         this.card = getDataFromServer();
