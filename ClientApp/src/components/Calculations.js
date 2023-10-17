@@ -1,3 +1,4 @@
+import { resolveTxt } from 'dns';
 import React, { Component } from 'react';
 
 
@@ -75,8 +76,35 @@ function CreateHundredCalculations(type) {
 
   }
 
-function CheckCalculations(option){
-    
+function checkCalculations(option){
+    for(let i = 0; i > 100; i++){
+        calc = document.getElementById("c"+i).textContent;
+        txt = calc.splitText(" ");
+        firstNum = txt[0];
+        secondNum = txt[2];
+        result = document.getElementById("i"+i);
+        resTxt = result.textContent;
+        let correct = false;
+        if (option === "1" && firstNum+secondNum == resTxt){
+            correct = true;
+        }
+        else if(option === "2" && firstNum-secondNum == resTxt){
+            correct = true;
+        }
+        else if(option === "3" && firstNum*secondNum == resTxt){
+            correct = true;
+        }
+        else if(option === "4" && firstNum/secondNum == resTxt){
+            correct = true;
+        }
+        if(correct){
+            //change class of inp to correct
+        }
+        else{
+            //change class to false
+        }
+
+    }
 }
 
 
@@ -105,7 +133,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
                     <option value="4">Division</option>
                 </select>
                 {CreateHundredCalculations(option)}
-                <button>Check</button>
+                <button onClick={checkCalculations}>Check</button>
             </div>
         );
     }
