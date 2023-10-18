@@ -1,5 +1,5 @@
-import { resolveTxt } from 'dns';
 import React, { Component } from 'react';
+import "./calculations.css";
 
 
 function createTwoRandomNumbers(maxf, maxs, condition = () => true){
@@ -18,6 +18,7 @@ function createTwoRandomNumbers(maxf, maxs, condition = () => true){
 
 function CreateMultiplication(){
     let max = 9;
+    //alert(toString(id));
     let [first, second] = createTwoRandomNumbers(max, max);
     return(
         <p>{first} * {second} = <input></input></p>
@@ -42,11 +43,11 @@ function CreateSubtraction(){
     )
 }
 
-function CreateAddition({key}){
+function CreateAddition(){
     let maxf = 99;
     let maxs = 99;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x+y < 100)
-    return <p>{key}:{first} + {second} = <input></input></p>
+    return <p>{first} + {second} = <input></input></p>
 }
 
 
@@ -54,7 +55,7 @@ function CreateHundredCalculations(type) {
     let comps = [];
     if(type == "1"){
         for(let i = 0; i < 100; i++){
-            comps.push(<CreateAddition key={i}/>)
+            comps.push(<CreateAddition key={i} id={i}/>)
         }
     }
     else if(type == "2"){
@@ -64,7 +65,7 @@ function CreateHundredCalculations(type) {
     }
     else if(type === "3"){
         for(let i = 0; i < 100; i++){
-            comps.push(<CreateMultiplication key={i}/>)
+            comps.push(<CreateMultiplication key={i} id={i}/>)
         }
     }
     else if(type == "4"){
@@ -77,13 +78,14 @@ function CreateHundredCalculations(type) {
   }
 
 function checkCalculations(option){
+    alert("Checking");
     for(let i = 0; i > 100; i++){
-        calc = document.getElementById("c"+i).textContent;
-        txt = calc.splitText(" ");
-        firstNum = txt[0];
-        secondNum = txt[2];
-        result = document.getElementById("i"+i);
-        resTxt = result.textContent;
+        let calc = document.getElementById("c"+i).textContent;
+        let txt = calc.splitText(" ");
+        let firstNum = txt[0];
+        let secondNum = txt[2];
+        let result = document.getElementById("i"+i);
+        let resTxt = result.textContent;
         let correct = false;
         if (option === "1" && firstNum+secondNum == resTxt){
             correct = true;
@@ -99,14 +101,15 @@ function checkCalculations(option){
         }
         if(correct){
             //change class of inp to correct
+            result.classList.add("correct");
         }
         else{
             //change class to false
+            result.classList.add("false");
         }
 
     }
 }
-
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {

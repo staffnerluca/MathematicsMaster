@@ -4,6 +4,8 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { Main } from "./components/Main"
 import { Login } from "./components/Login";
+import { Register } from "./components/Register";
+
 
 const AppRoutes = [
   {
@@ -19,12 +21,16 @@ const AppRoutes = [
     element: <FetchData />
   },
   {
-    path: 'Calculations',
+    path: '/Calculations',
     element: <CreateCalculationsForPrimarySchool />
   },
   {
-    path: 'Main',
+    path: '/Main',
     element: <Main/>
+  },
+  {
+    path: '/Register',
+    elemnt: <Register/>
   }
 ];
 

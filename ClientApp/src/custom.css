@@ -20,3 +20,18 @@ code {
 #correct{
   background-color: green;
 }
+
+.loginBox{
+  background-color: black;
+}
+
+.correct{
+  background-color: green;
+  color: white;
+}
+
+
+.false{
+  background-color: red;
+  color: white;
+}
