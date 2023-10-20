@@ -11,7 +11,6 @@ function getDataFromServer(){
         points: "1337",
         type: "Logic"
     };
-    alert(card["question"])
     return card
 }
 

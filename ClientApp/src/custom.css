@@ -17,14 +17,13 @@ code {
   border-color: #1861ac;
 }
 
-#correct{
-  background-color: green;
-}
 
 .loginBox{
   background-color: black;
 }
 
+
+/*Calculations */
 .correct{
   background-color: green;
   color: white;

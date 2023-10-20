@@ -16,38 +16,48 @@ function createTwoRandomNumbers(maxf, maxs, condition = () => true){
     return [0, 0]
 }
 
-function CreateMultiplication(){
+function CreateMultiplication({id}){
     let max = 9;
     //alert(toString(id));
     let [first, second] = createTwoRandomNumbers(max, max);
+    let idC = "c"+id;
+    let idI = "i"+id;
     return(
-        <p>{first} * {second} = <input></input></p>
+        <p id={idC}>{first} * {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
-function CreateDivision(){
+function CreateDivision({id}){
     let maxf = 100;
     let maxs = 10;
+    let idC = "c"+id;
+    let idI = "i"+id;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x % y === 0 && x/y < 10)
     return(
-        <p>{first} : {second} = <input></input></p>
+        <p id={idC}>{first} : {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
-function CreateSubtraction(){
+function CreateSubtraction({id}){
     let maxf = 99;
     let maxs = 99;
+    let idC = "c"+id;
+    let idI = "i"+id;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x >= y);
     return(
-        <p>{first} : {second} = <input></input></p>
+        <p id={idC}>{first} - {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
-function CreateAddition(){
+function CreateAddition({id}){
     let maxf = 99;
     let maxs = 99;
+    let idC = "c"+id;
+    let idI = "i"+id;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x+y < 100)
-    return <p>{first} + {second} = <input></input></p>
+    return(
+        <p id={idC}>{first} + {second} = <input id={idI} className='calInp'></input></p>
+    )
 }
 
 
@@ -60,7 +70,7 @@ function CreateHundredCalculations(type) {
     }
     else if(type == "2"){
         for(let i = 0; i < 100; i++){
-            comps.push(<CreateSubtraction key={i}/>)
+            comps.push(<CreateSubtraction key={i} id={i}/>)
         }
     }
     else if(type === "3"){
@@ -70,7 +80,7 @@ function CreateHundredCalculations(type) {
     }
     else if(type == "4"){
         for(let i=0; i < 100; i++){
-            comps.push(<CreateDivision key={i}/>)
+            comps.push(<CreateDivision key={i} id={i}/>)
         }
     }
     return <div>{comps}</div>
@@ -79,36 +89,66 @@ function CreateHundredCalculations(type) {
 
 function checkCalculations(option){
     alert("Checking");
-    for(let i = 0; i > 100; i++){
-        let calc = document.getElementById("c"+i).textContent;
-        let txt = calc.splitText(" ");
-        let firstNum = txt[0];
-        let secondNum = txt[2];
-        let result = document.getElementById("i"+i);
-        let resTxt = result.textContent;
-        let correct = false;
-        if (option === "1" && firstNum+secondNum == resTxt){
-            correct = true;
-        }
-        else if(option === "2" && firstNum-secondNum == resTxt){
-            correct = true;
-        }
-        else if(option === "3" && firstNum*secondNum == resTxt){
-            correct = true;
-        }
-        else if(option === "4" && firstNum/secondNum == resTxt){
-            correct = true;
-        }
-        if(correct){
-            //change class of inp to correct
-            result.classList.add("correct");
-        }
-        else{
-            //change class to false
-            result.classList.add("false");
-        }
+    for(let i = 0; i < 100; i++){
+        let calcCo = document.getElementById("c"+i);
+        let resultCo = document.getElementById("i"+i);
 
+        if (calcCo && resultCo){
+            let calc = calcCo.textContent;
+            let txt = calc.splitText(" ");
+            let firstNum = txt[0];
+            let secondNum = txt[2];
+
+            let resTxt = resultCo.textContent;
+            let correct = false;
+            alert(resTxt);
+            alert(firstNum);
+            alert(resTxt);
+            if (option === "1" && firstNum+secondNum == resTxt){
+                correct = true;
+            }
+            else if(option === "2" && firstNum-secondNum == resTxt){
+                correct = true;
+            }
+            else if(option === "3" && firstNum*secondNum == resTxt){
+                correct = true;
+            }
+            else if(option === "4" && firstNum/secondNum == resTxt){
+                correct = true;
+            }
+            if(correct){
+                alert("hurra correct")
+                //change class of inp to correct
+                resultCo.classList.add("correct");
+            }
+            else{
+                //change class to false
+                resultCo.classList.add("false");
+            }
+        }
     }
+}
+
+function testSomeStuff(){
+    let sum = 0;
+    let testCo = document.getElementById("c"+toString(2));
+    //alert(testCo.textContent);
+    for(let i = 0; i < 100; i++){
+        let calcCo = document.getElementById("c"+i);
+        let resCo = document.getElementById("i"+i); 
+        if(calcCo != null){
+            alert("we did it");
+            sum += 1;
+            let txt = calcCo.textContent;
+            let text = txt.split(" ");
+            alert(text[0]);
+            alert(text[2]);
+            alert(resCo.textContent);
+            alert(text[0]*text[2] === 35);
+        }
+    }
+    alert("test");
+    alert(sum)
 }
 
 export class CreateCalculationsForPrimarySchool extends Component {
@@ -129,6 +169,8 @@ export class CreateCalculationsForPrimarySchool extends Component {
         return (
             <div>
                 <h1>Calculations</h1>
+                <button onClick={testSomeStuff}>Check</button>
+
                 <select id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
                     <option value="2">Subtraction</option>
