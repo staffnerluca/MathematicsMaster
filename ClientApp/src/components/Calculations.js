@@ -87,7 +87,7 @@ function CreateHundredCalculations(type) {
 
   }
 
-function checkCalculations(option){
+function oldcheckCalculations(option){
     alert("Checking");
     for(let i = 0; i < 100; i++){
         let calcCo = document.getElementById("c"+i);
@@ -129,11 +129,55 @@ function checkCalculations(option){
     }
 }
 
+function checkCalculations(option){
+    alert("checking");
+    for(let i = 0; i < 100; i++){
+        let calcCo = document.getElementById("c"+i);
+        let resultCo = document.getElementById("i"+i);
+        let text = calcCo.textContent;
+        let txt = text.split(" ");
+        let firstNum = txt[0];
+        let secondŃum = txt[2];
+        let result = resultCo.value;
+        let correct = false;
+        if (option == "1" && firstNum+secondŃum == result){
+            correct = true;
+        }
+        else if(option == "2" && firstNum-secondŃum == result){
+            correct = true;
+        }
+        else if(option == "3" && firstNum*secondŃum == result){
+            correct = true;
+        }
+        else if(option == "4" && firstNum/secondŃum == result){
+            correct = true;
+        }
+        if(result !== ""){
+            if(correct){
+                resultCo.classList.add("correct");
+            }
+            else{
+                resultCo.classList.add("false");
+            }
+        }
+    }
+}
+
+function emptyRes(){
+    let resultCo = document.getElementById("i"+1);
+    if(resultCo.value === ""){
+        alert("Empty string");
+    }
+    if(resultCo.value === null){
+        alert("null")
+    }
+
+}
 function testSomeStuff(){
     let sum = 0;
     let testCo = document.getElementById("c"+toString(2));
     //alert(testCo.textContent);
-    for(let i = 0; i < 100; i++){
+    for(let i = 0; i < 2; i++){
         let calcCo = document.getElementById("c"+i);
         let resCo = document.getElementById("i"+i); 
         if(calcCo != null){
@@ -143,8 +187,9 @@ function testSomeStuff(){
             let text = txt.split(" ");
             alert(text[0]);
             alert(text[2]);
-            alert(resCo.textContent);
-            alert(text[0]*text[2] === 35);
+            alert(resCo.value);
+            alert(text[0]*text[2] == resCo.value);
+            resCo.classList.add("correct");
         }
     }
     alert("test");
@@ -169,7 +214,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
         return (
             <div>
                 <h1>Calculations</h1>
-                <button onClick={testSomeStuff}>Check</button>
+                <button onClick={checkCalculations(option)}>Check</button>
 
                 <select id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
