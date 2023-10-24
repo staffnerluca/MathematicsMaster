@@ -140,7 +140,7 @@ function checkCalculations(option){
         let secondŃum = txt[2];
         let result = resultCo.value;
         let correct = false;
-        if (option == "1" && firstNum+secondŃum == result){
+        if (option == "1" && parseInt(firstNum)+parseInt(secondŃum) == result){
             correct = true;
         }
         else if(option == "2" && firstNum-secondŃum == result){
@@ -163,38 +163,6 @@ function checkCalculations(option){
     }
 }
 
-function emptyRes(){
-    let resultCo = document.getElementById("i"+1);
-    if(resultCo.value === ""){
-        alert("Empty string");
-    }
-    if(resultCo.value === null){
-        alert("null")
-    }
-
-}
-function testSomeStuff(){
-    let sum = 0;
-    let testCo = document.getElementById("c"+toString(2));
-    //alert(testCo.textContent);
-    for(let i = 0; i < 2; i++){
-        let calcCo = document.getElementById("c"+i);
-        let resCo = document.getElementById("i"+i); 
-        if(calcCo != null){
-            alert("we did it");
-            sum += 1;
-            let txt = calcCo.textContent;
-            let text = txt.split(" ");
-            alert(text[0]);
-            alert(text[2]);
-            alert(resCo.value);
-            alert(text[0]*text[2] == resCo.value);
-            resCo.classList.add("correct");
-        }
-    }
-    alert("test");
-    alert(sum)
-}
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
@@ -214,7 +182,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
         return (
             <div>
                 <h1>Calculations</h1>
-                <button onClick={checkCalculations(option)}>Check</button>
+                <button onClick={checkCalculations.bind(this, option)}>Check</button>
 
                 <select id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
@@ -223,7 +191,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
                     <option value="4">Division</option>
                 </select>
                 {CreateHundredCalculations(option)}
-                <button onClick={checkCalculations}>Check</button>
+                <button onClick={checkCalculations.bind(this, option)}>Check</button>
             </div>
         );
     }
