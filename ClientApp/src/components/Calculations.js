@@ -18,12 +18,11 @@ function createTwoRandomNumbers(maxf, maxs, condition = () => true){
 
 function CreateMultiplication({id}){
     let max = 9;
-    //alert(toString(id));
     let [first, second] = createTwoRandomNumbers(max, max);
     let idC = "c"+id;
     let idI = "i"+id;
     return(
-        <p id={idC}>{first} * {second} = <input id={idI} className='calInp'></input></p>
+        <p id={idC} className='calc'>{first} * {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
@@ -34,7 +33,7 @@ function CreateDivision({id}){
     let idI = "i"+id;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x % y === 0 && x/y < 10)
     return(
-        <p id={idC}>{first} : {second} = <input id={idI} className='calInp'></input></p>
+        <p id={idC} className='calc'>{first} : {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
@@ -45,7 +44,7 @@ function CreateSubtraction({id}){
     let idI = "i"+id;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x >= y);
     return(
-        <p id={idC}>{first} - {second} = <input id={idI} className='calInp'></input></p>
+        <p id={idC} className='calc'>{first} - {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
@@ -56,7 +55,7 @@ function CreateAddition({id}){
     let idI = "i"+id;
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x+y < 100)
     return(
-        <p id={idC}>{first} + {second} = <input id={idI} className='calInp'></input></p>
+        <p id={idC} className='calc'>{first} + {second} = <input id={idI} className='calInp'></input></p>
     )
 }
 
@@ -83,54 +82,36 @@ function CreateHundredCalculations(type) {
             comps.push(<CreateDivision key={i} id={i}/>)
         }
     }
-    return <div>{comps}</div>
+    return <div className='hundredCalcs'>{comps}</div>
 
   }
 
-function oldcheckCalculations(option){
-    alert("Checking");
-    for(let i = 0; i < 100; i++){
-        let calcCo = document.getElementById("c"+i);
-        let resultCo = document.getElementById("i"+i);
-
-        if (calcCo && resultCo){
-            let calc = calcCo.textContent;
-            let txt = calc.splitText(" ");
-            let firstNum = txt[0];
-            let secondNum = txt[2];
-
-            let resTxt = resultCo.textContent;
-            let correct = false;
-            alert(resTxt);
-            alert(firstNum);
-            alert(resTxt);
-            if (option === "1" && firstNum+secondNum == resTxt){
-                correct = true;
-            }
-            else if(option === "2" && firstNum-secondNum == resTxt){
-                correct = true;
-            }
-            else if(option === "3" && firstNum*secondNum == resTxt){
-                correct = true;
-            }
-            else if(option === "4" && firstNum/secondNum == resTxt){
-                correct = true;
-            }
-            if(correct){
-                alert("hurra correct")
-                //change class of inp to correct
-                resultCo.classList.add("correct");
-            }
-            else{
-                //change class to false
-                resultCo.classList.add("false");
-            }
+  function CreateTwentyFiveCalculations(type) {
+    let comps = [];
+    if(type == "1"){
+        for(let i = 0; i < 25; i++){
+            comps.push(<CreateAddition key={i} id={i}/>)
         }
     }
-}
+    else if(type == "2"){
+        for(let i = 0; i < 100; i++){
+            comps.push(<CreateSubtraction key={i} id={i}/>)
+        }
+    }
+    else if(type === "3"){
+        for(let i = 0; i < 100; i++){
+            comps.push(<CreateMultiplication key={i} id={i}/>)
+        }
+    }
+    else if(type == "4"){
+        for(let i=0; i < 100; i++){
+            comps.push(<CreateDivision key={i} id={i}/>)
+        }
+    }
+    return <div className='hundredCalcs'>{comps}</div>
 
+  }
 function checkCalculations(option){
-    alert("checking");
     for(let i = 0; i < 100; i++){
         let calcCo = document.getElementById("c"+i);
         let resultCo = document.getElementById("i"+i);
@@ -190,6 +171,20 @@ export class CreateCalculationsForPrimarySchool extends Component {
                     <option value="3">Multiplication</option>
                     <option value="4">Division</option>
                 </select>
+                <div className='container'>
+                    <div className='column'>
+                        {CreateTwentyFiveCalculations(option)}
+                    </div>
+                    <div className='column'>
+                        {CreateTwentyFiveCalculations(option)}
+                    </div>
+                    <div className='column'>
+                        {CreateTwentyFiveCalculations(option)}
+                    </div>
+                    <div className='column'>
+                        {CreateTwentyFiveCalculations(option)}
+                    </div>
+                </div>
                 {CreateHundredCalculations(option)}
                 <button onClick={checkCalculations.bind(this, option)}>Check</button>
             </div>
