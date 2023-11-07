@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import "./calculations.css";
 
 
 function createTwoRandomNumbers(maxf, maxs, condition = () => true){
@@ -185,7 +184,6 @@ export class CreateCalculationsForPrimarySchool extends Component {
                         {CreateTwentyFiveCalculations(option)}
                     </div>
                 </div>
-                {CreateHundredCalculations(option)}
                 <button onClick={checkCalculations.bind(this, option)}>Check</button>
             </div>
         );
