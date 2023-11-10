@@ -5,16 +5,20 @@ namespace MathMaster.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserDataController : ControllerBase
+public class TaskController : ControllerBase
 {
     //private SqlCom sql = new SqlCom();
     private readonly ILogger<UserDataController> _logger;
 
-    public UserDataController(ILogger<UserDataController> logger)
+    public TaskController(ILogger<UserDataController> logger)
     {
         _logger = logger;
     }
 
+    [HttpGet]
+    public void Get(string filter, string username){
+        //return allTasks that fullfill the requirement of the filter
+    }
 
     [HttpPost]
     public bool Post(string username, string password)
