@@ -9,17 +9,17 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MathMaster
 build_property.RootNamespace = MathMaster
-build_property.ProjectDir = C:\Users\lukas.resch\Source\Repos\HAK-KB\2024-swp-4it-staffnerlresch\
+build_property.ProjectDir = C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\lukas.resch\Source\Repos\HAK-KB\2024-swp-4it-staffnerlresch
+build_property.MSBuildProjectDirectory = C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/lukas.resch/Source/Repos/HAK-KB/2024-swp-4it-staffnerlresch/Pages/Error.cshtml]
+[C:/Users/lukas.resch/source/repos/HAK-KB/2024-swp-4it-staffnerlresch/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/lukas.resch/Source/Repos/HAK-KB/2024-swp-4it-staffnerlresch/Pages/_ViewImports.cshtml]
+[C:/Users/lukas.resch/source/repos/HAK-KB/2024-swp-4it-staffnerlresch/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
