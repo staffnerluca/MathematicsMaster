@@ -1,0 +1,6 @@
+namespace MathMaster;
+
+class Task
+{
+
+}

@@ -9,17 +9,17 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MathMaster
 build_property.RootNamespace = MathMaster
-build_property.ProjectDir = /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/
+build_property.ProjectDir = C:\Users\lukas.resch\Source\Repos\2024-swp-4it-staffnerlreschl\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch
+build_property.MSBuildProjectDirectory = C:\Users\lukas.resch\Source\Repos\2024-swp-4it-staffnerlreschl
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+[C:/Users/lukas.resch/Source/Repos/2024-swp-4it-staffnerlreschl/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/Pages/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/lukas.resch/Source/Repos/2024-swp-4it-staffnerlreschl/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
