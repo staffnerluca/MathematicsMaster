@@ -16,3 +16,46 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+
+.loginOrRegister{
+  background-color: black;
+}
+
+
+/*Calculations */
+.correct{
+  background-color: green;
+  color: white;
+}
+
+
+.false{
+  background-color: red;
+  color: white;
+}
+
+.calInp{
+  text-align: right;
+  width: 50px;
+}
+
+.calc{
+  text-align: right;
+  width: 200px;
+}
+
+.hundredCalcs{
+  max-width: 500px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+}

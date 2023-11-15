@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/staffnerluca/Dokumente/MathMaster/MathMaster.csproj": {}
+    "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj": {}
   },
   "projects": {
-    "/home/staffnerluca/Dokumente/MathMaster/MathMaster.csproj": {
+    "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/staffnerluca/Dokumente/MathMaster/MathMaster.csproj",
+        "projectUniqueName": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
         "projectName": "MathMaster",
-        "projectPath": "/home/staffnerluca/Dokumente/MathMaster/MathMaster.csproj",
+        "projectPath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
         "packagesPath": "/home/staffnerluca/.nuget/packages/",
-        "outputPath": "/home/staffnerluca/Dokumente/MathMaster/obj/",
+        "outputPath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/staffnerluca/.nuget/NuGet/NuGet.Config"
@@ -41,12 +41,6 @@
             "Microsoft.AspNetCore.SpaProxy": {
               "target": "Package",
               "version": "[7.0.10, )"
-            },
-            "SqlConnection": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.0.4, )"
             }
           },
           "imports": [
@@ -68,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.111/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
         }
       }
     }
