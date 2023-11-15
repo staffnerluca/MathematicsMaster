@@ -4,12 +4,13 @@ import {Link} from "react-router-dom";
 
 
 function LoginBox(){
+    //        <br></br><button onClick={sendDataToServerAndGetResponse}>Login</button>
+
     return(
         <div className='loginOrRegBox'>
         <p>Unsername: </p><input className='usInputUsername'></input>
         <br></br><br></br>
         <p>Password: </p><input className='usInputPassword'></input>
-        <br></br><button onClick={sendDataToServerAndGetResponse}>Login</button>
         <br></br>
         <Link to="/Register">Register</Link>
         </div>
@@ -24,6 +25,7 @@ function getRegisterAddress(){
     return url
 }*/
 
+/*
 function sendDataToServerAndGetResponse(){
     let loginData = {
         username: document.getElementsByClassName("usInputUsername").value,
@@ -40,7 +42,7 @@ function sendDataToServerAndGetResponse(){
           this.setState({message:'New Employee is Created Successfully'});
         }
     })
-}
+}*/
 
 export class Login extends Component{
     render(){
