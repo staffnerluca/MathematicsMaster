@@ -1,4 +1,4 @@
-using System.Reflection.Metadata;
+﻿using System.Reflection.Metadata;
 using System.Xml.Linq;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
