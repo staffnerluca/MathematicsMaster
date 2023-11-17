@@ -38,7 +38,7 @@ public class PrimarySchoolTasks
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
         XFont xFont = new XFont("Arial", 20);
-        XFont headline = new XFont("Arial", 32, XFontStyle.Bold);
+        XFont headline = new XFont("Arial", 32);
         rand = new Random();
 
         string menu =
@@ -535,4 +535,4 @@ public class PrimarySchoolTasks
         }
     }
 }
-}
+
