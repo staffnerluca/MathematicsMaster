@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lukas.resch\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\MathMaster.csproj": {}
+    "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lukas.resch\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\MathMaster.csproj": {
+    "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lukas.resch\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\MathMaster.csproj",
+        "projectUniqueName": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
         "projectName": "MathMaster",
-        "projectPath": "C:\\Users\\lukas.resch\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\MathMaster.csproj",
-        "packagesPath": "C:\\Users\\lukas.resch\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lukas.resch\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\obj\\",
+        "projectPath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
+        "packagesPath": "/home/staffnerluca/.nuget/packages/",
+        "outputPath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\lukas.resch\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/staffnerluca/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
         }
       }
     }

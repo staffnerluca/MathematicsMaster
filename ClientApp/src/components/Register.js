@@ -19,14 +19,11 @@ function sendDataToServer(){
 }
 
 export class Register extends Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         return(
-            <div>
-                <RegisterBox/>
+            <div className='loginOrRegiste'>
+                <h1>Test</h1>
             </div>
-        );
+        )
     }
 }
