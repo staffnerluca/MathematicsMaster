@@ -69,6 +69,6 @@
 /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/MathMaster.csproj.CopyComplete
 /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/MathMaster.genruntimeconfig.cache
 /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/ref/MathMaster.dll
-C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.dll
-C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\refint\MathMaster.dll
-C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.pdb
+C:/Users/lukas.resch/source/repos/HAK-KB/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/MathMaster.dll
+C:/Users/lukas.resch/source/repos/HAK-KB/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/refint/MathMaster.dll
+C:/Users/lukas.resch/source/repos/HAK-KB/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/MathMaster.pdb

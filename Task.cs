@@ -4,8 +4,8 @@ public class Task
 {
     public Task(int tasknr, string taskname)
     {
-        tasknr = taskNr;
-        taskname = taskName;
+        this.taskNr = taskNr;
+        this.taskName = taskName;
 
     }   
 
