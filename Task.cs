@@ -2,13 +2,20 @@ namespace MathMaster;
 
 public class Task
 {
-    public Task(int tasknr, string taskname)
+    public Task(int tasknr, string taskname, string tasksector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
     {
-        this.taskNr = taskNr;
-        this.taskName = taskName;
-
+        this.taskNr = tasknr;
+        this.taskName = taskname;
+        this.taskSector = tasksector;
+        this.difficulty = difficulty;
+        this.points = points;
+        this.drawing = drawing;
+        this.question = question;
+        this.answer = answer;
+        this.source = source;
+        this.group = group;
+        this.image = image;
     }   
-
 
     private int _tasknr;
     public int taskNr
@@ -90,7 +97,7 @@ public class Task
     }
 
     private string _question;
-    public string uestion
+    public string question
     {
         get
         {
