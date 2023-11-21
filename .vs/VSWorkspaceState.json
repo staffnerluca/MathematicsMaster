@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github",
+    "\\.github\\workflows",
     "\\ReschTest"
   ],
   "SelectedNode": "\\2024-swp-4it-staffnerlresch.sln",
