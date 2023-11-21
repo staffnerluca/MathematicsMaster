@@ -1,8 +1,0 @@
-{
-"SpaProxyServer": {
-"ServerUrl": "https://localhost:44488",
-"LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\lukas.resch\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\ClientApp\\",
-"MaxTimeoutInSeconds": "120"
-}
-}

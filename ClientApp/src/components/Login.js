@@ -16,15 +16,15 @@ function LoginBox(){
     )
 }
 
-/*
+
 function getRegisterAddress(){
     let url = document.URL;
     url = url.slice(0, -5);
     url += "Register"
     return url
-}*/
+}
 
-/*
+
 function sendDataToServerAndGetResponse(){
     let loginData = {
         username: document.getElementsByClassName("usInputUsername").value,
@@ -41,7 +41,7 @@ function sendDataToServerAndGetResponse(){
           this.setState({message:'New Employee is Created Successfully'});
         }
     })
-}*/
+}
 
 export class Login extends Component{
     render(){
