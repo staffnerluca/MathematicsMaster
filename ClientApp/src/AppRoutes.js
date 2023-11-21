@@ -23,12 +23,12 @@ const AppRoutes = [
     element: <Main/>
   },
   {
-    path: '/Register',
-    elemnt: <Register/>
-  },
-  {
     path: "/StrengthsWeaknesses",
     element: <StrengthsWeaknesses/>
+  },
+  {
+    path: "/Register",
+    element: <Register />
   }
 ];
 

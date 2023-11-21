@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 
-
-function sendDataToServer(){
-    
-}
-
 export class StrengthsWeaknesses extends Component{
     render(){
         return(
