@@ -37,12 +37,12 @@ namespace MathMastert
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             //NugetPackage Registerment
 
-            PdfDocument document = new PdfDocument();
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont xFont = new XFont("Arial", 20, XFontStyleEx.Bold);
-            XFont headline = new XFont("Arial", 32, XFontStyleEx.Bold);
-            rand = new Random();
+        PdfDocument document = new PdfDocument();
+        PdfPage page = document.AddPage();
+        XGraphics gfx = XGraphics.FromPdfPage(page);
+        XFont xFont = new XFont("Arial", 20);
+        XFont headline = new XFont("Arial", 32, XFontStyle.Bold);
+        rand = new Random();
 
             string menu =
             "Was möchten Sie machen?\n" + "1-Multiplikation\n"
@@ -530,12 +530,12 @@ namespace MathMastert
                 if (fnumber < 100)
                     calc = " ";
 
-                DivisionUnderStatements.Add(" " + calc + fnumber + ":" + calc + snumber + "=______");
-                DivisionUnderStatements.Add("______");
-                DivisionUnderStatements.Add("______");
-                DivisionUnderStatements.Add("______");
-                DivisionUnderStatements.Add("");
-            }
+            DivisionUnderStatements.Add(" " + calc + fnumber + ":" + calc + snumber + "=______");
+            DivisionUnderStatements.Add("______");
+            DivisionUnderStatements.Add("______");
+            DivisionUnderStatements.Add("______");
+            DivisionUnderStatements.Add("");
         }
     }
+}
 }
