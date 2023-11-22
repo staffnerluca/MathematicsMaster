@@ -21,7 +21,7 @@ public class UserDataController : ControllerBase
     {
         Dictionary<string, string> users = CreateExampleDictionary();
         //Dictionary<string, string> users = SqlCom.GetUsernameAndPassword();
-
+        Console.WriteLine("Recived Data from Client");
         //TODO: use Hash function on the password
         if(users.ContainsKey(username)){
             //users[username] = the stored password (hashed)

@@ -15,6 +15,7 @@ function createTwoRandomNumbers(maxf, maxs, condition = () => true){
     return [0, 0]
 }
 
+
 function CreateMultiplication({id}){
     let max = 9;
     let [first, second] = createTwoRandomNumbers(max, max);
@@ -24,6 +25,7 @@ function CreateMultiplication({id}){
         <p id={idC} className='calc'>{first} * {second} = <input id={idI} className='calInp'></input></p>
     )
 }
+
 
 function CreateDivision({id}){
     let maxf = 100;
@@ -36,6 +38,7 @@ function CreateDivision({id}){
     )
 }
 
+
 function CreateSubtraction({id}){
     let maxf = 99;
     let maxs = 99;
@@ -46,6 +49,7 @@ function CreateSubtraction({id}){
         <p id={idC} className='calc'>{first} - {second} = <input id={idI} className='calInp'></input></p>
     )
 }
+
 
 function CreateAddition({id}){
     let maxf = 99;
@@ -85,6 +89,7 @@ function CreateHundredCalculations(type) {
 
   }
 
+
   function CreateTwentyFiveCalculations(type) {
     let comps = [];
     if(type == "1"){
@@ -108,8 +113,9 @@ function CreateHundredCalculations(type) {
         }
     }
     return <div className='hundredCalcs'>{comps}</div>
-
   }
+
+
 function checkCalculations(option){
     for(let i = 0; i < 100; i++){
         let calcCo = document.getElementById("c"+i);

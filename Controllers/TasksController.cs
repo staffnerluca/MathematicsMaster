@@ -8,9 +8,9 @@ namespace MathMaster.Controllers;
 public class TaskController : ControllerBase
 {
     //private SqlCom sql = new SqlCom();
-    private readonly ILogger<UserDataController> _logger;
+    private readonly ILogger<TaskController> _logger;
 
-    public TaskController(ILogger<UserDataController> logger)
+    public TaskController(ILogger<TaskController> logger)
     {
         _logger = logger;
     }
@@ -36,7 +36,6 @@ public class TaskController : ControllerBase
         return false;
 
     }
-
     //only for test purposes, delete later
     public Dictionary<string, string> CreateExampleDictionary(){
         Dictionary<string, string> users = new Dictionary<string, string>();

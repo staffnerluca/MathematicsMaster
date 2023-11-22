@@ -1,28 +1,29 @@
-import { json } from 'node:stream/consumers';
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 
 
 function LoginBox(){
+    //        <br></br><button onClick={sendDataToServerAndGetResponse}>Login</button>
+
     return(
         <div className='loginOrRegBox'>
         <p>Unsername: </p><input className='usInputUsername'></input>
         <br></br><br></br>
         <p>Password: </p><input className='usInputPassword'></input>
-        <br></br><button onClick={sendDataToServerAndGetResponse}>Login</button>
         <br></br>
         <Link to="/Register">Register</Link>
         </div>
     )
 }
 
-/*
+
 function getRegisterAddress(){
     let url = document.URL;
     url = url.slice(0, -5);
     url += "Register"
     return url
-}*/
+}
+
 
 function sendDataToServerAndGetResponse(){
     let loginData = {

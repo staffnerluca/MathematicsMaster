@@ -3,7 +3,7 @@ import { FetchData } from "./components/FetchData";
 import { Main } from "./components/Main"
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
-
+import { StrengthsWeaknesses } from "./components/StrengthsWeaknesses"
 
 const AppRoutes = [
   {
@@ -23,8 +23,12 @@ const AppRoutes = [
     element: <Main/>
   },
   {
-    path: '/Register',
-    elemnt: <Register/>
+    path: "/StrengthsWeaknesses",
+    element: <StrengthsWeaknesses/>
+  },
+  {
+    path: "/Register",
+    element: <Register />
   }
 ];
 
