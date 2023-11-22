@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj": {}
+    "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\MathMaster.csproj": {}
   },
   "projects": {
-    "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj": {
+    "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\MathMaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
+        "projectUniqueName": "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\MathMaster.csproj",
         "projectName": "MathMaster",
-        "projectPath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
-        "packagesPath": "/home/staffnerluca/.nuget/packages/",
-        "outputPath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/",
+        "projectPath": "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\MathMaster.csproj",
+        "packagesPath": "C:\\Users\\lukas.resch\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/home/staffnerluca/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\lukas.resch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,9 +45,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.AspNetCore.SpaProxy": {
+            "PDFsharp": {
               "target": "Package",
-              "version": "[7.0.10, )"
+              "version": "[6.0.0, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -62,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.113/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

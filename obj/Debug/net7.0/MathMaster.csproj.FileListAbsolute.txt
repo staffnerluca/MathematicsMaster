@@ -69,3 +69,15 @@
 /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/MathMaster.csproj.CopyComplete
 /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/MathMaster.genruntimeconfig.cache
 /home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/obj/Debug/net7.0/ref/MathMaster.dll
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.csproj.AssemblyReference.cache
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\spa.proxy.json
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.AssemblyInfoInputs.cache
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.AssemblyInfo.cs
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.csproj.CoreCompileInputs.cache
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.RazorAssemblyInfo.cache
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.RazorAssemblyInfo.cs
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.dll
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\refint\MathMaster.dll
+C:\Users\lukas.resch\source\repos\2024-swp-4it-staffnerlresch\obj\Debug\net7.0\MathMaster.pdb

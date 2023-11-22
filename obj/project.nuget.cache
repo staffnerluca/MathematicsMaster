@@ -1,10 +1,29 @@
 {
   "version": 2,
-  "dgSpecHash": "JJ2BPH5cG6wraLnuF6Ojrg0K7rhZL5moXeGxUh14LLnkGBZ8p53C844ZRxIHzolFyNa3TWFfv47eUuYKT7jYNA==",
+  "dgSpecHash": "rcPFRbwbyoCxfE7Xrb5203qMRFOr3Bm+15znxdvikvuL4GbwSApCyu2s0/3HKsEX52dZn0uCA2ZOExOGWxdijg==",
   "success": true,
-  "projectFilePath": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/MathMaster.csproj",
+  "projectFilePath": "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\MathMaster.csproj",
   "expectedPackageFiles": [
-    "/home/staffnerluca/.nuget/packages/microsoft.aspnetcore.spaproxy/7.0.10/microsoft.aspnetcore.spaproxy.7.0.10.nupkg.sha512"
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.logging.configuration\\6.0.0\\microsoft.extensions.logging.configuration.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.logging.console\\6.0.0\\microsoft.extensions.logging.console.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\6.0.0\\microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\pdfsharp\\6.0.0\\pdfsharp.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\system.drawing.common\\8.0.0\\system.drawing.common.8.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\system.text.encoding.codepages\\8.0.0\\system.text.encoding.codepages.8.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\lukas.resch\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

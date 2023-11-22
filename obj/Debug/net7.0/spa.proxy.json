@@ -1,8 +1,10 @@
 {
 "SpaProxyServer": {
 "ServerUrl": "https://localhost:44488",
+"RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "/home/staffnerluca/Dokumente/2024-swp-4it-staffnerlresch/ClientApp/",
-"MaxTimeoutInSeconds": "120"
+"WorkingDirectory": "C:\\Users\\lukas.resch\\Desktop\\DELETE ME\\2024-swp-4it-staffnerlresch\\ClientApp\\",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
 }
 }
