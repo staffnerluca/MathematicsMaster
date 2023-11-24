@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { domainToASCII } from 'url';
 
 
 function createTwoRandomNumbers(maxf, maxs, condition = () => true){
@@ -158,9 +159,13 @@ function downlaod(){
             if(!response.ok){
                 throw new Error("HTTP Error")
             }
-            return response.json
+            return response.blob
         }).then(file => {
             //give the user the file to download
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(file);
+            document.append(link);
+            
         }).catch(error => {
             alert("An error occured");
         })
