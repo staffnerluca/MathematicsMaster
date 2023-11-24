@@ -159,7 +159,7 @@ function downlaod(){
                 throw new Error("HTTP Error")
             }
             return response.json
-        }).then(task => {
+        }).then(file => {
             //give the user the file to download
         }).catch(error => {
             alert("An error occured");
