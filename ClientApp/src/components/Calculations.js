@@ -150,6 +150,22 @@ function checkCalculations(option){
 }
 
 
+function downlaod(){
+    const type = document.getElementById("comType");
+    const apiURL = "localhost:5000/Calculation?type={type}";
+    fetch(apiURL)
+        .then(response => {
+            if(!response.ok){
+                throw new Error("HTTP Error")
+            }
+            return response.json
+        }).then(task => {
+            //give the user the file to download
+        }).catch(error => {
+            alert("An error occured");
+        })
+}
+
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
         super(props);
@@ -168,6 +184,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
         return (
             <div>
                 <h1>Calculations</h1>
+                <button className="btnDownload" onClick={downlaod}>Download</button>
                 <button onClick={checkCalculations.bind(this, option)}>Check</button>
 
                 <select id="comType" onChange={this.selectionChange} value={option}>
