@@ -16,32 +16,28 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public void Get(string filter, string username){
+    public void Get(string filter){
         //return allTasks that fullfill the requirement of the filter
     }
 
     [HttpPost]
     public bool Post(string username, string password)
     {
-        Dictionary<string, string> users = CreateExampleDictionary();
-        //Dictionary<string, string> users = SqlCom.GetUsernameAndPassword();
-
-        //TODO: use Hash function on the password
-        if(users.ContainsKey(username)){
-            //users[username] = the stored password (hashed)
-            if(users[username] == password){
-                return true;
-            }
-        }
         return false;
 
     }
     //only for test purposes, delete later
-    public Dictionary<string, string> CreateExampleDictionary(){
-        Dictionary<string, string> users = new Dictionary<string, string>();
-        users.Add("Lukas", "I<3Billiard123");
-        users.Add("Alex", "3x+1");
-        users.Add("Counting", "Sort");
-        return users;
+    public Dictionary<string, string> CreateExampleTask(){
+        Dictionary<string, string> task = new Dictionary<string, string>();
+        task.Add("Nr", "1");
+        task.Add("name", "Gewinnspiel");
+        task.Add("question", @"Auf dem Etikett einer Getränkeflasche ist ein Code für ein Gewinnspiel aufgedruckt.
+        \n • Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von € 10 zu erzielen, beträgt 1 %.\n 
+        • Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von € 2 zu erzielen, beträgt 4 %. \n 
+        Es gibt keine weiteren Gewinne. Die Zufallsvariable X gibt den Gewinn (in €) für einen Code an.\n \n
+        Aufgabenstellung:\n
+        Berechnen Sie den Erwartungswert E(X).");
+        task.Add("answer", "0,18");
+        return task;
     }
 }
