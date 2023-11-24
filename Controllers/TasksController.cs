@@ -39,7 +39,7 @@ public class TaskController : ControllerBase
     //only for test purposes, delete later
     public Dictionary<string, string> CreateExampleDictionary(){
         Dictionary<string, string> users = new Dictionary<string, string>();
-        users.Add("Lukas", "I<3Billiard123");
+        users.Add("Lukas", "I<3Billiard123"); //#BillardForLive 
         users.Add("Alex", "3x+1");
         users.Add("Counting", "Sort");
         return users;
