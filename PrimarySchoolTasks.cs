@@ -16,8 +16,7 @@ namespace MathMaster {
         private static List<string> AdditionUnderStatements;
         private static List<string> SubtractionStatements;
         private static List<string> DivisionWithRestStatements;
-        private static List<string> SubtractionUnderStatements
-            ;
+        private static List<string> SubtractionUnderStatements;
         private static List<string> DivisionUnderStatements;
         PdfDocument document;
         PdfPage page;
