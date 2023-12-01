@@ -77,7 +77,7 @@ namespace MathMaster {
                     break;
 
                 case "6":
-                    DivisionWithRestDocument(gfx, xFont, document);
+                    DivisionWithRestDocument(gfx, xFont, document, headline);
                     break;
 
                 case "7":
@@ -85,7 +85,7 @@ namespace MathMaster {
                     break;
 
                 case "8":
-                    DivisionUnderDocument(gfx, xFont, document);
+                    DivisionUnderDocument(gfx, xFont, document, headline);
                     break;
             }
 
@@ -220,7 +220,7 @@ namespace MathMaster {
             CreatingSubtractionList();
 
             gfx.DrawString("Subtraktionsaufgaben", headline, XBrushes.Black, new XRect
-               (0, 0, 600, 40), XStringFormats.Center);
+               (0, 0, 600, 120), XStringFormats.Center);
 
             int x = 150;
             int y = 70;
@@ -241,25 +241,29 @@ namespace MathMaster {
             document.Save("C:\\Users\\lukas.resch\\Documents\\SubtractionForPrimaryStudents.pdf");
         }
 
-        public static void DivisionWithRestDocument(XGraphics gfx, XFont xFont, PdfDocument document)
+        public static void DivisionWithRestDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             DivisionWithRestStatements.Clear();
             CreatingDivisionWithRemainList();
 
-            gfx.DrawString("Divisionsaufgaben mit Rest", xFont, XBrushes.Black, new XRect
+            gfx.DrawString("Divisionsaufgaben mit Rest", headline, XBrushes.Black, new XRect
                (0, 0, 600, 120), XStringFormats.Center);
 
-            int x = 150;
+            int x = 100;
             int y = 70;
 
             for (int i = 1; i <= 3; i++) //1 because of multiplication
             {
-                for (int m = 1; m <= 100 / 3; m++) //DivisionStatement[index];
+                for (int m = 1; m < 17; m++) //DivisionStatement[index];
                 {
                     gfx.DrawString("" + DivisionWithRestStatements[0], xFont, XBrushes.Black, new XRect
-                        (x, y, 0, 100), XStringFormats.Center); //(x, y, x, y)
-                    DivisionWithRestStatements.RemoveAt(0);
+                        (x, y, 0, 100), XStringFormats.BottomLeft); //(x, y, x, y)
                     y += 20;
+                    gfx.DrawString("R: ", xFont, XBrushes.Black, new XRect
+                        (x, y, 0, 100), XStringFormats.BottomLeft); //(x, y, x, y)
+                    y += 20;
+                    DivisionWithRestStatements.RemoveAt(0);
+
                 }
                 x += 150;
                 y = 70;
@@ -296,20 +300,20 @@ namespace MathMaster {
             Console.WriteLine("Done");
         }
 
-        public static void DivisionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document)
+        public static void DivisionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             DivisionUnderStatements.Clear();
             CreatingDivisionUnderList();
 
-            gfx.DrawString("Division untereinander", xFont, XBrushes.Black, new XRect
-               (0, 0, 600, 40), XStringFormats.Center);
+            gfx.DrawString("Division untereinander", headline, XBrushes.Black, new XRect
+               (0, 0, 600, 120), XStringFormats.Center);
 
             int x = 150;
-            int y = 10;
+            int y = 70;
 
             for (int i = 1; i <= 3; i++) //1 because of multiplication
             {
-                for (int m = 1; m <= 16; m++) //DivisionStatement[index];
+                for (int m = 1; m <= 36; m++) //DivisionStatement[index];
                 {
                     gfx.DrawString(DivisionUnderStatements[0], xFont, XBrushes.Black, new XRect
                         (x, y, 0, 100), XStringFormats.Center); //(x, y, x, y)
@@ -317,7 +321,7 @@ namespace MathMaster {
                     y += 20;
                 }
                 x += 150;
-                y = 10;
+                y = 70;
             }
 
             document.Save("C:\\Users\\lukas.resch\\Documents\\DivisionUnderTasksForPrimaryStudents.pdf");
@@ -458,12 +462,12 @@ namespace MathMaster {
 
         public static void CreatingDivisionWithRemainList()
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i <= 100; i++)
             {
                 int fnumber; int snumber;
 
-                int firstnumber = rand.Next(0, 100);
-                int secondnumber = rand.Next(0, 100);
+                int firstnumber = rand.Next(1, 100);
+                int secondnumber = rand.Next(1, 100);
                 string r;
 
                 string calc = "";
@@ -478,14 +482,14 @@ namespace MathMaster {
 
                 if (firstnumber > secondnumber)
                 {
-                    r = calc + firstnumber + " : " + calcv2 + secondnumber + " = _____";
+                    r = calc + firstnumber + calc + " : " + calc + calcv2 + secondnumber + " = ___";
                 }
                 else
                 {
-                    r = calcv2 + secondnumber + " : " + calc + firstnumber + " = _____";
+                    r = calcv2 + secondnumber + " : " + calc + firstnumber + " = ___";
                 }
 
-                DivisionWithRestStatements.Add(r);
+                DivisionWithRestStatements.Add(calc + r);
             }
         }
 
@@ -516,7 +520,7 @@ namespace MathMaster {
 
         public static void CreatingDivisionUnderList()
         {
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 36; i++)
             {
                 int fnumber; int snumber;
 
@@ -533,9 +537,8 @@ namespace MathMaster {
                     calc = " ";
 
                 DivisionUnderStatements.Add(" " + calc + fnumber + ":" + calc + snumber + "=______");
-                DivisionUnderStatements.Add("______");
-                DivisionUnderStatements.Add("______");
-                DivisionUnderStatements.Add("______");
+                DivisionUnderStatements.Add("");
+                DivisionUnderStatements.Add("");
                 DivisionUnderStatements.Add("");
             }
         }
