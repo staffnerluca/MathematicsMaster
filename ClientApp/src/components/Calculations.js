@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { domainToASCII } from 'url';
 
 
 function createTwoRandomNumbers(maxf, maxs, condition = () => true){
@@ -121,32 +120,35 @@ function checkCalculations(option){
     for(let i = 0; i < 100; i++){
         let calcCo = document.getElementById("c"+i);
         let resultCo = document.getElementById("i"+i);
-        let text = calcCo.textContent;
-        let txt = text.split(" ");
-        let firstNum = txt[0];
-        let secondŃum = txt[2];
-        let result = resultCo.value;
-        let correct = false;
-        if (option == "1" && parseInt(firstNum)+parseInt(secondŃum) == result){
-            correct = true;
-        }
-        else if(option == "2" && firstNum-secondŃum == result){
-            correct = true;
-        }
-        else if(option == "3" && firstNum*secondŃum == result){
-            correct = true;
-        }
-        else if(option == "4" && firstNum/secondŃum == result){
-            correct = true;
-        }
-        if(result !== ""){
-            if(correct){
-                resultCo.classList.add("correct");
+        if(calcCo !== null){
+            let text = calcCo.textContent;
+            let txt = text.split(" ");
+            let firstNum = txt[0];
+            let secondŃum = txt[2];
+            let result = resultCo.value;
+            let correct = false;
+            if (option == "1" && parseInt(firstNum)+parseInt(secondŃum) == result){
+                correct = true;
             }
-            else{
-                resultCo.classList.add("false");
+            else if(option == "2" && firstNum-secondŃum == result){
+                correct = true;
+            }
+            else if(option == "3" && firstNum*secondŃum == result){
+                correct = true;
+            }
+            else if(option == "4" && firstNum/secondŃum == result){
+                correct = true;
+            }
+            if(result !== ""){
+                if(correct){
+                    resultCo.classList.add("correct");
+                }
+                else{
+                    resultCo.classList.add("false");
+                }
             }
         }
+ 
     }
 }
 
