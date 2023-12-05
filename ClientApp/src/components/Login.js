@@ -7,7 +7,7 @@ function LoginBox(){
 
     return(
         <div className='loginOrRegBox'>
-        <p>Unsername: </p><input className='usInputUsername'></input>
+        <p>Username: </p><input className='usInputUsername'></input>
         <br></br><br></br>
         <p>Password: </p><input className='usInputPassword'></input>
         <br></br>

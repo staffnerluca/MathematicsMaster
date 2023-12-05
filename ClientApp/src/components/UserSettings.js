@@ -6,7 +6,8 @@ function getUserData(){
         name: "Lukas",
         darkmode: false,
         mail: "billiardIsLove@saustall.pool",
-        type: "t"
+        type: "t",
+        group: 1
     }
 }
 
@@ -24,10 +25,48 @@ export function UserSettings(){
         )
     }
 
+    function DifficultySelection(){
+        return(
+            <div>
+                 Difficulty: <select>
+                    <option value={0}>Luggi (easy)</option>
+                    <option value={1}>Alex (mid)</option>
+                    <option value={2}>Einstein (hard)</option>
+                    <option value={3}>God (very very hard)</option>
+                </select>
+                Setting for: <select>
+                    <option>Algebra</option>
+                    <option>Geometry</option>
+                    <option>Logic</option>
+                    <option>All</option>
+                </select>
+            </div>
+        )
+       
+    }
     function GroupSettings(){
+        let user = getUserData();
+        if(user.type === "t"){
+            return(
+                <div className='divGroupSettings'>
+                    <h1>Group settings for teachers</h1>
+                    <p>Add user: </p><input></input>
+                    <p>Remove user: </p><input></input>
+                    <DifficultySelection/>
+                    <p>Force difficulty setting: <input type='check'></input></p>
+                </div>
+            )
+        }
+        else if(user.group !== null){
+            <div className='divGroupSettings'>
+            <h1>Group Settings for students</h1>
+        </div>
+        }
         return(
             <div className='divGroupSettings'>
-                <h1>Group Settings</h1>
+                <h1>You ar not in a group</h1>
+                <p>Send a request to join a group</p>
+                <button>Join</button>
             </div>
         )
     }
@@ -36,6 +75,20 @@ export function UserSettings(){
         return(
             <div className="divAlgoSettings">
                 <h1>Settings for the Algorithm</h1>
+                <div className='settings'>
+                    Difficulty: <select>
+                        <option value={0}>Luggi (easy)</option>
+                        <option value={1}>Alex (mid)</option>
+                        <option value={2}>Einstein (hard)</option>
+                        <option value={3}>God (very very hard)</option>
+                    </select>
+                    Setting for: <select>
+                        <option>Algebra</option>
+                        <option>Geometry</option>
+                        <option>Logic</option>
+                        <option>All</option>
+                    </select>
+                </div>
             </div>
         )
     }
