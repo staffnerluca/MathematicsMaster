@@ -16,6 +16,14 @@ public class UserDataController : ControllerBase
     }
 
 
+    [HttpGet]
+    public IActionResult Get(){
+        Dictionary<string, string> d = new Dictionary<string, string>{
+            {"test", "Billiard"}
+        };
+        return Ok(d);
+    }
+
     [HttpPost]
     public bool Post(string username, string password)
     {

@@ -25,13 +25,16 @@ function getRegisterAddress(){
 }
 
 
-function sendDataToServerAndGetResponse(){
+async function sendDataToServerAndGetResponse(){
     let loginData = {
         username: document.getElementsByClassName("usInputUsername").value,
         password: document.getElementsByClassName("usInputPassword").value
     };
-
-    fetch("https://localhost:44488/api/LoginUser", {
+    console.log(loginData);
+    const response = await fetch("userdata");
+    const testJson = await response.json();
+    console.log("Server response: "+testJson["test"]);/*
+    await fetch("userdata", {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: loginData
@@ -40,7 +43,7 @@ function sendDataToServerAndGetResponse(){
         if(res){
           this.setState({message:'New Employee is Created Successfully'});
         }
-    })
+    })*/
 }
 
 export class Login extends Component{
@@ -48,6 +51,7 @@ export class Login extends Component{
         return(
             <div className='loginOrRegiste'>
                     <LoginBox/>
+                    <button className='btnLogin' onClick={sendDataToServerAndGetResponse}>This</button>
             </div>
         )
     }
