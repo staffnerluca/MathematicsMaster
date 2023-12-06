@@ -35,58 +35,58 @@ namespace MathMaster {
             SubtractionUnderStatements = new List<string>();
             DivisionUnderStatements = new List<string>();
 
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            //NugetPackage Registerment
+            //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            ////NugetPackage Registerment
 
-            PdfDocument document = new PdfDocument();
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont xFont = new XFont("Arial", 20);
-            XFont headline = new XFont("Arial", 32);
-            rand = new Random();
+            //PdfDocument document = new PdfDocument();
+            //PdfPage page = document.AddPage();
+            //XGraphics gfx = XGraphics.FromPdfPage(page);
+            //XFont xFont = new XFont("Arial", 20);
+            //XFont headline = new XFont("Arial", 32);
+            //rand = new Random();
 
-            string menu =
-            "Was möchten Sie machen?\n" + "1-Multiplikation\n"
-            + "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
-            + "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
+            //string menu =
+            //"Was möchten Sie machen?\n" + "1-Multiplikation\n"
+            //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
+            //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
-            Console.WriteLine(menu);
-            string answa = Console.ReadLine();
+            //Console.WriteLine(menu);
+            //string answa = Console.ReadLine();
 
-            switch (answa)
-            {
-                case "1":
-                    MultiplicationDocument(gfx, xFont, document, headline);
-                    break;
+            //switch (answa)
+            //{
+            //    case "1":
+            //        MultiplicationDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "2":
-                    AdditionDocument(gfx, xFont, document, headline);
-                    break;
+            //    case "2":
+            //        AdditionDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "3":
-                    DivisonDocument(gfx, xFont, document, headline);
-                    break;
+            //    case "3":
+            //        DivisonDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "4":
-                    AdditionUnderDocument(gfx, xFont, document, headline);
-                    break;
+            //    case "4":
+            //        AdditionUnderDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "5":
-                    SubtractionDocument(gfx, xFont, document, headline);
-                    break;
+            //    case "5":
+            //        SubtractionDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "6":
-                    DivisionWithRestDocument(gfx, xFont, document, headline);
-                    break;
+            //    case "6":
+            //        DivisionWithRestDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "7":
-                    SubtractionUnderDocument(gfx, xFont, document, headline);
-                    break;
+            //    case "7":
+            //        SubtractionUnderDocument(gfx, xFont, document, headline);
+            //        break;
 
-                case "8":
-                    DivisionUnderDocument(gfx, xFont, document, headline);
-                    break;
-            }
+            //    case "8":
+            //        DivisionUnderDocument(gfx, xFont, document, headline);
+            //        break;
+            //}
 
             //Console
             //               .ReadLine()
@@ -105,7 +105,7 @@ namespace MathMaster {
             XFont xFont = new XFont("Arial", 20);
         }*/
 
-        public static void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             DivisionStatements.Clear();
             CreatingDivisionList();
@@ -131,7 +131,7 @@ namespace MathMaster {
             document.Save("C:\\Users\\lukas.resch\\Documents\\DivisionForPrimaryStudents.pdf");
         }
 
-        public static void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             MultiplicationStatements.Clear();
             CreatingMultiplicationList();
@@ -158,7 +158,7 @@ namespace MathMaster {
             document.Save("C:\\Users\\lukas.resch\\Documents\\MultiplicationForPrimaryStudents.pdf");
         }
 
-        public static void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             AdditionStatements.Clear();
             CreatingAdditionList();
@@ -185,7 +185,7 @@ namespace MathMaster {
             document.Save("C:\\Users\\lukas.resch\\Documents\\AdditionForPrimaryStudents.pdf");
         }
 
-        public static void AdditionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void AdditionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             AdditionUnderStatements.Clear();
             CreatingAdditionUnderList();
@@ -213,7 +213,7 @@ namespace MathMaster {
             Console.WriteLine("Done");
         }
 
-        public static void SubtractionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void SubtractionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             SubtractionStatements.Clear();
             CreatingSubtractionList();
@@ -240,7 +240,7 @@ namespace MathMaster {
             document.Save("C:\\Users\\lukas.resch\\Documents\\SubtractionForPrimaryStudents.pdf");
         }
 
-        public static void DivisionWithRestDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisionWithRestDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             DivisionWithRestStatements.Clear();
             CreatingDivisionWithRemainList();
@@ -271,7 +271,7 @@ namespace MathMaster {
             document.Save("C:\\Users\\lukas.resch\\Documents\\DivisionWithRestTasksForPrimaryStudents.pdf");
         } //one row under that the students can type in there stuff
 
-        public static void SubtractionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void SubtractionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             SubtractionUnderStatements.Clear();
             CreatingSubtractionUnderList();
@@ -299,7 +299,7 @@ namespace MathMaster {
             Console.WriteLine("Done");
         }
 
-        public static void DivisionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             DivisionUnderStatements.Clear();
             CreatingDivisionUnderList();
