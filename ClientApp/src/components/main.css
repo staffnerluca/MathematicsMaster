@@ -1,0 +1,13 @@
+.lblQuestion{
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+#taAnswer{
+    width: 70%;
+    height: 200px;
+}
+
+.btnShow{
+    background-color: sandybrown;
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap styles
+
 
 
 function LoginBox(){
@@ -44,14 +46,22 @@ async function sendDataToServerAndGetResponse(){
           this.setState({message:'New Employee is Created Successfully'});
         }
     })*/
+    const success = true;
+    if(success){
+        window.location.href = window.location.href+"Main";
+        return;
+    }
+    alert("Username or password wrong");
 }
 
 export class Login extends Component{
     render(){
         return(
-            <div className='loginOrRegiste'>
-                    <LoginBox/>
-                    <button className='btnLogin' onClick={sendDataToServerAndGetResponse}>This</button>
+            <div className='container d-flex justify-content-center align-items-center vh-100'>
+                <div className='text-center'>
+                <LoginBox/>
+                    <button className='btn btn-primary' onClick={sendDataToServerAndGetResponse}>Login</button>
+                </div>
             </div>
         )
     }
