@@ -189,11 +189,11 @@ export class CreateCalculationsForPrimarySchool extends Component {
 
         return (
             <div>
-                <h1>Calculations</h1>
-                <button className="btnDownload" onClick={downlaod}>Download</button>
-                <button onClick={checkCalculations.bind(this, option)}>Check</button>
+                <center><h1>Calculations</h1></center>
+                <button className="btn btn-primary" onClick={downlaod}>Download</button>
+                <button className='btn btn-primary' onClick={checkCalculations.bind(this, option)}>Check</button>
 
-                <select id="comType" onChange={this.selectionChange} value={option}>
+                <select className="selectpicker form-control border-0 mb-1 px-4 py-4 rounded shadow" id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
                     <option value="2">Subtraction</option>
                     <option value="3">Multiplication</option>
@@ -213,7 +213,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
                         {CreateTwentyFiveCalculations(option)}
                     </div>
                 </div>
-                <button onClick={checkCalculations.bind(this, option)}>Check</button>
+                <button className="btn btn-primary" onClick={checkCalculations.bind(this, option)}>Check</button>
             </div>
         );
     }

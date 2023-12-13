@@ -73,7 +73,7 @@ function AnswerField(card, points){
             <div>
                 <textarea id="taAnswer"></textarea><br></br>
                 <button className="btn btn-primary" id="check">Check</button>
-                <button className="btn btn-primary btnShow" id="showAnswer">Show Answer</button>
+                <button className="btn btn-primary" id="showAnswer">Show Answer</button>
             </div>
         )
     }
