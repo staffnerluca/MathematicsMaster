@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 function getUserData(){
     const userData = {
@@ -8,10 +8,12 @@ function getUserData(){
         type: "t",
         group: 1
     }
+    return userData;
 }
 
 export function UserSettings(){
     const [settingType, setSettingType] = ["account"];
+    const [settingContent, setSettingsContent] = useState([<h1>Select a setting</h1>])
     let username = "luggi";
     function AccountSettings(){
         return(
@@ -47,20 +49,24 @@ export function UserSettings(){
         let user = getUserData();
         if(user.type === "t"){
             return(
-                <div className='divGroupSettings'>
+                setSettingsContent([<div className='divGroupSettings'>
                     <h1>Group settings for teachers</h1>
                     <p>Add user: </p><input></input>
                     <p>Remove user: </p><input></input>
                     <DifficultySelection/>
                     <p>Force difficulty setting: <input type='check'></input></p>
-                </div>
+                </div>])
             )
         }
         else if(user.group !== null){
-            <div className='divGroupSettings'>
-            <h1>Group Settings for students</h1>
-        </div>
+            return(
+                <div className='divGroupSettings'>
+                    <h1>Group Settings for students</h1>
+                </div>
+            )
+            
         }
+        alert("Still here");
         return(
             <div className='divGroupSettings'>
                 <h1>You ar not in a group</h1>
@@ -118,10 +124,10 @@ export function UserSettings(){
 
     return(
         <div className='userSettings'>
-            <button id="btnAccount" onClick={btnChangeOtherSectionPressed}>Account</button>
-            <button id="btnGroup" onClick={btnChangeOtherSectionPressed}>Group</button>
-            <button id="btnAlgo"onClick={btnChangeOtherSectionPressed}>Algorithm</button>
-
+            <button id="btnAccount" onClick={AccountSettings}>Account</button>
+            <button id="btnGroup" onClick={GroupSettings}>Group</button>
+            <button id="btnAlgo"onClick={AlgorithmSettings}>Algorithm</button>
+            {settingContent}
             <ShowSettings/>
         </div>
         )
