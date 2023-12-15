@@ -15,6 +15,7 @@ export function UserSettings(){
     const [settingType, setSettingType] = ["account"];
     const [settingContent, setSettingsContent] = useState([<h1>Select a setting</h1>])
     let username = "luggi";
+    
     function AccountSettings(){
         return(
             <div>

@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap styles
 
-
+//future background image: https://pixabay.com/de/illustrations/geometrie-mathematik-volumen-1044090/
 
 function LoginBox(){
-    //        <br></br><button onClick={sendDataToServerAndGetResponse}>Login</button>
-
     return(
         <div className='loginOrRegBox'>
         <p>Username: </p><input className='usInputUsername'></input>
