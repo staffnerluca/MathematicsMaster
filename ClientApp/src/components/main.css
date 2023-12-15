@@ -1,0 +1,19 @@
+.lblQuestion{
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+#taAnswer{
+    width: 70%;
+    height: 200px;
+}
+
+#showAnswer{
+    background-color:  #e6e5e5;
+    color:  #8f8a8a;
+}
+
+.divAnswer{
+    display: flex;
+    gap: 10px;
+}

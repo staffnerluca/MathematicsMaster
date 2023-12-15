@@ -120,35 +120,57 @@ function checkCalculations(option){
     for(let i = 0; i < 100; i++){
         let calcCo = document.getElementById("c"+i);
         let resultCo = document.getElementById("i"+i);
-        let text = calcCo.textContent;
-        let txt = text.split(" ");
-        let firstNum = txt[0];
-        let secondŃum = txt[2];
-        let result = resultCo.value;
-        let correct = false;
-        if (option == "1" && parseInt(firstNum)+parseInt(secondŃum) == result){
-            correct = true;
-        }
-        else if(option == "2" && firstNum-secondŃum == result){
-            correct = true;
-        }
-        else if(option == "3" && firstNum*secondŃum == result){
-            correct = true;
-        }
-        else if(option == "4" && firstNum/secondŃum == result){
-            correct = true;
-        }
-        if(result !== ""){
-            if(correct){
-                resultCo.classList.add("correct");
+        if(calcCo !== null){
+            let text = calcCo.textContent;
+            let txt = text.split(" ");
+            let firstNum = txt[0];
+            let secondŃum = txt[2];
+            let result = resultCo.value;
+            let correct = false;
+            if (option == "1" && parseInt(firstNum)+parseInt(secondŃum) == result){
+                correct = true;
             }
-            else{
-                resultCo.classList.add("false");
+            else if(option == "2" && firstNum-secondŃum == result){
+                correct = true;
+            }
+            else if(option == "3" && firstNum*secondŃum == result){
+                correct = true;
+            }
+            else if(option == "4" && firstNum/secondŃum == result){
+                correct = true;
+            }
+            if(result !== ""){
+                if(correct){
+                    resultCo.classList.add("correct");
+                }
+                else{
+                    resultCo.classList.add("false");
+                }
             }
         }
     }
 }
 
+
+function downlaod(){
+    const type = document.getElementById("comType");
+    const apiURL = "localhost:5000/Calculation?type={type}";
+    fetch(apiURL)
+        .then(response => {
+            if(!response.ok){
+                throw new Error("HTTP Error")
+            }
+            return response.blob
+        }).then(file => {
+            //give the user the file to download
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(file);
+            document.append(link);
+            
+        }).catch(error => {
+            alert("An error occured");
+        })
+}
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
@@ -167,10 +189,11 @@ export class CreateCalculationsForPrimarySchool extends Component {
 
         return (
             <div>
-                <h1>Calculations</h1>
-                <button onClick={checkCalculations.bind(this, option)}>Check</button>
+                <center><h1>Calculations</h1></center>
+                <button className="btn btn-primary" onClick={downlaod}>Download</button>
+                <button className='btn btn-primary' onClick={checkCalculations.bind(this, option)}>Check</button>
 
-                <select id="comType" onChange={this.selectionChange} value={option}>
+                <select className="selectpicker form-control border-0 mb-1 px-4 py-4 rounded shadow" id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
                     <option value="2">Subtraction</option>
                     <option value="3">Multiplication</option>
@@ -190,7 +213,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
                         {CreateTwentyFiveCalculations(option)}
                     </div>
                 </div>
-                <button onClick={checkCalculations.bind(this, option)}>Check</button>
+                <button className="btn btn-primary" onClick={checkCalculations.bind(this, option)}>Check</button>
             </div>
         );
     }

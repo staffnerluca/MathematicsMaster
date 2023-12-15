@@ -4,6 +4,7 @@ import { Main } from "./components/Main"
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { StrengthsWeaknesses } from "./components/StrengthsWeaknesses"
+import { UserSettings } from "./components/UserSettings"
 
 const AppRoutes = [
   {
@@ -29,6 +30,10 @@ const AppRoutes = [
   {
     path: "/Register",
     element: <Register />
+  },
+  {
+    path: "/Settings",
+    element: <UserSettings/>
   }
 ];
 
