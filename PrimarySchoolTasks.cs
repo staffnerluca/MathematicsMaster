@@ -10,14 +10,14 @@ namespace MathMaster {
         #region Variables
         private static Random rand;
 
-        private static List<string> DivisionStatements;
-        private static List<string> MultiplicationStatements;
-        private static List<string> AdditionStatements;
-        private static List<string> AdditionUnderStatements;
-        private static List<string> SubtractionStatements;
-        private static List<string> DivisionWithRestStatements;
-        private static List<string> SubtractionUnderStatements;
-        private static List<string> DivisionUnderStatements;
+        private static List<string> division = new List<string>(); //That would be a global list now 
+        //private static List<string> MultiplicationStatements;
+        //private static List<string> AdditionStatements;
+        //private static List<string> AdditionUnderStatements;
+        //private static List<string> SubtractionStatements;
+        //private static List<string> DivisionWithRestStatements;
+        //private static List<string> SubtractionUnderStatements;
+        //private static List<string> DivisionUnderStatements;
         PdfDocument document;
         PdfPage page;
         XGraphics gfx;
@@ -31,14 +31,15 @@ namespace MathMaster {
 
         static void Main(string[] args)
         {
-            DivisionStatements = new List<string>();
-            MultiplicationStatements = new List<string>();
-            AdditionStatements = new List<string>();
-            AdditionUnderStatements = new List<string>();
-            SubtractionStatements = new List<string>();
-            DivisionWithRestStatements = new List<string>();
-            SubtractionUnderStatements = new List<string>();
-            DivisionUnderStatements = new List<string>();
+            //creating a hole bunch of new Lists to save the data we do need. 
+            //calculations = new List<string>();
+            //MultiplicationStatements = new List<string>();
+            //AdditionStatements = new List<string>();
+            //AdditionUnderStatements = new List<string>();
+            //SubtractionStatements = new List<string>();
+            //DivisionWithRestStatements = new List<string>();
+            //SubtractionUnderStatements = new List<string>();
+            //DivisionUnderStatements = new List<string>();
 
             //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             ////NugetPackage Registerment
@@ -112,7 +113,7 @@ namespace MathMaster {
 
         public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
-            DivisionStatements.Clear();
+            division.Clear();
             CreatingDivisionList();
 
             gfx.DrawString("Divisionsaufgaben", headline, XBrushes.Black, new XRect
@@ -124,9 +125,9 @@ namespace MathMaster {
             {
                 for (int m = 1; m <= 100 / 3; m++) //DivisionStatement[index];
                 {
-                    gfx.DrawString("" + DivisionStatements[0], xFont, XBrushes.Black, new XRect
+                    gfx.DrawString("" + division[0], xFont, XBrushes.Black, new XRect
                         (x, y, 0, 100), XStringFormats.Center); //(x, y, x, y)
-                    DivisionStatements.RemoveAt(0);
+                    division.RemoveAt(0);
                     y += 20;
                 }
                 x += 150;
@@ -349,7 +350,7 @@ namespace MathMaster {
                 if (fnumber < 10)
                     calc = " ";
 
-                DivisionStatements.Add(calc + fnumber + " / " + snumber + "= _____");
+                division.Add(calc + fnumber + " / " + snumber + "= _____");
             }
         }
 
