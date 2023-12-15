@@ -24,6 +24,11 @@ namespace MathMaster {
         XFont xFont;
         #endregion
 
+        public PrimarySchoolTasks()
+        {
+                
+        }
+
         static void Main(string[] args)
         {
             DivisionStatements = new List<string>();

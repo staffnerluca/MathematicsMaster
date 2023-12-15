@@ -1,6 +1,8 @@
 using System.Data.SqlTypes;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
 
 namespace MathMaster.Controllers;
 
@@ -20,7 +22,7 @@ public class CalculationController : ControllerBase
             //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
     [HttpPost]
-    public void Post(int type)
+    public void Post(string type)
     {
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
@@ -37,22 +39,28 @@ public class CalculationController : ControllerBase
         {
             case "Multiplication":
                 primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+                break;
             case "Addition":
                 primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
+                break;
             case "Division":
                 primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
+                break;
             case "Subtraction":
                 primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
+                break;
             case "Addition Under":
                 primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
+                break;
             case "Division with Rest":
                 primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
+                break;
             case "Subtraction Under":
                 primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
+                break;
             case "Division Under":
-                primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline); 
-      
-
+                primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
+                break;
         }
     }
 }
