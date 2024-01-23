@@ -4,17 +4,18 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+using System.IO;
+using System.Net; 
 
 namespace MathMaster.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class CalculationController : ControllerBase
+public class CalculationController : ControllerBase 
 {
     [HttpPost]
     [Route ("api/pdf")]
-    public HttpResponseMessage GetPdf()
+    public IActionResult GetPdf(string type)
     {
+        var stream = new FileStream(@"C:\Users\Documents\calculation.pdf", FileMode.Open);
 
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
@@ -28,33 +29,34 @@ public class CalculationController : ControllerBase
         //create it
         //send it back to the user to download it
 
-        //switch (type)
-        //{
-        //    case "Multiplication":
-        //        primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Addition":
-        //        primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Division":
-        //        primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Subtraction":
-        //        primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Addition Under":
-        //        primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Division with Rest":
-        //        primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Subtraction Under":
-        //        primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
-        //        break;
-        //    case "Division Under":
-        //        primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
-        //        break;
-        //}
-        return document; //PDF as response Message
+        switch (type)
+        {
+            case "Multiplication":
+                primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+                break;
+            case "Addition":
+                primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
+                break;
+            case "Division":
+                primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
+                break;
+            case "Subtraction":
+                primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
+                break;
+            case "Addition Under":
+                primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
+                break;
+            case "Division with Rest":
+                primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
+                break;
+            case "Subtraction Under":
+                primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
+                break;
+            case "Division Under":
+                primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
+                break;
+        }
+        return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message
+       //https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
     }
 }
