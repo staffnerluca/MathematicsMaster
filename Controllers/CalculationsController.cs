@@ -22,7 +22,7 @@ public class CalculationController : ControllerBase
             //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
     [HttpPost]
-    public void Post(string type)
+    public PdfDocument Post(string type)
     {
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
@@ -62,5 +62,6 @@ public class CalculationController : ControllerBase
                 primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
                 break;
         }
+        return document;
     }
 }
