@@ -56,7 +56,7 @@ public class CalculationController : ControllerBase
                 primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
                 break;
         }
-        return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message
+        return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message 
        //https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
     }
 }
