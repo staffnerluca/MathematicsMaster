@@ -5,6 +5,7 @@ import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import { StrengthsWeaknesses } from "./components/StrengthsWeaknesses"
 import { UserSettings } from "./components/UserSettings"
+import { FetchTest } from "./components/FetchTest";
 
 const AppRoutes = [
   {
@@ -34,6 +35,13 @@ const AppRoutes = [
   {
     path: "/Settings",
     element: <UserSettings/>
+  },
+  {
+    path: "/fetch",
+    element: <FetchData/>
+  },{
+    path: "/test",
+    element: <FetchTest/>
   }
 ];
 

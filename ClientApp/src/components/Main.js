@@ -3,7 +3,24 @@ import "./main.css"
 var point = 0;
 var showAnswer = false; 
 
-function getDataFromServer(){
+async function getDataFromServer(){
+    const response = await fetch("Tasks")
+    .then(alert("Got something"));
+    /*let filter = {
+        "type": "A",
+        "difficulty": "100"
+    }
+
+    const response = await fetch("task", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(filter)
+    })*/
+
+    const data = await response.json()
+    console.log(data);
     //fancy code...
     let card = {
         question: `Die Osloer Bank gibt Münzen aus Aluminium (mit A bezeichnet) und aus Bronze (mit B bezeichnet) heraus. Marianne hat n 
