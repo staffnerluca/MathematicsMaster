@@ -16,16 +16,18 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public void Get(string filter) {
-        //return allTasks that fullfill the requirement of the filter
-    }
+
 
     [HttpPost]
-    public bool Post(string username, string password)
+    public IActionResult Post([FromBody] Filter filter)
     {
-        return false;
-
+        Dictionary<string, string> task = new Dictionary<string, string>();
+        task.Add("name", "first task");
+        task.Add("question", "1 + 1 = ");
+        task.Add("answer", "2");
+        return Ok(task);
     }
+
     //only for test purposes, delete later
     public Dictionary<string, string> CreateExampleTask() 
     {
