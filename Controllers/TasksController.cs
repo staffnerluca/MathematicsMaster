@@ -16,14 +16,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get()
-    {
-        Dictionary<string, string> task = new Dictionary<string, string>();
-        task.Add("name", "first task");
-        task.Add("question", "1 + 1 = ");
-        task.Add("answer", "2");
-        return Ok(task);
-    }
+
 
     [HttpPost]
     public IActionResult Post([FromBody] Filter filter)
@@ -36,7 +29,8 @@ public class TaskController : ControllerBase
     }
 
     //only for test purposes, delete later
-    public Dictionary<string, string> CreateExampleTask(){
+    public Dictionary<string, string> CreateExampleTask() 
+    {
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("Nr", "1");
         task.Add("name", "Gewinnspiel");
@@ -50,11 +44,13 @@ public class TaskController : ControllerBase
         return task;
     }
 
-    public Dictionary<string, string> CreateExampleDictionary(){
-        Dictionary<string, string> users = new Dictionary<string, string>();
-        users.Add("Lukas", "I<3Billiard123"); //#BillardForLive 
-        users.Add("Alex", "3x+1");
-        users.Add("Counting", "Sort");
-        return users;
+        public Dictionary<string, string> CreateExampleDictionary()
+        {
+            Dictionary<string, string> users = new Dictionary<string, string>();
+            users.Add("Lukas", "I<3Billiard123"); //#BillardForLive 
+            users.Add("Alex", "3x+1");
+            users.Add("Counting", "Sort");
+            return users;
+        }
     }
-}
+
