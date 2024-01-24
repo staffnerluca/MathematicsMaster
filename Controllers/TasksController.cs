@@ -16,16 +16,25 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public void Get(string filter){
-        //return allTasks that fullfill the requirement of the filter
+    public IActionResult Get()
+    {
+        Dictionary<string, string> task = new Dictionary<string, string>();
+        task.Add("name", "first task");
+        task.Add("question", "1 + 1 = ");
+        task.Add("answer", "2");
+        return Ok(task);
     }
 
     [HttpPost]
-    public bool Post(string username, string password)
+    public IActionResult Post([FromBody] Filter filter)
     {
-        return false;
-
+        Dictionary<string, string> task = new Dictionary<string, string>();
+        task.Add("name", "first task");
+        task.Add("question", "1 + 1 = ");
+        task.Add("answer", "2");
+        return Ok(task);
     }
+
     //only for test purposes, delete later
     public Dictionary<string, string> CreateExampleTask(){
         Dictionary<string, string> task = new Dictionary<string, string>();
@@ -39,6 +48,7 @@ public class TaskController : ControllerBase
         Berechnen Sie den Erwartungswert E(X).");
         task.Add("answer", "0,18");
         return task;
+    }
 
     public Dictionary<string, string> CreateExampleDictionary(){
         Dictionary<string, string> users = new Dictionary<string, string>();
