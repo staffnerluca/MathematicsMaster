@@ -1,168 +1,119 @@
+using System;
+
 namespace MathMaster;
 
 public class Task
 {
-    public Task(int tasknr, string taskname, string tasksector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
+    public class Institution
     {
-        this.taskNr = tasknr;
-        this.taskName = taskname;
-        this.taskSector = tasksector;
-        this.difficulty = difficulty;
-        this.points = points;
-        this.drawing = drawing;
-        this.question = question;
-        this.answer = answer;
-        this.source = source;
-        this.group = group;
-        this.image = image;
-    }   
+        public Institution(int institutionID, string address, string country, char type, string phonenumber, string email, char postalcode)
+        {
+            this.institutiionID = institutionID;
+            this.address = address;
+            this.country = country;
+            this.type = type;
+            this.phoneNumber = phonenumber;
+            this.email = email;
+            this.postalcode = postalcode;
+        }
 
-    private int _tasknr;
-    public int taskNr
-    {
-        get
+        private int _institutionID;
+        public int institutiionID
         {
-            return _tasknr;
-        }
-        set
-        {
-            _tasknr = value;
-        }
-    }
-
-    private string _taskname;
-    public string taskName
-    {
-        get
-        {
-            return _taskname;
-        }
-        set
-        {
-            _taskname = value;
-        }
-    }
-
-    private string _tasksector;
-    public string taskSector
-    {
-        get
-        {
-            return _tasksector;
-        }
-        set
-        {
-            _tasksector = value;
-        }
-    }
-
-    private int _difficulty;
-    public int difficulty
-    {
-        get
-        {
-            return _difficulty;
-        }
-        set
-        {
-            _difficulty = value;
-        }
-    }
-
-    private int _points;
-    public int points
-    {
-        get
-        {
-            return _points;
-        }
-        set
-        {
-            if(value >= 0 && value < 100)
-                _points = value;
-        }
-    }
-
-    private bool _drawing;
-    public bool drawing
-    {
-        get
-        {
-            return _drawing;
-        }
-        set
-        {
-            _drawing = value;
-        }
-    }
-
-    private string _question;
-    public string question
-    {
-        get
-        {
-            return _question;
-        }
-        set 
-        {
-            _question = value; 
-        }
-    }
-
-    private string _answer;
-    public string answer
-    {
-        get
-        {
-            return _answer;
-        }
-        set 
-        {
-            _answer = value; 
-        }
-    }
-
-    private string _source;
-    public string source
-    {
-        get
-        {
-            return _source;
-        }
-        
-        set 
-        {
-            _source = value; 
-        }
-    }
-
-    private int _group;
-    public int group
-    {
-        get
-        {
-            return _group;
-        }
-        set
-        {
-            _group = value;
-            if (value != (-2))
+            get
             {
-                _group = value;
+                return _institutionID;
+            }
+            set
+            {
+                _institutionID = value;
             }
         }
-    }
 
-    private string _image;
-    public string image
-    {
-        get
+        private string _address;
+        public string address
         {
-            return _image;
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = value;
+            }
         }
-        set
+
+        private int _country;
+        public int country
         {
-            _image = value;
+            get
+            {
+                return _country;
+            }
+            set
+            {
+                _country = value;
+            }
+        }
+
+        private char _type;
+        public char type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                if (_type.Equals("S") || _type.Equals("P"))
+                {
+                    _type = value;
+                }
+                else
+                {
+                    Console.WriteLine("this won't work sir or lady!");
+                }
+            }
+        }
+
+        private string _phoneNumber;
+        public string phoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+            set
+            {
+                _phoneNumber = value;
+            }
+        }
+
+        private string _email;
+        public string email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                _email = value;
+            }
+        }
+
+        private char _postalcode;
+
+        public char postalcode
+        {
+            get
+            {
+                return _postalcode;
+            }
+            set
+            {
+                _postalcode = value;
+            }
         }
     }
 }
