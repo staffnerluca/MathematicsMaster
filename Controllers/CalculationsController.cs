@@ -17,10 +17,20 @@ public class CalculationController : ControllerBase
         _logger = logger;
     }
 
-            //    "Was möchten Sie machen?\n" + "1-Multiplikation\n"
+            //    "Was mï¿½chten Sie machen?\n" + "1-Multiplikation\n"
             //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
             //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
+
+    [HttpGet]
+    public IActionResult Get(){
+        Dictionary<string, string> d = new Dictionary<string, string>{
+            {"multiplications", "for Luggi"}
+        };
+        return Ok(d);
+    }
+
+    //pdf needs to be returned using Get not Post
     [HttpPost]
     public PdfDocument Post(string type)
     {
