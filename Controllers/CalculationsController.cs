@@ -23,7 +23,7 @@ public class CalculationController : ControllerBase
             //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
     [HttpPost]
-    public PdfDocument Post(string type)
+    public IActionResult Post(string type)
     {
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
@@ -33,9 +33,11 @@ public class CalculationController : ControllerBase
 
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
         //new Calc
-        //type tells yoiu which sheet to create
+        //type tells you which sheet to create
         //create it
         //send it back to the user to download it
+
+        var stream = new FileStream(@"pathToFile", FileMode.Open); 
 
         switch (type)
         {
