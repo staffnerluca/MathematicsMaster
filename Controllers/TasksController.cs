@@ -7,7 +7,6 @@ namespace MathMaster.Controllers;
 [Route("[controller]")]
 public class TaskController : ControllerBase
 {
-    //private SqlCom sql = new SqlCom();
     private readonly ILogger<TaskController> _logger;
 
     public TaskController(ILogger<TaskController> logger)
@@ -16,7 +15,13 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-
+    public IActionResult Get()
+    {
+        Dictionary<string, string> task = new Dictionary<string, string>{
+            {"hard", "task"}
+        };
+        return Ok(task);
+    }
 
     [HttpPost]
     public IActionResult Post([FromBody] Filter filter)
@@ -29,8 +34,7 @@ public class TaskController : ControllerBase
     }
 
     //only for test purposes, delete later
-    public Dictionary<string, string> CreateExampleTask() 
-    {
+    public Dictionary<string, string> CreateExampleTask(){
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("Nr", "1");
         task.Add("name", "Gewinnspiel");
@@ -44,13 +48,11 @@ public class TaskController : ControllerBase
         return task;
     }
 
-        public Dictionary<string, string> CreateExampleDictionary()
-        {
-            Dictionary<string, string> users = new Dictionary<string, string>();
-            users.Add("Lukas", "I<3Billiard123"); //#BillardForLive 
-            users.Add("Alex", "3x+1");
-            users.Add("Counting", "Sort");
-            return users;
-        }
+    public Dictionary<string, string> CreateExampleDictionary(){
+        Dictionary<string, string> users = new Dictionary<string, string>();
+        users.Add("Lukas", "I<3Billiard123"); //#BillardForLive 
+        users.Add("Alex", "3x+1");
+        users.Add("Counting", "Sort");
+        return users;
     }
-
+}

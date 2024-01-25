@@ -39,8 +39,9 @@ const AppRoutes = [
   {
     path: "/fetch",
     element: <FetchData/>
-  },{
-    path: "/test",
+  },
+  {
+    path: "/myTest",
     element: <FetchTest/>
   }
 ];

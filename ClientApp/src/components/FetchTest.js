@@ -1,11 +1,11 @@
 import React from 'react';
 
 export function FetchTest() {
-    async function tasksFetch() {
+    async function fetchStuff(apiPath) {
         try {
-          const response = await fetch("tasks", {
+          const response = await fetch(apiPath, {
             headers: {
-              'Accept': 'application/json', // Ensure that the server knows we expect JSON
+              'Accept': 'application/json',
             },
           });
     
@@ -23,7 +23,12 @@ export function FetchTest() {
   return (
     <div>
       <h2>Fetch Test</h2>
-      <button onClick={tasksFetch}>Fetch Data from Tasks</button>
+      <button onClick={() => fetchStuff("userdata")}>Fetch Data from userdata</button>
+      <button onClick={() => fetchStuff("calculation")}>Fetch Data from Calculations</button>
+      <button onClick={() => fetchStuff("task")}>Fetch Data from Task</button>
+      <button onClick={() => fetchStuff("test")}>Fetch Data from test</button>
+
+
     </div>
   );
 }
