@@ -32,15 +32,15 @@ public class MyFontResolver : IFontResolver
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join("C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Font\\open-sans", faceName);
-        using (var ms = new MemoryStream())
+        var faceNamePath = Path.Join("C:\\Users\\luker\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Font\\open-sans", faceName);
+        using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish
         {
             try
             {
                 using (var fs = File.OpenRead(faceNamePath))
                 {
-                    fs.CopyTo(ms);
-                    ms.Position = 0;
+                    fs.CopyTo(ms); //font which gets copied to my MemoryStream
+                    ms.Position = 0; //font position in the stream
                     return ms.ToArray();
                 }
             }

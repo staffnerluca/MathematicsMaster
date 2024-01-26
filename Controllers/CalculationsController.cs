@@ -100,6 +100,10 @@ public class CalculationController : ControllerBase
         }
         //var stream = new FileStream(@"C:\Documents\calculation.pdf", FileMode.Open);
         //primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+        GlobalFontSettings.FontResolver = new MyFontResolver();
+        xFont = new XFont("OpenSans", 12);
+        headline = new XFont("OpenSans", 24);
+        primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
         return Ok("hello");
         //return File(stream, "api/pdf", "C:\\Documents\\calculation.pdf"); //PDF as response Message 
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
