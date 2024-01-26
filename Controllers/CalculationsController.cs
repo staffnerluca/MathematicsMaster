@@ -30,20 +30,21 @@ public class CalculationController : ControllerBase
     [HttpGet] //
     public IActionResult Get(string type)
     {
+        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+
         XFont xFont;
         XFont headline;
         PdfDocument document = new PdfDocument();
         PdfPage page = new PdfPage(document);
         XGraphics gfx = XGraphics.FromPdfPage(page);
-            
-        using (gfx)
-            {
-                // Create an XFont object for Arial font with size 12
-                xFont = new XFont("Arial", 20);
-                headline = new XFont("Arial", 32);
-            }
 
-        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        using (gfx)
+        {
+            // Create an XFont object for Arial font with size 12
+            xFont = new XFont("Arial", 20);
+            headline = new XFont("Arial", 32);
+        }
+
         //new Calc
         //type tells you which sheet to create
         //create it
@@ -52,38 +53,41 @@ public class CalculationController : ControllerBase
 
         //GlobalFontSettings.FontResolver = FontResolver;
 
-       
 
-        switch (type)
-        {
-            case "Multiplication":
-                primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
-                break;
-            case "Addition":
-                primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
-                break;
-            case "Division":
-                primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
-                break;
-            case "Subtraction":
-                primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
-                break;
-            case "Addition Under":
-                primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
-                break;
-            case "Division with Rest":
-                primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
-                break;
-            case "Subtraction Under":
-                primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
-                break;
-            case "Division Under":
-                primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
-                break;
-        }
-        var stream = new FileStream(@"C:\Users\Documents\calculation.pdf", FileMode.Open);
-        //return Ok("hello");
-        return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message 
+
+        //switch (type)
+        //{
+        //    case "Multiplication":
+        //        primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Addition":
+        //        primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Division":
+        //        primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Subtraction":
+        //        primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Addition Under":
+        //        primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Division with Rest":
+        //        primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Subtraction Under":
+        //        primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
+        //        break;
+        //    case "Division Under":
+        //        primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
+        //        break;
+        //}
+        //var stream = new FileStream(@"C:\Documents\calculation.pdf", FileMode.Open);
+
+
+        primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+        return Ok("hello");
+        //return File(stream, "api/pdf", "C:\\Documents\\calculation.pdf"); //PDF as response Message 
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
     }
 }

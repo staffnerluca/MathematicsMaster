@@ -144,7 +144,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\lukas.resch\\Documents\\calculation.pdf");
+            document.Save("C:\\Documents\\calculation.pdf");
         }
 
         public void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
