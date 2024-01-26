@@ -14,7 +14,7 @@ using System.Web;
 namespace MathMaster.Controllers;
 
 [Route("[controller]")]
-public class CalculationController : ControllerBase 
+public class CalculationController : ControllerBase
 {
 
     private readonly ILogger<CalculationController> _logger;
@@ -28,7 +28,6 @@ public class CalculationController : ControllerBase
     //    "Was möchten Sie machen?\n" + "1-Multiplikation\n"
     //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
     //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
- 
 
     [HttpGet] //
     public IActionResult Get(string type)
@@ -116,7 +115,7 @@ public class CalculationController : ControllerBase
         }
         //var stream = new FileStream(@"C:\Documents\calculation.pdf", FileMode.Open);
         //primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
-        GlobalFontSettings.FontResolver = new MyFontResolver();
+        GlobalFontSettings.FontResolver = new MyFontResolver(); 
         xFont = new XFont("OpenSans", 12);
         headline = new XFont("OpenSans", 24);
         primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
@@ -125,6 +124,7 @@ public class CalculationController : ControllerBase
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
     }
 
+    #region downloads
     public static void install()
     {
         // A web URL with a file response
@@ -254,21 +254,5 @@ public class CalculationController : ControllerBase
             client.DownloadFile(myWebUrlFile, myLocalFilePath);
         }
     }
-
-    //Directory.CreateDirectory(@"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts23");
-    //WebClient webClient = new WebClient();                                                          // Creates a webclient
-    ////webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);                   // Uses the Event Handler to check whether the download is complete
-    ////webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);  // Uses the Event Handler to check for progress made
-    //webClient.DownloadFileAsync(new Uri("https://www.1001fonts.com/download/open-sans.zip"), @"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts23");           // Defines the URL and destination directory for the downloaded file
-    //https://www.1001fonts.com/download/open-sans.zip
-
-    public static void Completed(object sender, EventArgs e)
-    {
-
-    }
-
-    public static void ProgressChanged(object sender, EventArgs e)
-    {
-    }
+    #endregion
 }
-      
