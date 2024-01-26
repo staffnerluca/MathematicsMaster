@@ -6,7 +6,7 @@ namespace MathMaster
     public class PrimarySchoolTasks
     {
         #region Variables
-        private static Random rand;
+        private static Random rand = new Random();
 
         //one list only
         private static List<string> division = new List<string>(); //That would be a global list now 
@@ -144,7 +144,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Documents\\calculation.pdf");
+            document.Save("C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\PDFCreated\\calculation.pdf");
         }
 
         public void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)

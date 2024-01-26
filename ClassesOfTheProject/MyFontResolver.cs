@@ -32,7 +32,7 @@ public class MyFontResolver : IFontResolver
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join("my path", faceName);
+        var faceNamePath = Path.Join("C:\\Documents\\open-sans", faceName);
         using (var ms = new MemoryStream())
         {
             try
