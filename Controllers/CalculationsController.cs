@@ -32,8 +32,7 @@ public class CalculationController : ControllerBase
     public IActionResult Get(string type)
     {
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
-        GlobalFontSettings.FontResolver = new MyFontResolver();
-
+        
         XFont xFont = new XFont("OpenSans", 12);
         XFont headline = new XFont("OpenSans", 24);
         PdfPage page = new PdfPage();
@@ -52,27 +51,35 @@ public class CalculationController : ControllerBase
         switch (type)
         {
             case "Multiplication":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
                 break;
             case "Addition":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
                 break;
             case "Division":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
                 break;
             case "Subtraction":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
                 break;
             case "Addition Under":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
                 break;
             case "Division with Rest":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
                 break;
             case "Subtraction Under":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
                 break;
             case "Division Under":
+                GlobalFontSettings.FontResolver = new MyFontResolver();
                 primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
                 break;
         }
