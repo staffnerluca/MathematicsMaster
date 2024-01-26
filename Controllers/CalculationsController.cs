@@ -8,6 +8,8 @@ using System.IO;
 using System.Net;
 using PdfSharp.Fonts;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel;
+using System.Web;
 
 namespace MathMaster.Controllers;
 
@@ -31,6 +33,20 @@ public class CalculationController : ControllerBase
     [HttpGet] //
     public IActionResult Get(string type)
     {
+        install();
+        installv2();
+        installv3();
+        installv4();
+        installv5();
+        installv6();
+        installv7();
+        installv8();
+        installv9();
+        installv10();
+
+        Directory.CreateDirectory(@"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDFCreated");
+        Directory.CreateDirectory(@"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts23");
+        Directory.CreateDirectory(@"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts23\open-sans");
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
         XFont xFont;
         XFont headline;
@@ -107,6 +123,152 @@ public class CalculationController : ControllerBase
         return Ok("hello");
         //return File(stream, "api/pdf", "C:\\Documents\\calculation.pdf"); //PDF as response Message 
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
+    }
+
+    public static void install()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.regular.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-Regular.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv2()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.italic.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-Italic.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv3()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.light.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-Light.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv4()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.light-italic.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-LightItalic.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv5()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.semibold.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-Semibold.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv6()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.semibold-italic.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-SemiboldItalic.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv7()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.bold.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-Bold.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv8()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.bold-italic.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-BoldItalic.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv9()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.extrabold.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-ExtraBold.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    public static void installv10()
+    {
+        // A web URL with a file response
+        string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.extrabold-italic.ttf";
+        // Local path where the file will be saved
+        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans\\OpenSans-ExtraBoldItalic.ttf";
+
+        using (var client = new WebClient())
+        {
+            client.DownloadFile(myWebUrlFile, myLocalFilePath);
+        }
+    }
+
+    //Directory.CreateDirectory(@"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts23");
+    //WebClient webClient = new WebClient();                                                          // Creates a webclient
+    ////webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);                   // Uses the Event Handler to check whether the download is complete
+    ////webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);  // Uses the Event Handler to check for progress made
+    //webClient.DownloadFileAsync(new Uri("https://www.1001fonts.com/download/open-sans.zip"), @"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts23");           // Defines the URL and destination directory for the downloaded file
+    //https://www.1001fonts.com/download/open-sans.zip
+
+    public static void Completed(object sender, EventArgs e)
+    {
+
+    }
+
+    public static void ProgressChanged(object sender, EventArgs e)
+    {
     }
 }
       

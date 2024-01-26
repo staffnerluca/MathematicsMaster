@@ -32,7 +32,7 @@ public class MyFontResolver : IFontResolver
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join("C:\\Users\\luker\\Source\\Repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Font\\open-sans", faceName);
+        var faceNamePath = Path.Join("C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans", faceName);
         using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish
         {
             try
