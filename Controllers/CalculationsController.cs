@@ -32,9 +32,8 @@ public class CalculationController : ControllerBase
     public IActionResult Get(string type)
     {
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
-        
-        XFont xFont = new XFont("OpenSans", 12);
-        XFont headline = new XFont("OpenSans", 24);
+        XFont xFont;
+        XFont headline;
         PdfPage page = new PdfPage();
         PdfDocument document = new PdfDocument();
         document.AddPage(page);
@@ -52,34 +51,50 @@ public class CalculationController : ControllerBase
         {
             case "Multiplication":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
                 break;
             case "Addition":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
                 break;
             case "Division":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
                 break;
             case "Subtraction":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
                 break;
             case "Addition Under":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
                 break;
             case "Division with Rest":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
                 break;
             case "Subtraction Under":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
                 break;
             case "Division Under":
                 GlobalFontSettings.FontResolver = new MyFontResolver();
+                xFont = new XFont("OpenSans", 12);
+                headline = new XFont("OpenSans", 24);
                 primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
                 break;
         }
