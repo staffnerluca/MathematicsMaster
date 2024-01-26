@@ -33,25 +33,25 @@ public class CalculationController : ControllerBase
     [HttpGet] //
     public IActionResult Get(string type)
     {
-        string path = @"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDFCreated";
+        string path = @"C:\Downloads\PDFCreated"; //there also Users\luker ... path otherwise if this does not work
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
         }
 
-        string path1 = @"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts";
+        string path1 = @"C:\Documents\Fonts";
         if (!Directory.Exists(path1))
         {
             Directory.CreateDirectory(path1);
         }
 
-        string path2 = @"C:\Users\luker\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\Fonts\open-sans";
+        string path2 = @"C:\Documents\Fonts\open-sans";
         if (!Directory.Exists(path2))
         {
             Directory.CreateDirectory(path2);
         }
 
-        string path3 = @"C:\\Users\\luker\\source\\repos\\HAK - KB\\2024 - swp - 4it - staffnerlresch\\Fonts\\open - sans\\OpenSans - Regular.ttf";
+        string path3 = @"C:\Documents\Fonts\open-sans\OpenSans - Regular.ttf";
         if (!Directory.Exists(path3))
         {
             install();
@@ -153,7 +153,8 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.regular.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-Regular.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-Regular.ttf";
+        //string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-Regular.ttf";
 
         using (var client = new WebClient())
         {
@@ -166,7 +167,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.italic.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-Italic.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-Italic.ttf";
 
         using (var client = new WebClient())
         {
@@ -179,7 +180,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.light.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-Light.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-Light.ttf";
 
         using (var client = new WebClient())
         {
@@ -192,7 +193,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.light-italic.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-LightItalic.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-LightItalic.ttf";
 
         using (var client = new WebClient())
         {
@@ -205,7 +206,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.semibold.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-Semibold.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-Semibold.ttf";
 
         using (var client = new WebClient())
         {
@@ -218,7 +219,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.semibold-italic.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-SemiboldItalic.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-SemiboldItalic.ttf";
 
         using (var client = new WebClient())
         {
@@ -231,7 +232,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.bold.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-Bold.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-Bold.ttf";
 
         using (var client = new WebClient())
         {
@@ -244,7 +245,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.bold-italic.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-BoldItalic.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-BoldItalic.ttf";
 
         using (var client = new WebClient())
         {
@@ -257,7 +258,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.extrabold.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-ExtraBold.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-ExtraBold.ttf";
 
         using (var client = new WebClient())
         {
@@ -270,7 +271,7 @@ public class CalculationController : ControllerBase
         // A web URL with a file response
         string myWebUrlFile = "https://www.1001fonts.com/download/font/open-sans.extrabold-italic.ttf";
         // Local path where the file will be saved
-        string myLocalFilePath = "C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts\\open-sans\\OpenSans-ExtraBoldItalic.ttf";
+        string myLocalFilePath = "C:\\Documents\\Fonts\\open-sans\\OpenSans-ExtraBoldItalic.ttf";
 
         using (var client = new WebClient())
         {
