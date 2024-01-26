@@ -26,16 +26,16 @@ public class CalculationController : ControllerBase
     //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
 
-    [HttpGet] //
-    public IActionResult Get(string type)
-    {
+    //[HttpGet] //
+    //public IActionResult Get(string type)
+    //{
 
-        PdfDocument document = new PdfDocument();
-        PdfPage page = document.AddPage();
-        XGraphics gfx = XGraphics.FromPdfPage(page);
+    //    PdfDocument document = new PdfDocument();
+    //    PdfPage page = document.AddPage();
+    //    XGraphics gfx = XGraphics.FromPdfPage(page);
 
 
-        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+    //    PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
         //new Calc
         //type tells you which sheet to create
         //create it
@@ -69,11 +69,11 @@ public class CalculationController : ControllerBase
         //        primarySchoolTasks.DivisionUnderDocument(gfx, document);
         //        break;
         //}
-        primarySchoolTasks.MultiplicationDocument(gfx, document);
-        var stream = new FileStream(@"C:\Users\Documents\calculation.pdf", FileMode.Open);
-        //return Ok("hello");
-        return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message 
-        ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
-    }
+        //primarySchoolTasks.MultiplicationDocument(gfx, document);
+        //var stream = new FileStream(@"C:\Users\Documents\calculation.pdf", FileMode.Open);
+        ////return Ok("hello");
+        //return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message 
+        //////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
+    //}
 }
       
