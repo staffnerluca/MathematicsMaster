@@ -29,7 +29,6 @@ public class CalculationController : ControllerBase
     [HttpGet] //
     public IActionResult Get(string type)
     {
-        IFontResolver fontResolver = IFontResolver();
 
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
