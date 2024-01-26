@@ -38,11 +38,24 @@ public class CalculationController : ControllerBase
         PdfPage page = new PdfPage(document);
         XGraphics gfx = XGraphics.FromPdfPage(page);
 
-        using (gfx)
+        // Create a new PDF document
+        using (PdfDocument pdfDocument = new PdfDocument())
         {
-            // Create an XFont object for Arial font with size 12
-            xFont = new XFont("Arial", 20);
-            headline = new XFont("Arial", 32);
+            // Add a page to the document
+            page = pdfDocument.AddPage();
+
+            // Create a graphics object for the page
+            using (gfx = XGraphics.FromPdfPage(page))
+            {
+                // Create an XFont object for Arial font with size 12
+                XFont font = new XFont("Arial", 12);
+
+                // Draw text on the page using Arial font
+                gfx.DrawString("Hello, this is a PDF with Arial font.", font, XBrushes.Black, 10, 10);
+            }
+
+            // Save the document to a file or memory stream
+            pdfDocument.Save("output.pdf");
         }
 
         //new Calc
