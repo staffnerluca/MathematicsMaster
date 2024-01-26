@@ -75,21 +75,22 @@ namespace MathMaster
 
         public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
+            //Just incase that nothing is in the list, clearing the list therefore
             division.Clear();
             CreatingDivisionList();
 
             gfx.DrawString("Divisionsaufgaben", headline, XBrushes.Black, new XRect
-               (0, 0, 600, 120), XStringFormats.Center);
+               (0, 0, 600, 120), XStringFormats.Center); //just the headline, with a specific format
 
-            int x = 150;
-            int y = 70;
+            int x = 150; //here were it starts at the sheet
+            int y = 70; //here too
             for (int i = 1; i <= 3; i++) //1 because of multiplication
             {
-                for (int m = 1; m <= 100 / 3; m++) //DivisionStatement[index];
+                for (int m = 1; m <= 100 / 3; m++) 
                 {
                     gfx.DrawString("" + division[0], xFont, XBrushes.Black, new XRect
                         (x, y, 0, 100), XStringFormats.Center); //(x, y, x, y)
-                    division.RemoveAt(0);
+                    division.RemoveAt(0); //have to remove it after used, since otherwise doubled amounts
                     y += 20;
                 }
                 x += 150;
@@ -495,16 +496,19 @@ namespace MathMaster
                     snumber = rand.Next(2, 10);
                 }
                 while (fnumber % snumber == 0);
+     
 
                 string calc = "";
 
                 if (fnumber < 100)
                     calc = " ";
+                //just for the better look at the pdf
 
                 divisionUnder.Add(" " + calc + fnumber + ":" + calc + snumber + "=______");
                 divisionUnder.Add("");
                 divisionUnder.Add("");
                 divisionUnder.Add("");
+                //I have to do this, because I can't correctly format it otherwise
             }
         }
     }

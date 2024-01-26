@@ -1,4 +1,6 @@
-﻿namespace MathMaster
+﻿using System;
+
+namespace MathMaster
 {
     public class User
     {

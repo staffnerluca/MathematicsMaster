@@ -7,7 +7,6 @@ namespace MathMaster.Controllers;
 [Route("[controller]")]
 public class TaskController : ControllerBase
 {
-    //private SqlCom sql = new SqlCom();
     private readonly ILogger<TaskController> _logger;
 
     public TaskController(ILogger<TaskController> logger)
@@ -16,7 +15,14 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-
+    public IActionResult Get()
+    {
+        Dictionary<string, string> task = new Dictionary<string, string>();
+        task.Add("name", "first task");
+        task.Add("question", "1 + 1 = ");
+        task.Add("answer", "2");
+        return Ok(task);
+    }
 
     [HttpPost]
     public IActionResult Post([FromBody] Filter filter)
