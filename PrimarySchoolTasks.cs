@@ -49,7 +49,7 @@ namespace MathMaster
             XFont xFont = new XFont("Arial", 20);
         }*/
 
-        public static void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             //Just incase that nothing is in the list, clearing the list therefore
             division.Clear();
@@ -76,7 +76,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public static void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             multiplication.Clear();
             CreatingMultiplicationList();
