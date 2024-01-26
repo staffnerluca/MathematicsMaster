@@ -2,52 +2,54 @@ using System;
 
 namespace MathMaster;
 
-public class Group
+public class FinishedTasks
 {
-    public Group(int groupID, string owner, int institutionID)
+    public FinishedTasks(int taskID, int userID, float percent)
     {
-        this.groupID = groupID;
-        this.owner = owner;
-        this.institutionID = institutionID;
+        this.taskID = taskID;
+        this.userID = userID;
+        this.percent = percent;
     }
 
-    private int _groupID;
-    public int groupID
+    private int _taskID;
+    public int taskID
+    {
+        get
+        { return _taskID; }
+        set { _taskID = value; }
+    }
+
+    private int _userID;
+    public int userID
     {
         get
         {
-            return _groupID;
+            return _userID;
         }
         set
         {
-            _groupID = value;
+            _userID = value;
         }
     }
 
-
-    private string _owner;
-    public int owner
+    private float _percent;
+    public float percent
     {
         get
         {
-            return _owner;
+            return _percent;
         }
         set
         {
-            _owner = value;
-        }
-    }
+            if (_percent == 0.0 || _percent == 0.25 || _percent == 0.5 || _percent == 0.75 || _percent == 1.0)
+            {
+                _percent = value;
+            }
+            else
+            {
+                Console.WriteLine("This isn't allowed!"); 
 
-    private int _institutionID;
-    public int institutionID
-    {
-        get
-        {
-            return _institutionID;
-        }
-        set
-        {
-            _institutionID = value;
+            }
         }
     }
 }

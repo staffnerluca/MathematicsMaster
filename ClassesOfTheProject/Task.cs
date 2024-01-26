@@ -2,118 +2,115 @@ using System;
 
 namespace MathMaster;
 
-public class Task
+public class Institution
 {
-    public class Institution
+    public Institution(int institutionID, string address, string country, char type, string phonenumber, string email, char postalcode)
     {
-        public Institution(int institutionID, string address, string country, char type, string phonenumber, string email, char postalcode)
-        {
-            this.institutiionID = institutionID;
-            this.address = address;
-            this.country = country;
-            this.type = type;
-            this.phoneNumber = phonenumber;
-            this.email = email;
-            this.postalcode = postalcode;
-        }
+        this.institutiionID = institutionID;
+        this.address = address;
+        this.country = country;
+        this.type = type;
+        this.phoneNumber = phonenumber;
+        this.email = email;
+        this.postalcode = postalcode;
+    }
 
-        private int _institutionID;
-        public int institutiionID
+    private int _institutionID;
+    public int institutiionID
+    {
+        get
         {
-            get
-            {
-                return _institutionID;
-            }
-            set
-            {
-                _institutionID = value;
-            }
+            return _institutionID;
         }
-
-        private string _address;
-        public string address
+        set
         {
-            get
-            {
-                return _address;
-            }
-            set
-            {
-                _address = value;
-            }
+            _institutionID = value;
         }
+    }
 
-        private int _country;
-        public int country
+    private string _address;
+    public string address
+    {
+        get
         {
-            get
-            {
-                return _country;
-            }
-            set
-            {
-                _country = value;
-            }
+            return _address;
         }
-
-        private char _type;
-        public char type
+        set
         {
-            get
+            _address = value;
+        }
+    }
+
+    private string _country;
+    public string country
+    {
+        get
+        {
+            return _country;
+        }
+        set
+        {
+            _country = value;
+        }
+    }
+
+    private char _type;
+    public char type
+    {
+        get
+        {
+            return _type;
+        }
+        set
+        {
+            if (_type.Equals("S") || _type.Equals("P"))
             {
-                return _type;
+                _type = value;
             }
-            set
+            else
             {
-                if (_type.Equals("S") || _type.Equals("P"))
-                {
-                    _type = value;
-                }
-                else
-                {
-                    Console.WriteLine("this won't work sir or lady!");
-                }
+                Console.WriteLine("this won't work sir or lady!");
             }
         }
+    }
 
-        private string _phoneNumber;
-        public string phoneNumber
+    private string _phoneNumber;
+    public string phoneNumber
+    {
+        get
         {
-            get
-            {
-                return _phoneNumber;
-            }
-            set
-            {
-                _phoneNumber = value;
-            }
+            return _phoneNumber;
         }
-
-        private string _email;
-        public string email
+        set
         {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-            }
+            _phoneNumber = value;
         }
+    }
 
-        private char _postalcode;
-
-        public char postalcode
+    private string _email;
+    public string email
+    {
+        get
         {
-            get
-            {
-                return _postalcode;
-            }
-            set
-            {
-                _postalcode = value;
-            }
+            return _email;
+        }
+        set
+        {
+            _email = value;
+        }
+    }
+
+    private char _postalcode;
+
+    public char postalcode
+    {
+        get
+        {
+            return _postalcode;
+        }
+        set
+        {
+            _postalcode = value;
         }
     }
 }

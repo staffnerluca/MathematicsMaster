@@ -3,8 +3,9 @@ using System;
 namespace MathMaster;
 
 public class Group
-{
-    public Group(int groupID, string owner, int institutionID)
+{   
+
+    public Group(int groupID, int owner, int institutionID)
     {
         this.groupID = groupID;
         this.owner = owner;
@@ -25,7 +26,7 @@ public class Group
     }
 
 
-    private string _owner;
+    private int _owner;
     public int owner
     {
         get

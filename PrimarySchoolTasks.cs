@@ -31,35 +31,11 @@ namespace MathMaster
 
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            switch (type)
-            {
-                case "Multiplication":
-                    primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
-                    break;
-                case "Addition":
-                    primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
-                    break;
-                case "Division":
-                    primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
-                    break;
-                case "Subtraction":
-                    primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
-                    break;
-                case "Addition Under":
-                    primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
-                    break;
-                case "Division with Rest":
-                    primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
-                    break;
-                case "Subtraction Under":
-                    primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
-                    break;
-                case "Division Under":
-                    primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
-                    break;
-            }
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+            //NugetPackage Registerment
+
         }
         //DRY := Don't repeat yourself
         /* public static void DocumentCreation()
@@ -73,7 +49,7 @@ namespace MathMaster
             XFont xFont = new XFont("Arial", 20);
         }*/
 
-        public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public static void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             //Just incase that nothing is in the list, clearing the list therefore
             division.Clear();
@@ -100,7 +76,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public static void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
             multiplication.Clear();
             CreatingMultiplicationList();

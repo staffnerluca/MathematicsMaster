@@ -9,22 +9,24 @@ using System.Net;
 
 namespace MathMaster.Controllers;
 
+[Route("[controller]")]
 public class CalculationController : ControllerBase 
 {
-    [Route ("[controller]")]
-    
-    [HttpPost]
-    public IActionResult GetPdf(string type)
+
+    private readonly ILogger<CalculationController> _logger;
+
+    public CalculationController(ILogger<CalculationController> logger)
     {
         _logger = logger;
     }
 
-            //    "Was möchten Sie machen?\n" + "1-Multiplikation\n"
-            //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
-            //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
+    //    "Was möchten Sie machen?\n" + "1-Multiplikation\n"
+    //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
+    //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
-    [HttpPost]
-    public IActionResult Post(string type)
+
+    [HttpGet] //
+    public IActionResult Get(string type)
     {
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
@@ -38,8 +40,7 @@ public class CalculationController : ControllerBase
         //create it
         //send it back to the user to download it
 
-        var stream = new FileStream(@"pathToFile", FileMode.Open); 
-
+        var stream = new FileStream(@"pathToFile", FileMode.Open);
         switch (type)
         {
             case "Multiplication":
@@ -66,6 +67,9 @@ public class CalculationController : ControllerBase
             case "Division Under":
                 primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
                 break;
+        }
+        return Ok("hello");
+    }
         }
         return File(stream, "api/pdf", "C:\\Users\\Documents\\calculation.pdf"); //PDF as response Message 
        //https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
