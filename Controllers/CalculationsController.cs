@@ -41,7 +41,6 @@ public class CalculationController : ControllerBase
         document.AddPage(page);
         XGraphics gfx = XGraphics.FromPdfPage(page);
 
-
         // Create a new PDF document
 
         //new Calc
