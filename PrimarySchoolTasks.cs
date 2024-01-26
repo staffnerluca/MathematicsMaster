@@ -11,6 +11,7 @@ namespace MathMaster
         #region Variables
         private static Random rand;
 
+        //one list only
         private static List<string> division = new List<string>(); //That would be a global list now 
         private static List<string> multiplication = new List<string>();
         private static List<string> addition = new List<string>();
