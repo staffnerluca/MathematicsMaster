@@ -55,7 +55,7 @@ public class CalculationController : ControllerBase
             }
 
             // Save the document to a file or memory stream
-            pdfDocument.Save("output.pdf");
+            pdfDocument.Save("C:\\Documents\\calculation.pdf");
         }
 
         //new Calc
@@ -98,7 +98,7 @@ public class CalculationController : ControllerBase
         //var stream = new FileStream(@"C:\Documents\calculation.pdf", FileMode.Open);
 
 
-        primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+        //primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
         return Ok("hello");
         //return File(stream, "api/pdf", "C:\\Documents\\calculation.pdf"); //PDF as response Message 
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
