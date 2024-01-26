@@ -19,11 +19,12 @@ namespace MathMaster
         private static List<string> divisionWithRest = new List<string>();
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
+        private static XFont xFont = new XFont("Arial", 20);
+        private static XFont headline = new XFont("Arial", 32);
 
         PdfDocument document;
         PdfPage page;
         XGraphics gfx;
-        XFont xFont;
         #endregion
 
         public PrimarySchoolTasks()
@@ -49,7 +50,7 @@ namespace MathMaster
             XFont xFont = new XFont("Arial", 20);
         }*/
 
-        public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisonDocument(XGraphics gfx, PdfDocument document)
         {
             //Just incase that nothing is in the list, clearing the list therefore
             division.Clear();
@@ -76,7 +77,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void MultiplicationDocument(XGraphics gfx, PdfDocument document)
         {
             multiplication.Clear();
             CreatingMultiplicationList();
@@ -100,10 +101,10 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save("C:\\Users\\lukas.resch\\Documents\\calculation.pdf");
         }
 
-        public void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void AdditionDocument(XGraphics gfx, PdfDocument document)
         {
             addition.Clear();
             CreatingAdditionList();
@@ -130,7 +131,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void AdditionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void AdditionUnderDocument(XGraphics gfx, PdfDocument document)
         {
             additionUnder.Clear();
             CreatingAdditionUnderList();
@@ -157,7 +158,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void SubtractionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void SubtractionDocument(XGraphics gfx, PdfDocument document)
         {
             subtraction.Clear();
             CreatingSubtractionList();
@@ -184,7 +185,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void DivisionWithRestDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisionWithRestDocument(XGraphics gfx, PdfDocument document)
         {
             divisionWithRest.Clear();
             CreatingDivisionWithRemainList();
@@ -215,7 +216,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         } //one row under that the students can type in there stuff
 
-        public void SubtractionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void SubtractionUnderDocument(XGraphics gfx, PdfDocument document)
         {
             subtractionUnder.Clear();
             CreatingSubtractionUnderList();
@@ -242,7 +243,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void DivisionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
+        public void DivisionUnderDocument(XGraphics gfx, PdfDocument document)
         {
             divisionUnder.Clear();
             CreatingDivisionUnderList();
@@ -447,6 +448,7 @@ namespace MathMaster
                     snumber = rand.Next(0, 1000);
                 }
                 while (fnumber - snumber * (-1) <= 999);
+                //here it is that the numbers are smaller than 1000
 
                 string calc = "";
 
@@ -472,7 +474,9 @@ namespace MathMaster
                     snumber = rand.Next(2, 10);
                 }
                 while (fnumber % snumber == 0);
-     
+                //7 % 3 = 1 because 2*3=6 and 1 rest
+                //6 % 3 = 0 because 2 * 3 = 6 0 rest
+                //this condition does make it so that always numbers are taken, were 0 rest will be coming out
 
                 string calc = "";
 
