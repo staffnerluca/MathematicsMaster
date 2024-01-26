@@ -144,7 +144,8 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("https://belovanna.github.io/assets/download/sample.pdf");
+            document.Save("https://github.com/HAK-KB/2024-swp-4it-staffnerlresch/tree/main/PDFCreated/calculation.pdf");
+            //document.Save("https://luggires.github.io/assets/download/sample.pdf");
         }
 
         public void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
