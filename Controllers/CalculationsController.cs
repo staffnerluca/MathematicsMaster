@@ -32,41 +32,40 @@ public class CalculationController : ControllerBase
     {
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
 
-        XFont xFont;
-        XFont headline;
+        GlobalFontSettings.FontResolver = new MyFontResolver();
+
+        XFont xFont = new XFont("Open Sans", 12);
+        XFont headline = new XFont("Open Sans", 24);
         PdfDocument document = new PdfDocument();
         PdfPage page = new PdfPage(document);
         XGraphics gfx = XGraphics.FromPdfPage(page);
 
-        // Create a new PDF document
-        using (PdfDocument pdfDocument = new PdfDocument())
-        {
-            // Add a page to the document
-            page = pdfDocument.AddPage();
 
-            // Create a graphics object for the page
-            using (gfx = XGraphics.FromPdfPage(page))
-            {
-                // Create an XFont object for Arial font with size 12
-                XFont font = new XFont("Arial", 12);
+        //// Create a new PDF document
+        //using (PdfDocument pdfDocument = new PdfDocument())
+        //{
+        //    // Add a page to the document
+        //    page = pdfDocument.AddPage();
 
-                // Draw text on the page using Arial font
-                gfx.DrawString("Hello, this is a PDF with Arial font.", font, XBrushes.Black, 10, 10);
-            }
+        //    // Create a graphics object for the page
+        //    using (gfx = XGraphics.FromPdfPage(page))
+        //    {
+        //        // Create an XFont object for Arial font with size 12
+        //        XFont font = new XFont("Arial", 12);
 
-            // Save the document to a file or memory stream
-            pdfDocument.Save("C:\\Documents\\calculation.pdf");
-        }
+        //        // Draw text on the page using Arial font
+        //        gfx.DrawString("Hello, this is a PDF with Arial font.", font, XBrushes.Black, 10, 10);
+        //    }
+
+        //    // Save the document to a file or memory stream
+        //    pdfDocument.Save("output.pdf");
+        //}
 
         //new Calc
         //type tells you which sheet to create
         //create it
         //send it back to the user to download it
         //IFontResolver and assign to "GlobalFontSettings.FontResolver" to use fonts."
-
-        //GlobalFontSettings.FontResolver = FontResolver;
-
-
 
         //switch (type)
         //{
@@ -98,7 +97,7 @@ public class CalculationController : ControllerBase
         //var stream = new FileStream(@"C:\Documents\calculation.pdf", FileMode.Open);
 
 
-        //primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+        primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
         return Ok("hello");
         //return File(stream, "api/pdf", "C:\\Documents\\calculation.pdf"); //PDF as response Message 
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
