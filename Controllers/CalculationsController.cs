@@ -11,8 +11,9 @@ namespace MathMaster.Controllers;
 
 public class CalculationController : ControllerBase 
 {
+    [Route ("[controller]")]
+    
     [HttpPost]
-    [Route ("api/pdf")]
     public IActionResult GetPdf(string type)
     {
         var stream = new FileStream(@"C:\Users\Documents\calculation.pdf", FileMode.Open);

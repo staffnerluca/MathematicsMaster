@@ -33,7 +33,33 @@ namespace MathMaster
 
         static void Main(string[] args)
         {
-
+            switch (type)
+            {
+                case "Multiplication":
+                    primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+                    break;
+                case "Addition":
+                    primarySchoolTasks.AdditionDocument(gfx, xFont, document, headline);
+                    break;
+                case "Division":
+                    primarySchoolTasks.DivisonDocument(gfx, xFont, document, headline);
+                    break;
+                case "Subtraction":
+                    primarySchoolTasks.SubtractionDocument(gfx, xFont, document, headline);
+                    break;
+                case "Addition Under":
+                    primarySchoolTasks.AdditionUnderDocument(gfx, xFont, document, headline);
+                    break;
+                case "Division with Rest":
+                    primarySchoolTasks.DivisionWithRestDocument(gfx, xFont, document, headline);
+                    break;
+                case "Subtraction Under":
+                    primarySchoolTasks.SubtractionUnderDocument(gfx, xFont, document, headline);
+                    break;
+                case "Division Under":
+                    primarySchoolTasks.DivisionUnderDocument(gfx, xFont, document, headline);
+                    break;
+            }
         }
         //DRY := Don't repeat yourself
         /* public static void DocumentCreation()
