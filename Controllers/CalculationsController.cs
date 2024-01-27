@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel;
 using System.Web;
 using System.Drawing;
+using MathMaster.ClassesOfTheProject;
 
 namespace MathMaster.Controllers;
 

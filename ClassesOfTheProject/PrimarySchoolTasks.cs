@@ -1,14 +1,14 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 
-namespace MathMaster
+namespace MathMaster.ClassesOfTheProject
 {
     public class PrimarySchoolTasks
     {
         #region Variables 
         private static Random rand = new Random();
         //one list only
-        private static List<string> division = new List<string>(); 
+        private static List<string> division = new List<string>();
         private static List<string> multiplication = new List<string>();
         private static List<string> addition = new List<string>();
         private static List<string> additionUnder = new List<string>();
@@ -41,10 +41,10 @@ namespace MathMaster
 
             int x = 150; //here were it starts at the sheet
             int y = 70; //here too
-            
+
             for (int i = 1; i <= 3; i++)
             {
-                for (int m = 1; m <= 100 / 3; m++) 
+                for (int m = 1; m <= 100 / 3; m++)
                 {
                     gfx.DrawString("" + division[0], xFont, XBrushes.Black, new XRect //covers hole page
                         (x, y, 0, 100), XStringFormats.Center); //(x, y, x, y)
@@ -69,9 +69,9 @@ namespace MathMaster
                (0, 0, 600, 120), XStringFormats.Center); //just the headline, with a specific format
 
             //here were it starts at the sheet
-            int x = 150; 
+            int x = 150;
             int y = 70;
-            
+
             for (int i = 1; i <= 3; i++) //1 because of multiplication
             {
                 for (int m = 1; m <= 100 / 3; m++) //DivisionStatement[index];
@@ -143,7 +143,7 @@ namespace MathMaster
                     y += 20;
                 }
                 x += 150; //new row
-                y = 70; 
+                y = 70;
             }
 
             document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
@@ -205,7 +205,7 @@ namespace MathMaster
                     y += 20;
                     divisionWithRest.RemoveAt(0);
 
-                } 
+                }
                 x += 150; //new row
                 y = 70;
             }
@@ -297,7 +297,7 @@ namespace MathMaster
         }
 
         public static void CreatingMultiplicationList()
-        { 
+        {
             for (int i = 0; i < 100; i++) //creating a hundred statments for the document
             {
                 int fnumber; int snumber;
@@ -309,7 +309,7 @@ namespace MathMaster
                 }
                 while (i > 100);
                 //here we just looking, that not more than 100 statements are created 
-                
+
                 string calc = "";
                 if (fnumber < 10)
                     calc = " ";
@@ -414,7 +414,7 @@ namespace MathMaster
         }
 
         public static void CreatingDivisionWithRemainList()
-        { 
+        {
             for (int i = 0; i <= 100; i++) //creating a hundred statments for the document
             {
                 int fnumber; int snumber;
@@ -458,7 +458,7 @@ namespace MathMaster
                     fnumber = rand.Next(0, 1000); //just creating a number which is between those 2 assigned numbers
                     snumber = rand.Next(0, 1000); //just creating a number which is between those 2 assigned numbers
                 }
-                while (fnumber - snumber * (-1) <= 999);
+                while (fnumber - snumber * -1 <= 999);
                 //here it is that the numbers are smaller than 1000
 
                 string calc = "";
