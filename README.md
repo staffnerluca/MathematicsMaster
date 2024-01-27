@@ -1,5 +1,5 @@
 # Math Master
-Currently the program contains a ASP.net application with an React frontend and a terminal applicatoin that creates calculation sheets for primary school children. They need to be executed seperately right now but will be linked in the future.
+Currently the program contains a ASP.net application with an React frontend and a terminal application that creates calculation sheets for primary school children. They need to be executed seperately right now but will be linked in the future.
 
 To run the project React, ASP.net and Node.js need to be installed.
 
