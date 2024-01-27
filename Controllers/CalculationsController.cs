@@ -74,9 +74,14 @@ public class CalculationController : ControllerBase
             installv10();
         }
 
+        if (PdfSharp.Fonts.GlobalFontSettings.FontResolver is null)
+        {
+            GlobalFontSettings.FontResolver = new MyFontResolver();
+        }
+
         #region Variables 
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
-        GlobalFontSettings.FontResolver = new MyFontResolver();
+        //GlobalFontSettings.FontResolver = new MyFontResolver();
         PdfPage page = new PdfPage();
         PdfDocument document = new PdfDocument();
         document.AddPage(page);
