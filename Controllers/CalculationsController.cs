@@ -30,29 +30,36 @@ public class CalculationController : ControllerBase
     //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
     //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
-    [HttpGet] //
+    [HttpGet]
     public IActionResult Get(string type)
     {
-        string path = @"C:\Downloads\PDFCreated"; //there also Users\luker ... path otherwise if this does not work
-        if (!Directory.Exists(path))
+        Random r = new Random();
+        long typeInt = r.NextInt64(8);
+        string pathNow = Directory.GetCurrentDirectory();
+        string pdfCreatedPath = Path.Combine(pathNow, "PDFCreated");
+        //don't understand because the frontend starts the download not you #ls
+        //string path = @"C:\Downloads\PDFCreated"; //there also Users\luker ... path otherwise if this does not work
+        if (!Directory.Exists(pdfCreatedPath))
         {
-            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(pdfCreatedPath);
+        }
+        //should look something like this, at least works on my machine
+        string fontDir = "Font";
+        string fontPath = Path.Combine(pathNow, fontDir);
+        if (!Directory.Exists(fontPath))
+        {
+            Directory.CreateDirectory(fontPath);
+        }
+        string  sansDir = "open-sans";
+        string openSansPath = Path.Combine(pathNow, fontDir, sansDir);
+        if (!Directory.Exists(openSansPath))
+        {
+            Directory.CreateDirectory(openSansPath);
         }
 
-        string path1 = @"C:\Documents\Fonts";
-        if (!Directory.Exists(path1))
-        {
-            Directory.CreateDirectory(path1);
-        }
-
-        string path2 = @"C:\Documents\Fonts\open-sans";
-        if (!Directory.Exists(path2))
-        {
-            Directory.CreateDirectory(path2);
-        }
-
-        string path3 = @"C:\Documents\Fonts\open-sans\OpenSans - Regular.ttf";
-        if (!Directory.Exists(path3))
+        string ttfFile = "OpenSans - Regular.ttf";
+        string regularTtfPath = Path.Combine(openSansPath, ttfFile);
+        if (!Directory.Exists(regularTtfPath))
         {
             install();
             installv2();
@@ -142,6 +149,8 @@ public class CalculationController : ControllerBase
         xFont = new XFont("OpenSans", 12);
         headline = new XFont("OpenSans", 24);
         primarySchoolTasks.MultiplicationDocument(gfx, xFont, document, headline);
+
+        //you need to return the pdf here
         return Ok("hello");
         //return File(stream, "api/pdf", "C:\\Documents\\calculation.pdf"); //PDF as response Message 
         ////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
