@@ -78,6 +78,7 @@ public class CalculationController : ControllerBase
         {
             GlobalFontSettings.FontResolver = new MyFontResolver();
         }
+        //problem with IFontResolver hopefully solved
 
         #region Variables 
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
