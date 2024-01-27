@@ -38,7 +38,6 @@ public class UserDataController : ControllerBase
             }
         }
         return false;
-
     }
 
     //only for test purposes, delete later
