@@ -17,6 +17,7 @@ namespace MathMaster
         private static List<string> divisionWithRest = new List<string>();
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
+        public static string pathNow = Directory.GetCurrentDirectory();
         #endregion
 
         public PrimarySchoolTasks()
@@ -26,72 +27,9 @@ namespace MathMaster
 
         public static void Main(string[] args)
         {
-            // Load a custom font file
-            //string fontFilePath = "C:\\Users\\lukas.resch\\Documents\\arial-fonts\\arial.ttf"; // Replace with the path to your font file
-            //XPrivateFontCollection privateFontCollection = new XPrivateFontCollection();
-            //privateFontCollection.AddFontFile(fontFilePath);
-            //XPrivateFontCollection privateFontCollection = new XPrivateFontCollection(PdfSharp.Fonts.GlobalFontSettings.AddFontResolver);
-            //privateFontCollection.A(fontFilePath);
-
-
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             //NugetPackage Registerment
-       
-            // Create a graphics object for the page
-
-
-            //string menu =
-            //"Was möchten Sie machen?\n" + "1-Multiplikation\n"
-            //+ "2-Addition\n" + "3-Division\n" + "4-Addition with numbers under each other\n" + "5-Subtraction\n"
-            //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
-
-            //switch (type)
-            //{
-            //    case "1":
-            //        MultiplicationDocument();
-            //        break;
-
-            //    case "2":
-            //        AdditionDocument();
-            //        break;
-
-            //    case "3":
-            //        DivisonDocument();
-            //        break;
-
-            //    case "4":
-            //        AdditionUnderDocument();
-            //        break;
-
-            //    case "5":
-            //        SubtractionDocument(gfx, xFont, document, headline);
-            //        break;
-
-            //    case "6":
-            //        DivisionWithRestDocument(gfx, xFont, document, headline);
-            //        break;
-
-            //    case "7":
-            //        SubtractionUnderDocument(gfx, xFont, document, headline);
-            //        break;
-
-            //    case "8":
-            //        DivisionUnderDocument(gfx, xFont, document, headline);
-            //        break;
-            //}
-
         }
-        //DRY := Don't repeat yourself
-        /* public static void DocumentCreation()
-        {
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            //NugetPackage Registerment
-
-            PdfDocument document = new PdfDocument();
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont xFont = new XFont("Arial", 20);
-        }*/
 
         public void DivisonDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
         {
@@ -117,7 +55,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public void MultiplicationDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -144,7 +82,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Downloads\\PDFCreated\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public void AdditionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -171,7 +109,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public void AdditionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -198,7 +136,7 @@ namespace MathMaster
                 y = 70; //10
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public void SubtractionDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -225,7 +163,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public void DivisionWithRestDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -256,7 +194,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         } //one row under that the students can type in there stuff
 
         public void SubtractionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -283,7 +221,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public void DivisionUnderDocument(XGraphics gfx, XFont xFont, PdfDocument document, XFont headline)
@@ -310,7 +248,7 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            document.Save(pathNow + "\\PDFCreated\\calculation.pdf");
         }
 
         public static void CreatingDivisionList()

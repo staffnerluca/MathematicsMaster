@@ -6,6 +6,8 @@ namespace MathMaster;
 
 public class MyFontResolver : IFontResolver
 {
+    public static string pathNow = Directory.GetCurrentDirectory();
+
     public FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic)
     {
         if (familyName.Equals("OpenSans", StringComparison.CurrentCultureIgnoreCase))
@@ -32,7 +34,7 @@ public class MyFontResolver : IFontResolver
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join("C:\\Documents\\Fonts\\open-sans", faceName);
+        var faceNamePath = Path.Join(pathNow + "\\Font\\open-sans", faceName);
         using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish
         {
             try
