@@ -4,11 +4,13 @@ using System.Resources;
 
 namespace MathMaster;
 
-public class MyFontResolver : IFontResolver
+public class MyFontResolver : IFontResolver //this is inheriting from IFontResolver
 {
-    public FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic)
+    public static string pathNow = Directory.GetCurrentDirectory(); //just getting the path the user is on
+
+    public FontResolverInfo ResolveTypeface(string familyName, bool isBold, bool isItalic) //here we are just looking at which font we use.
     {
-        if (familyName.Equals("OpenSans", StringComparison.CurrentCultureIgnoreCase))
+        if (familyName.Equals("OpenSans", StringComparison.CurrentCultureIgnoreCase)) //this doesn't care about the letters if they are capital or not. It compares them then
         {
             if (isBold && isItalic)
             {
@@ -32,22 +34,22 @@ public class MyFontResolver : IFontResolver
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join("C:\\Documents\\Fonts\\open-sans", faceName);
-        using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish
+        var faceNamePath = Path.Join(pathNow + "\\Font\\open-sans", faceName); //here we just get the path where the font was saved
+        using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish; backing store is memory
         {
             try
             {
-                using (var fs = File.OpenRead(faceNamePath))
+                using (var fs = File.OpenRead(faceNamePath)) //Opens the file and reads it
                 {
                     fs.CopyTo(ms); //font which gets copied to my MemoryStream
                     ms.Position = 0; //font position in the stream
-                    return ms.ToArray();
+                    return ms.ToArray(); //just returns an Array of the MemoryStream
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                throw new Exception($"No Font File Found - " + faceNamePath);
+                throw new Exception("No Font File Found - " + faceNamePath); //just an Exception message
             }
         }
     }
