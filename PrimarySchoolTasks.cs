@@ -12,6 +12,11 @@ namespace MathMaster
         private static Random rand;
 
         //one list only
+        private static List<string> calculationsList = new List<string>();
+
+
+
+
         private static List<string> division = new List<string>(); //That would be a global list now 
         private static List<string> multiplication = new List<string>();
         private static List<string> addition = new List<string>();
@@ -20,6 +25,11 @@ namespace MathMaster
         private static List<string> divisionWithRest = new List<string>();
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
+
+
+
+
+
         private static XFont xFont = new XFont("Arial", 20);
         private static XFont headline = new XFont("Arial", 32);
 
@@ -28,29 +38,15 @@ namespace MathMaster
         XGraphics gfx;
         #endregion
 
-        public PrimarySchoolTasks()
+
+        public static void CreateDocument()
         {
+            
 
         }
 
-        public static void Main(string[] args)
-        {
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            //NugetPackage Registerment
 
-        }
-        //DRY := Don't repeat yourself
-        /* public static void DocumentCreation()
-        {
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            //NugetPackage Registerment
-
-            PdfDocument document = new PdfDocument();
-            PdfPage page = document.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont xFont = new XFont("Arial", 20);
-        }*/
-
+        #region Not Needed?
         public void DivisonDocument(XGraphics gfx, PdfDocument document)
         {
             //Just incase that nothing is in the list, clearing the list therefore
@@ -78,7 +74,7 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void MultiplicationDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument MultiplicationDocument(XGraphics gfx, PdfDocument document)
         {
             multiplication.Clear();
             CreatingMultiplicationList();
@@ -102,7 +98,8 @@ namespace MathMaster
                 y = 70;
             }
 
-            document.Save("C:\\Users\\lukas.resch\\Documents\\calculation.pdf");
+            return document;
+
         }
 
         public void AdditionDocument(XGraphics gfx, PdfDocument document)
@@ -271,6 +268,67 @@ namespace MathMaster
             document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
+        #endregion
+
+        //Allgemeine Regeln:
+        //Erste Zahl größer als Zweite
+        //Zweite nicht Null - ez rand.Next(1, xx);
+
+
+        public static void CreateCalculationsList(char calculationSign)
+        {
+            if (calculationsList.Count != 0)
+                calculationsList.Clear();
+
+            int firstNumber = -2, secondNumber = -1;
+            string toAdd = string.Empty, offSetOne = "", offSetTwo = "";
+
+
+            for (int i = 0; i < 100; i++)
+            {
+                while (firstNumber < secondNumber)
+                {
+                    firstNumber = rand.Next(1, 100);
+                    secondNumber = rand.Next(1, 100);
+                }
+
+                if (firstNumber < 10)
+                    offSetOne = " ";
+
+                if (secondNumber < 10)
+                    offSetTwo = " ";
+
+                subtraction.Add(offSetOne + firstNumber + " " + calculationSign + " " + offSetTwo + secondNumber + " = _____");
+
+            }
+        }
+
+
+
+
+        //TODO: DELETE IF NOT NEEDED
+        ////Set max first and second Number in Case we want different limits
+        //switch (calculationSign)
+        //{
+        //    case '+':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //    case '-':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //    case '*':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //    case '/':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //}
+
+        #region NotNeeded ?
         public static void CreatingDivisionList()
         {
             for (int i = 0; i < 100; i++)
@@ -336,14 +394,6 @@ namespace MathMaster
             }
         }
 
-        /// <summary>
-        ///   123
-        /// + 232
-        /// ------
-        ///   355
-        ///   
-        /// So it shall like that on the sheet of paper, because if its in a straight line, the primary kids will not be able to calculate it that well 
-        /// </summary>
 
         public static void CreatingAdditionUnderList()
         {
@@ -404,6 +454,8 @@ namespace MathMaster
             }
         }
 
+       
+
         public static void CreatingDivisionWithRemainList()
         {
             for (int i = 0; i <= 100; i++)
@@ -445,8 +497,8 @@ namespace MathMaster
 
                 do
                 {
-                    fnumber = rand.Next(0, 1000);
-                    snumber = rand.Next(0, 1000);
+                    fnumber = rand.Next(0, 100);
+                    snumber = rand.Next(0, 100);
                 }
                 while (fnumber - snumber * (-1) <= 999);
                 //here it is that the numbers are smaller than 1000
@@ -492,5 +544,36 @@ namespace MathMaster
                 //I have to do this, because I can't correctly format it otherwise
             }
         }
+        #endregion
     }
 }
+
+#region DELETE AS SOON AS POSSIBLE
+
+///// <summary>
+/////   123
+///// + 232
+///// ------
+/////   355
+/////   
+///// So it shall like that on the sheet of paper, because if its in a straight line, the primary kids will not be able to calculate it that well 
+///// </summary>
+///// 
+//public static void Main(string[] args)
+//{
+//    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+//    //NugetPackage Registerment
+
+//}
+////DRY := Don't repeat yourself
+///* public static void DocumentCreation()
+//{
+//    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+//    //NugetPackage Registerment
+
+//    PdfDocument document = new PdfDocument();
+//    PdfPage page = document.AddPage();
+//    XGraphics gfx = XGraphics.FromPdfPage(page);
+//    XFont xFont = new XFont("Arial", 20);
+//}*/
+#endregion
