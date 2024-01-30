@@ -10,6 +10,7 @@ const context = [
   "/task",
   "/calculation",
   "/test",
+  "/login"
 ];
 
 const onError = (err, req, resp, target) => {
