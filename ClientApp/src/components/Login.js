@@ -6,13 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap 
 
 function LoginBox(){
     return(
-        <div className='loginOrRegBox'>
-        <p>Username: </p><input className='usInputUsername'></input>
-        <br></br><br></br>
-        <p>Password: </p><input className='usInputPassword'></input>
-        <br></br>
-        <Link to="/Register">Register</Link>
-        </div>
+        <form>
+            <div className='loginOrRegBox'>
+            <p>Username: </p><input name="username" className='usInputUsername'></input>
+            <br></br><br></br>
+            <p>Password: </p><input name="username" className='usInputPassword'></input>
+            <br></br>
+            <Link to="/Register">Register</Link>
+            </div>
+        </form>
     )
 }
 
@@ -31,7 +33,7 @@ async function sendDataToServerAndGetResponse(){
         password: document.getElementsByClassName("usInputPassword").value
     };
     console.log(loginData);
-    const response = await fetch("userdata");
+    const response = await fetch("login");
     const testJson = await response.json();
     console.log("Server response: "+testJson["test"]);/*
     await fetch("userdata", {

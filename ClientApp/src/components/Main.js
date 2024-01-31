@@ -1,43 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import "./main.css"
 var point = 0;
 var showAnswer = false; 
 
-async function getDataFromServer(){
-    const response = await fetch("Tasks")
-    .then(alert("Got something"));
-    /*let filter = {
-        "type": "A",
-        "difficulty": "100"
-    }
-
-    const response = await fetch("task", {
-        method: "POST",
+async function getDataFromServer(apiPath) {
+    let response = "Somtething went wrong";
+    try {
+        response = await fetch("task", {
         headers: {
-            "Content-Type": "application/json"
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(filter)
-    })*/
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const card = await response.json();
+      alert("The Question"+data["question"])
+      alert("Got something from Tasks:\n" + JSON.stringify(data));
+      return card;
+     
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
 
     const data = await response.json()
     console.log(data);
     //fancy code...
     let card = {
-        question: `Die Osloer Bank gibt Münzen aus Aluminium (mit A bezeichnet) und aus Bronze (mit B bezeichnet) heraus. Marianne hat n 
-        Aluminiummünzen und n Bronzemünzen beliebig in einer Reihe angeordnet. Eine
-        Kette sei eine Teilfolge aufeinanderfolgender Münzen aus gleichem
-        Material. Für eine gegebene positive ganze Zahl k 6 2n führt Marianne wiederholt die folgende
-        Operation durch: Sie identifiziert die längste Kette, die die k -te Münze von links enthält, und
-        verschiebt alle Münzen dieser Kette an das linke Ende der Reihe. Zum Beispiel erhält sie für
-        n = 4 und k = 4 ausgehend von der Konfguration AABBBABA nacheinander
-        AABBBABA → BBBAAABA → AAABBBBA → BBBBAAAA → BBBBAAAA → · · · .
-        Man bestimme alle Paare (n, k) mit 1 6 k
-        6 2n, sodass für jede Ausgangskonfiguration zu
-        irgendeinem Zeitpunkt im Verlauf des Prozesses die n am weitesten links liegenden Münzen aus
-        dem gleichen Material sind.`,
-        answer: "42",
-        points: "1337",
-        type: "Logic"
+        question: "Something went wrong",
+        answer: "Try again",
+        points: "not working",
+        type: "sad smiley"
     };
     return card
 }
@@ -96,26 +91,24 @@ function AnswerField(card, points){
     }
 }
 
-export class Main extends Component{
-    constructor(props){
-        super(props);
-        this.card = getDataFromServer();
-        this.points = this.card["points"];
-        this.state = {card: getDataFromServer(), showAnswer: false};
-    }
+export function Main(){
+    const [card, setCard] = useState({});
 
-    render(){
-        return(
+    function loadTask() {
+        setCard(getDataFromServer());    
+    }
+        
+    return(
             <div>
                 <center><h1>TASKS</h1></center><h1></h1>
+                <button className='btn btn-primary' onClick={loadTask}>Load task</button>
                 <div className='container d-flex justify-content-center align-items-center vh-100'>
                     <div className='text-center'>
-                        <DisplayUserInfo card={this.card}/>
-                        <QuestionField card={this.card}/>
+                        <DisplayUserInfo card={card}/>
+                        <QuestionField card={card["question"]}/>
                         <AnswerField/>
                     </div>
                 </div>
             </div>
         );
-    }
 }
