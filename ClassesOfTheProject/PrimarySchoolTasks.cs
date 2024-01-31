@@ -38,13 +38,84 @@ namespace MathMaster
         XGraphics gfx;
         #endregion
 
+        //FrontEnd Gunther has to pass along calculationSign the User chose, dont bother with that
 
-        public static void CreateDocument()
+        public PdfDocument CreateDocument(char calculationSign)
         {
-            
 
+            //Create the necessary Files to being able to actually return a PDF Document at some point
+            PdfDocument document = new PdfDocument();
+            XFont headline = new XFont("Arial", 32); //Prolly not working
+            XGraphics gfx = new XGraphics(); //Prolly not working
+            XFont xFont = new XFont("Arial", 20); //Prolly not working
+            PdfPage page = document.AddPage();
+
+            //Create Calculations
+            List<string> calculationsList = CreateCalculationsList(calculationSign);
+
+            //x and y points of the startpoint (upper left corner) of the actual writeable surface
+            int x = 150;
+            int y = 70;
+
+            //2 loops to create 3 columns in total with calculations
+            for (int i = 1; i <= 3; i++)
+            {
+                for (int j = 1; j <= 33; j++)
+                {
+                    gfx.DrawString("" + calculationList[0], xFont, XBrushes.Black, new XRect(x, y, 0, 100), XStringFormats.Center);
+                    calculationList.RemoveAt(0);
+                    y += 20;
+                }
+                x += 150;
+                y = 70;
+            }
+            return document;
         }
 
+
+        public List<string> CreateCalculationsList(char calculationSign)
+        {
+            //Setup params
+            int firstNumber = -2, secondNumber = -1;
+            Random rng = new Random();
+            string firstOffSet = "", secondOffSet = "";
+            List<string> toReturn = new List<string>();
+            int firstMax = 100;
+            int secondMax = 100;
+            bool goodForDivison = false;
+
+            //a total of 100 calculations should be created
+            //Neither number should be 0
+            //firstNumber should be equal to or bigger than secondNumber
+            //Add Offset for 1 digit Numbers
+            for (int i = 0; i < 100; i++)
+            {
+                while (firstNumber < secondNumber && goodForDivision)
+                {
+                    if(calculationSign == "*")
+                    {
+                        firstMax = 10;
+                        secondMax = 10;
+                    }
+                    if (calculationSign == "/")
+                        secondMax = 10;
+                    firstNumber = rng.Next(1, firstMax);
+                    secondNumber = rng.Next(1, secondMax);
+                }
+
+                if(firstNumber % secondNumber == 0 || calculationSign != "/")
+                {
+                    goodForDivison = true;
+                }
+                if (firstNumber < 10)
+                    firstOffSet = " ";
+                if (secondNumber < 10)
+                    secondOffSet = " ";
+
+                toReturn.Add(firstOff Set + firstNumber + " " + calculationSign + " " + secondOffSet + secondNumber + " = _____");
+            }
+            return toReturn;
+        }
 
         #region Not Needed?
         public void DivisonDocument(XGraphics gfx, PdfDocument document)
@@ -275,6 +346,7 @@ namespace MathMaster
         //Zweite nicht Null - ez rand.Next(1, xx);
 
 
+        #region DELETE maybe?
         public static void CreateCalculationsList(char calculationSign)
         {
             if (calculationsList.Count != 0)
@@ -302,8 +374,7 @@ namespace MathMaster
 
             }
         }
-
-
+        #endregion
 
 
         //TODO: DELETE IF NOT NEEDED
