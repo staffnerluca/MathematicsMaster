@@ -27,7 +27,7 @@ public class CalculationController : ControllerBase
 
 
     [HttpGet] //
-    public IActionResult Get(string type)
+    public PdfDocument Get(string type)
     {
 
         PdfDocument document = new PdfDocument();
