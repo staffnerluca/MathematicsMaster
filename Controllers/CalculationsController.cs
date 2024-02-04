@@ -27,7 +27,7 @@ public class CalculationController : ControllerBase
 
 
     [HttpGet] //
-    public PdfDocument Get(char type)
+    public void Get(char type)
     {
 
         PdfDocument document = new PdfDocument();
@@ -45,7 +45,6 @@ public class CalculationController : ControllerBase
         ////type tells you which sheet to create
         ////create it
         ////send it back to the user to download itIFontResolver and assign to "GlobalFontSettings.FontResolver" to use fonts."
-
 
         switch (type)
         {
