@@ -27,7 +27,7 @@ public class CalculationController : ControllerBase
 
 
     [HttpGet] //
-    public PdfDocument Get(string type)
+    public PdfDocument Get(char type)
     {
 
         PdfDocument document = new PdfDocument();
@@ -35,12 +35,10 @@ public class CalculationController : ControllerBase
         XGraphics gfx = XGraphics.FromPdfPage(page);
         PrimarySchoolTasks tasks = new PrimarySchoolTasks();
         //edit page
+        //document = tasks.CreateDocument(calculationSign);
+        //return document;
 
-        document = tasks.MultiplicationDocument;
-
-        return document;
-
-        //PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
 
         //#region MAYBE DELETE
         ////new Calc
@@ -49,33 +47,33 @@ public class CalculationController : ControllerBase
         ////send it back to the user to download itIFontResolver and assign to "GlobalFontSettings.FontResolver" to use fonts."
 
 
-        ////switch (type)
-        ////{
-        ////    case "Multiplication":
-        ////        primarySchoolTasks.MultiplicationDocument(gfx, document);
-        ////        break;
-        ////    case "Addition":
-        ////        primarySchoolTasks.AdditionDocument(gfx, document);
-        ////        break;
-        ////    case "Division":
-        ////        primarySchoolTasks.DivisonDocument(gfx, document);
-        ////        break;
-        ////    case "Subtraction":
-        ////        primarySchoolTasks.SubtractionDocument(gfx, document);
-        ////        break;
-        ////    case "Addition Under":
-        ////        primarySchoolTasks.AdditionUnderDocument(gfx, document);
-        ////        break;
-        ////    case "Division with Rest":
-        ////        primarySchoolTasks.DivisionWithRestDocument(gfx, document);
-        ////        break;
-        ////    case "Subtraction Under":
-        ////        primarySchoolTasks.SubtractionUnderDocument(gfx, document);
-        ////        break;
-        ////    case "Division Under":
-        ////        primarySchoolTasks.DivisionUnderDocument(gfx, document);
-        ////        break;
-        ////}
+        switch (type)
+        {
+            case '*':
+                primarySchoolTasks.MultiplicationDocument(gfx, document);
+                break;
+            case '+':
+                primarySchoolTasks.AdditionDocument(gfx, document);
+                break;
+            case '/':
+                primarySchoolTasks.DivisonDocument(gfx, document);
+                break;
+            case '-':
+                primarySchoolTasks.SubtractionDocument(gfx, document);
+                break;
+            case 'a':
+                primarySchoolTasks.AdditionUnderDocument(gfx, document);
+                break;
+            case 'd':
+                primarySchoolTasks.DivisionWithRestDocument(gfx, document);
+                break;
+            case 's':
+                primarySchoolTasks.SubtractionUnderDocument(gfx, document);
+                break;
+            case 'u':
+                primarySchoolTasks.DivisionUnderDocument(gfx, document);
+                break;
+        }
         //#endregion
 
         //primarySchoolTasks.MultiplicationDocument(gfx, document);

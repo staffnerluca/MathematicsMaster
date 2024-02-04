@@ -11,11 +11,8 @@ namespace MathMaster
         #region Variables
         private static Random rand;
 
-        //one list only
+        //one list only later 
         private static List<string> calculationsList = new List<string>();
-
-
-
 
         private static List<string> division = new List<string>(); //That would be a global list now 
         private static List<string> multiplication = new List<string>();
@@ -25,10 +22,6 @@ namespace MathMaster
         private static List<string> divisionWithRest = new List<string>();
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
-
-
-
-
 
         private static XFont xFont = new XFont("Arial", 20);
         private static XFont headline = new XFont("Arial", 32);
@@ -40,85 +33,143 @@ namespace MathMaster
 
         //FrontEnd Gunther has to pass along calculationSign the User chose, dont bother with that
 
-        public PdfDocument CreateDocument(char calculationSign)
-        {
+        #region optimization
+        //public PdfDocument CreateDocument(char calculationSign)
+        //{
 
-            //Create the necessary Files to being able to actually return a PDF Document at some point
-            PdfDocument document = new PdfDocument();
-            XFont headline = new XFont("Arial", 32); //Prolly not working
-            XGraphics gfx = new XGraphics(); //Prolly not working
-            XFont xFont = new XFont("Arial", 20); //Prolly not working
-            PdfPage page = document.AddPage();
+        //    //Create the necessary Files to being able to actually return a PDF Document at some point
+        //    PdfDocument document = new PdfDocument();
+        //    XFont headline = new XFont("Arial", 32); //Prolly not working
+        //    XGraphics gfx = new XGraphics(); //Prolly not working
+        //    XFont xFont = new XFont("Arial", 20); //Prolly not working
+        //    PdfPage page = document.AddPage();
 
-            //Create Calculations
-            List<string> calculationsList = CreateCalculationsList(calculationSign);
+        //    //Create Calculations
+        //    List<string> calculationsList = CreateCalculationsList(calculationSign);
 
-            //x and y points of the startpoint (upper left corner) of the actual writeable surface
-            int x = 150;
-            int y = 70;
+        //    //x and y points of the startpoint (upper left corner) of the actual writeable surface
+        //    int x = 150;
+        //    int y = 70;
 
-            //2 loops to create 3 columns in total with calculations
-            for (int i = 1; i <= 3; i++)
-            {
-                for (int j = 1; j <= 33; j++)
-                {
-                    gfx.DrawString("" + calculationList[0], xFont, XBrushes.Black, new XRect(x, y, 0, 100), XStringFormats.Center);
-                    calculationList.RemoveAt(0);
-                    y += 20;
-                }
-                x += 150;
-                y = 70;
-            }
-            return document;
-        }
+        //    //2 loops to create 3 columns in total with calculations
+        //    for (int i = 1; i <= 3; i++)
+        //    {
+        //        for (int j = 1; j <= 33; j++)
+        //        {
+        //            gfx.DrawString("" + calculationList[0], xFont, XBrushes.Black, new XRect(x, y, 0, 100), XStringFormats.Center);
+        //            calculationList.RemoveAt(0);
+        //            y += 20;
+        //        }
+        //        x += 150;
+        //        y = 70;
+        //    }
+        //    return document;
+        //}
 
 
-        public List<string> CreateCalculationsList(char calculationSign)
-        {
-            //Setup params
-            int firstNumber = -2, secondNumber = -1;
-            Random rng = new Random();
-            string firstOffSet = "", secondOffSet = "";
-            List<string> toReturn = new List<string>();
-            int firstMax = 100;
-            int secondMax = 100;
-            bool goodForDivison = false;
+        //public List<string> CreateCalculationsList(char calculationSign)
+        //{
+        //    Setup params
+        //    int firstNumber = -2, secondNumber = -1;
+        //    Random rng = new Random();
+        //    string firstOffSet = "", secondOffSet = "";
+        //    List<string> toReturn = new List<string>();
+        //    int firstMax = 100;
+        //    int secondMax = 100;
+        //    bool goodForDivison = false;
 
-            //a total of 100 calculations should be created
-            //Neither number should be 0
-            //firstNumber should be equal to or bigger than secondNumber
-            //Add Offset for 1 digit Numbers
-            for (int i = 0; i < 100; i++)
-            {
-                while (firstNumber < secondNumber && goodForDivision)
-                {
-                    if(calculationSign == "*")
-                    {
-                        firstMax = 10;
-                        secondMax = 10;
-                    }
-                    if (calculationSign == "/")
-                        secondMax = 10;
-                    firstNumber = rng.Next(1, firstMax);
-                    secondNumber = rng.Next(1, secondMax);
-                }
+        //    a total of 100 calculations should be created
+        //    Neither number should be 0
+        //    firstNumber should be equal to or bigger than secondNumber
+        //    Add Offset for 1 digit Numbers
+        //    for (int i = 0; i < 100; i++)
+        //        {
+        //            while (firstNumber < secondNumber && goodForDivision)
+        //            {
+        //                if (calculationSign == "*")
+        //                {
+        //                    firstMax = 10;
+        //                    secondMax = 10;
+        //                }
+        //                if (calculationSign == "/")
+        //                    secondMax = 10;
+        //                firstNumber = rng.Next(1, firstMax);
+        //                secondNumber = rng.Next(1, secondMax);
+        //            }
 
-                if(firstNumber % secondNumber == 0 || calculationSign != "/")
-                {
-                    goodForDivison = true;
-                }
-                if (firstNumber < 10)
-                    firstOffSet = " ";
-                if (secondNumber < 10)
-                    secondOffSet = " ";
+        //            if (firstNumber % secondNumber == 0 || calculationSign != "/")
+        //            {
+        //                goodForDivison = true;
+        //            }
+        //            if (firstNumber < 10)
+        //                firstOffSet = " ";
+        //            if (secondNumber < 10)
+        //                secondOffSet = " ";
 
-                toReturn.Add(firstOff Set + firstNumber + " " + calculationSign + " " + secondOffSet + secondNumber + " = _____");
-            }
-            return toReturn;
-        }
+        //            toReturn.Add(firstOff Set + firstNumber + " " + calculationSign + " " + secondOffSet + secondNumber + " = _____");
+        //        }
+        //    return toReturn;
+        //}
 
-        #region Not Needed?
-        public void DivisonDocument(XGraphics gfx, PdfDocument document)
+        //Allgemeine Regeln:
+        //Erste Zahl größer als Zweite
+        //Zweite nicht Null - ez rand.Next(1, xx);
+
+        //#region DELETE maybe?
+        //public static void CreateCalculationsList(char calculationSign)
+        //{
+        //    if (calculationsList.Count != 0)
+        //        calculationsList.Clear();
+
+        //    int firstNumber = -2, secondNumber = -1;
+        //    string toAdd = string.Empty, offSetOne = "", offSetTwo = "";
+
+
+        //    for (int i = 0; i < 100; i++)
+        //    {
+        //        while (firstNumber < secondNumber)
+        //        {
+        //            firstNumber = rand.Next(1, 100);
+        //            secondNumber = rand.Next(1, 100);
+        //        }
+
+        //        if (firstNumber < 10)
+        //            offSetOne = " ";
+
+        //        if (secondNumber < 10)
+        //            offSetTwo = " ";
+
+        //        subtraction.Add(offSetOne + firstNumber + " " + calculationSign + " " + offSetTwo + secondNumber + " = _____");
+
+        //    }
+        //}
+        //#endregion
+
+        //TODO: DELETE IF NOT NEEDED
+        ////Set max first and second Number in Case we want different limits
+        //switch (calculationSign)
+        //{
+        //    case '+':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //    case '-':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //    case '*':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //    case '/':
+        //        firstNumber = rand.Next(1, 100);
+        //        secondNumber = rand.Next(1, 100);
+        //        break;
+        //}
+        #endregion
+
+        //#region Not Needed?
+        public PdfDocument DivisonDocument(XGraphics gfx, PdfDocument document)
         {
             //Just incase that nothing is in the list, clearing the list therefore
             division.Clear();
@@ -141,8 +192,7 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
         }
 
         public PdfDocument MultiplicationDocument(XGraphics gfx, PdfDocument document)
@@ -168,12 +218,10 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
             return document;
-
         }
 
-        public void AdditionDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument AdditionDocument(XGraphics gfx, PdfDocument document)
         {
             addition.Clear();
             CreatingAdditionList();
@@ -196,11 +244,11 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
+            //document.Save("C:\\Users\\Documents\\calculation.pdf");
         }
 
-        public void AdditionUnderDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument AdditionUnderDocument(XGraphics gfx, PdfDocument document)
         {
             additionUnder.Clear();
             CreatingAdditionUnderList();
@@ -223,11 +271,10 @@ namespace MathMaster
                 x += 150; //150
                 y = 70; //10
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
         }
 
-        public void SubtractionDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument SubtractionDocument(XGraphics gfx, PdfDocument document)
         {
             subtraction.Clear();
             CreatingSubtractionList();
@@ -250,11 +297,10 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
         }
 
-        public void DivisionWithRestDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument DivisionWithRestDocument(XGraphics gfx, PdfDocument document)
         {
             divisionWithRest.Clear();
             CreatingDivisionWithRemainList();
@@ -281,11 +327,10 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
         } //one row under that the students can type in there stuff
 
-        public void SubtractionUnderDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument SubtractionUnderDocument(XGraphics gfx, PdfDocument document)
         {
             subtractionUnder.Clear();
             CreatingSubtractionUnderList();
@@ -308,11 +353,10 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
         }
 
-        public void DivisionUnderDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument DivisionUnderDocument(XGraphics gfx, PdfDocument document)
         {
             divisionUnder.Clear();
             CreatingDivisionUnderList();
@@ -335,71 +379,11 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-
-            document.Save("C:\\Users\\Documents\\calculation.pdf");
+            return document;
         }
+        //#endregion
 
-        #endregion
-
-        //Allgemeine Regeln:
-        //Erste Zahl größer als Zweite
-        //Zweite nicht Null - ez rand.Next(1, xx);
-
-
-        #region DELETE maybe?
-        public static void CreateCalculationsList(char calculationSign)
-        {
-            if (calculationsList.Count != 0)
-                calculationsList.Clear();
-
-            int firstNumber = -2, secondNumber = -1;
-            string toAdd = string.Empty, offSetOne = "", offSetTwo = "";
-
-
-            for (int i = 0; i < 100; i++)
-            {
-                while (firstNumber < secondNumber)
-                {
-                    firstNumber = rand.Next(1, 100);
-                    secondNumber = rand.Next(1, 100);
-                }
-
-                if (firstNumber < 10)
-                    offSetOne = " ";
-
-                if (secondNumber < 10)
-                    offSetTwo = " ";
-
-                subtraction.Add(offSetOne + firstNumber + " " + calculationSign + " " + offSetTwo + secondNumber + " = _____");
-
-            }
-        }
-        #endregion
-
-
-        //TODO: DELETE IF NOT NEEDED
-        ////Set max first and second Number in Case we want different limits
-        //switch (calculationSign)
-        //{
-        //    case '+':
-        //        firstNumber = rand.Next(1, 100);
-        //        secondNumber = rand.Next(1, 100);
-        //        break;
-        //    case '-':
-        //        firstNumber = rand.Next(1, 100);
-        //        secondNumber = rand.Next(1, 100);
-        //        break;
-        //    case '*':
-        //        firstNumber = rand.Next(1, 100);
-        //        secondNumber = rand.Next(1, 100);
-        //        break;
-        //    case '/':
-        //        firstNumber = rand.Next(1, 100);
-        //        secondNumber = rand.Next(1, 100);
-        //        break;
-        //}
-
-        #region NotNeeded ?
+        //#region NotNeeded ?
         public static void CreatingDivisionList()
         {
             for (int i = 0; i < 100; i++)
@@ -615,36 +599,6 @@ namespace MathMaster
                 //I have to do this, because I can't correctly format it otherwise
             }
         }
-        #endregion
+        //#endregion
     }
 }
-
-#region DELETE AS SOON AS POSSIBLE
-
-///// <summary>
-/////   123
-///// + 232
-///// ------
-/////   355
-/////   
-///// So it shall like that on the sheet of paper, because if its in a straight line, the primary kids will not be able to calculate it that well 
-///// </summary>
-///// 
-//public static void Main(string[] args)
-//{
-//    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-//    //NugetPackage Registerment
-
-//}
-////DRY := Don't repeat yourself
-///* public static void DocumentCreation()
-//{
-//    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-//    //NugetPackage Registerment
-
-//    PdfDocument document = new PdfDocument();
-//    PdfPage page = document.AddPage();
-//    XGraphics gfx = XGraphics.FromPdfPage(page);
-//    XFont xFont = new XFont("Arial", 20);
-//}*/
-#endregion
