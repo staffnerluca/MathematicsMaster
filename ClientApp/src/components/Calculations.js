@@ -152,7 +152,7 @@ function checkCalculations(option){
 }
 
 
-function downlaod(){
+function download(){
     const type = document.getElementById("comType");
     const apiURL = "localhost:5000/Calculation?type={type}";
     fetch(apiURL)
