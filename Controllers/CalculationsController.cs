@@ -26,10 +26,14 @@ public class CalculationController : ControllerBase
     //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
 
-    [HttpGet] //
-    public void Get(char type)
+    [HttpGet]
+    public IActionResult Get(char type)
     {
-
+        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        primarySchoolTasks.AdditionDocument(); 
+        var stream = new FileStream(@"C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDF.pdf", FileMode.Open);
+        return File(stream, "application/pdf", "FileDownloadName.ext");
+        
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -38,7 +42,7 @@ public class CalculationController : ControllerBase
         //document = tasks.CreateDocument(calculationSign);
         //return document;
 
-        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        //PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
 
         //#region MAYBE DELETE
         ////new Calc
@@ -49,13 +53,14 @@ public class CalculationController : ControllerBase
         switch (type)
         {
             case '*':
-                primarySchoolTasks.MultiplicationDocument(gfx, document);
+                stream = new FileStream(@"C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDF.pdf", FileMode.Open);
+ 
                 break;
             case '+':
-                primarySchoolTasks.AdditionDocument(gfx, document);
-                break;
-            case '/':
-                primarySchoolTasks.DivisonDocument(gfx, document);
+            //    primarySchoolTasks.AdditionDocument(gfx, document);
+            //    break;
+            //case '/':
+            //    primarySchoolTasks.DivisonDocument(gfx, document);
                 break;
             case '-':
                 primarySchoolTasks.SubtractionDocument(gfx, document);
@@ -73,6 +78,8 @@ public class CalculationController : ControllerBase
                 primarySchoolTasks.DivisionUnderDocument(gfx, document);
                 break;
         }
+        return File(stream, "application/pdf", "FileDownloadName.ext");
+
         //#endregion
 
         //primarySchoolTasks.MultiplicationDocument(gfx, document);

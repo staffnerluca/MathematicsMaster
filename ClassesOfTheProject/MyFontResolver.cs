@@ -34,7 +34,7 @@ public class MyFontResolver : IFontResolver //this is inheriting from IFontResol
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join(pathNow + "\\Font\\open-sans", faceName); //here we just get the path where the font was saved
+        var faceNamePath = Path.Join("C:\\Users\\lukas.resch\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Font\\open-sans", faceName); //here we just get the path where the font was saved
         using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish; backing store is memory
         {
             try

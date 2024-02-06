@@ -23,12 +23,12 @@ namespace MathMaster
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
 
-        private static XFont xFont = new XFont("Arial", 20);
-        private static XFont headline = new XFont("Arial", 32);
+        private static XFont xFont = new XFont("OpenSans", 20);
+        private static XFont headline = new XFont("OpenSans", 32);
 
-        PdfDocument document;
-        PdfPage page;
-        XGraphics gfx;
+        public static PdfDocument document = new PdfDocument();
+        public static PdfPage page = document.AddPage();
+        public static XGraphics gfx = XGraphics.FromPdfPage(page);
         #endregion
 
         //FrontEnd Gunther has to pass along calculationSign the User chose, dont bother with that
@@ -169,7 +169,7 @@ namespace MathMaster
         #endregion
 
         //#region Not Needed?
-        public PdfDocument DivisonDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument DivisonDocument() //instead of GFX and XFont
         {
             //Just incase that nothing is in the list, clearing the list therefore
             division.Clear();
@@ -221,7 +221,7 @@ namespace MathMaster
             return document;
         }
 
-        public PdfDocument AdditionDocument(XGraphics gfx, PdfDocument document)
+        public void AdditionDocument()
         {
             addition.Clear();
             CreatingAdditionList();
@@ -244,8 +244,8 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-            return document;
-            //document.Save("C:\\Users\\Documents\\calculation.pdf");
+            //return document;
+            document.Save("C:\\Users\\Documents\\PDF.pdf");
         }
 
         public PdfDocument AdditionUnderDocument(XGraphics gfx, PdfDocument document)
