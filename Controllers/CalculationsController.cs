@@ -26,10 +26,10 @@ public class CalculationController : ControllerBase
     //+ "6-Division with rest\n" + "7-Subtraction with numbers under each other\n" + "8-Division with numbers under each other\n";
 
 
-    [HttpGet] //
-    public void Get(char type)
+    [HttpGet]
+    public IActionResult Get(string type)
     {
-
+        
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -48,31 +48,33 @@ public class CalculationController : ControllerBase
 
         switch (type)
         {
-            case '*':
+            case "Multiplication":
                 primarySchoolTasks.MultiplicationDocument(gfx, document);
                 break;
-            case '+':
+            case "Addition":
                 primarySchoolTasks.AdditionDocument(gfx, document);
                 break;
-            case '/':
+            case "Division":
                 primarySchoolTasks.DivisonDocument(gfx, document);
                 break;
-            case '-':
+            case "Subtraction":
                 primarySchoolTasks.SubtractionDocument(gfx, document);
                 break;
-            case 'a':
+            case "AdditionUnder":
                 primarySchoolTasks.AdditionUnderDocument(gfx, document);
                 break;
-            case 'd':
+            case "DivisionWithRemainder":
                 primarySchoolTasks.DivisionWithRestDocument(gfx, document);
                 break;
-            case 's':
+            case "SubtractionsUnder":
                 primarySchoolTasks.SubtractionUnderDocument(gfx, document);
                 break;
-            case 'u':
+            case "DivisionUnder":
                 primarySchoolTasks.DivisionUnderDocument(gfx, document);
                 break;
         }
+
+        return Ok("hello");
         //#endregion
 
         //primarySchoolTasks.MultiplicationDocument(gfx, document);
