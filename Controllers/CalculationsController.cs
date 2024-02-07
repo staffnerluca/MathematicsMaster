@@ -28,8 +28,7 @@ public class CalculationController : ControllerBase
 
     [HttpGet]
     public IActionResult Get(string type)
-    {
-        
+    {   
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -38,7 +37,7 @@ public class CalculationController : ControllerBase
         //document = tasks.CreateDocument(calculationSign);
         //return document;
 
-        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        //PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
 
         //#region MAYBE DELETE
         ////new Calc
@@ -73,8 +72,7 @@ public class CalculationController : ControllerBase
                 primarySchoolTasks.DivisionUnderDocument(gfx, document);
                 break;
         }
-
-        return Ok("hello");
+        return File(stream, "application/pdf", "FileDownloadName.ext");
         //#endregion
 
         //primarySchoolTasks.MultiplicationDocument(gfx, document);
