@@ -221,7 +221,7 @@ namespace MathMaster
             return document;
         }
 
-        public void AdditionDocument()
+        public PdfDocument AdditionDocument()
         {
             addition.Clear();
             CreatingAdditionList();
@@ -244,8 +244,8 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-            //return document;
-            document.Save("C:\\Users\\Documents\\PDF.pdf");
+            return document;
+            //document.Save("C:\\Users\\Documents\\PDF.pdf");
         }
 
         public PdfDocument AdditionUnderDocument(XGraphics gfx, PdfDocument document)

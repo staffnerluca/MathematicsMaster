@@ -29,6 +29,7 @@ public class CalculationController : ControllerBase
     [HttpGet]
     public IActionResult Get(char type)
     {
+        GlobalFontSettings.FontResolver = new MyFontResolver(); 
         PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
         primarySchoolTasks.AdditionDocument(); 
         var stream = new FileStream(@"C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDF.pdf", FileMode.Open);
