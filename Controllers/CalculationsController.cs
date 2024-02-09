@@ -32,7 +32,7 @@ public class CalculationController : ControllerBase
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
-        PrimarySchoolTasks tasks = new PrimarySchoolTasks();
+        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
         //edit page
         //document = tasks.CreateDocument(calculationSign);
         //return document;
@@ -72,7 +72,7 @@ public class CalculationController : ControllerBase
                 primarySchoolTasks.DivisionUnderDocument(gfx, document);
                 break;
         }
-        return File(stream, "application/pdf", "FileDownloadName.ext");
+        //return File(stream, "application/pdf", "FileDownloadName.ext");
         //#endregion
 
         //primarySchoolTasks.MultiplicationDocument(gfx, document);
