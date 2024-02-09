@@ -23,8 +23,9 @@ namespace MathMaster
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
 
-        private static XFont xFont = new XFont("OpenSans", 20);
-        private static XFont headline = new XFont("OpenSans", 32);
+      
+        private static XFont xFont = new XFont("Verdana", 12);
+        private static XFont headline = new XFont("Verdana", 12);
 
         public static PdfDocument document = new PdfDocument();
         public static PdfPage page = document.AddPage();
