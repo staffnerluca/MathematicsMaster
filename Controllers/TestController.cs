@@ -16,9 +16,9 @@ public class TestController : ControllerBase
 
 
     [HttpGet]
-    public IActionResult Get(){
+    public IActionResult Get(string letsTry){
         Dictionary<string, string> d = new Dictionary<string, string>{
-            {"test", "test1234"}
+            {"test", letsTry}
         };
         return Ok(d);
     }

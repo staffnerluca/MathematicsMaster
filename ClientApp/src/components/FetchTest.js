@@ -26,10 +26,8 @@ export function FetchTest() {
       <button onClick={() => fetchStuff("userdata")}>Fetch Data from userdata</button>
       <button onClick={() => fetchStuff("calculation")}>Fetch Data from Calculations</button>
       <button onClick={() => fetchStuff("task")}>Fetch Data from Task</button>
-      <button onClick={() => fetchStuff("test")}>Fetch Data from test</button>
+      <button onClick={() => fetchStuff("test?letsTry=dieter")}>Fetch Data from test</button>
       <button onClick={() => fetchStuff("login")}>Fetch Data from Login</button>
-
-
     </div>
   );
 }

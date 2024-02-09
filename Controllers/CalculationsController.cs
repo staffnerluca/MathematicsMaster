@@ -27,14 +27,8 @@ public class CalculationController : ControllerBase
 
 
     [HttpGet]
-    public IActionResult Get(char type)
-    {
-        GlobalFontSettings.FontResolver = new MyFontResolver(); 
-        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
-        primarySchoolTasks.AdditionDocument(); 
-        var stream = new FileStream(@"C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDF.pdf", FileMode.Open);
-        return File(stream, "application/pdf", "FileDownloadName.ext");
-        
+    public IActionResult Get(string type)
+    {   
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -53,34 +47,32 @@ public class CalculationController : ControllerBase
 
         switch (type)
         {
-            case '*':
-                stream = new FileStream(@"C:\Users\lukas.resch\source\repos\HAK-KB\2024-swp-4it-staffnerlresch\PDF.pdf", FileMode.Open);
- 
+            case "Multiplication":
+                primarySchoolTasks.MultiplicationDocument(gfx, document);
                 break;
-            case '+':
-            //    primarySchoolTasks.AdditionDocument(gfx, document);
-            //    break;
-            //case '/':
-            //    primarySchoolTasks.DivisonDocument(gfx, document);
+            case "Addition":
+                primarySchoolTasks.AdditionDocument(gfx, document);
                 break;
-            case '-':
+            case "Division":
+                primarySchoolTasks.DivisonDocument(gfx, document);
+                break;
+            case "Subtraction":
                 primarySchoolTasks.SubtractionDocument(gfx, document);
                 break;
-            case 'a':
+            case "AdditionUnder":
                 primarySchoolTasks.AdditionUnderDocument(gfx, document);
                 break;
-            case 'd':
+            case "DivisionWithRemainder":
                 primarySchoolTasks.DivisionWithRestDocument(gfx, document);
                 break;
-            case 's':
+            case "SubtractionsUnder":
                 primarySchoolTasks.SubtractionUnderDocument(gfx, document);
                 break;
-            case 'u':
+            case "DivisionUnder":
                 primarySchoolTasks.DivisionUnderDocument(gfx, document);
                 break;
         }
         return File(stream, "application/pdf", "FileDownloadName.ext");
-
         //#endregion
 
         //primarySchoolTasks.MultiplicationDocument(gfx, document);
