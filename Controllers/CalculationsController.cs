@@ -29,7 +29,6 @@ public class CalculationController : ControllerBase
     [HttpGet] //
     public void Get(char type)
     {
-
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
