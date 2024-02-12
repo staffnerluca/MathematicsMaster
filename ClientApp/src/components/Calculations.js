@@ -152,25 +152,44 @@ function checkCalculations(option){
 }
 
 
-function download(){
-    const type = document.getElementById("comType");
-    const apiURL = "localhost:5000/Calculation?type={type}";
-    fetch(apiURL)
-        .then(response => {
-            if(!response.ok){
-                throw new Error("HTTP Error")
-            }
-            return response.blob
-        }).then(file => {
-            //give the user the file to download
-            const link = document.createElement("a");
-            link.href = window.URL.createObjectURL(file);
-            document.append(link);
-            
-        }).catch(error => {
-            alert("An error occured");
-        })
+function getCalculationsType(option){
+    if(option == 1){
+        return "Addition";
+    }
+    else if(option == 2){
+        return "Subtraction";
+    }
+    else if(option == 3){
+        return "Multiplication";
+    }
+    else if(option == 4){
+        return "Division";
+    }
 }
+
+
+async function download(option) {
+    alert(option)
+    try {
+        let type = getCalculationsType(option);
+        alert(type);
+        const apiPath = `calculation?type=${type}`;
+        const response = await fetch(apiPath, {
+        headers: {
+          'Accept': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      alert("Got something from Calculations:\n" + JSON.stringify(data));
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  }
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
@@ -190,8 +209,8 @@ export class CreateCalculationsForPrimarySchool extends Component {
         return (
             <div>
                 <center><h1>Calculations</h1></center>
-                <button className="btn btn-primary" onClick={downlaod}>Download</button>
-                <button className='btn btn-primary' onClick={checkCalculations.bind(this, option)}>Check</button>
+                <button className="btn btn-primary" onClick={() => download(option)}>Download</button>
+                <button className='btn btn-primary' onClick={checkCalculations.bind(option)}>Check</button>
 
                 <select className="selectpicker form-control border-0 mb-1 px-4 py-4 rounded shadow" id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
