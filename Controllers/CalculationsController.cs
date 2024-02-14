@@ -29,6 +29,8 @@ public class CalculationController : ControllerBase
     [HttpGet]
     public IActionResult Get(string type)
     {   
+        return Ok(type);
+        /*
         PdfDocument document = new PdfDocument();
         PdfPage page = document.AddPage();
         XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -74,7 +76,7 @@ public class CalculationController : ControllerBase
         }
         return File(stream, "application/pdf", "FileDownloadName.ext");
         //#endregion
-
+        */
         //primarySchoolTasks.MultiplicationDocument(gfx, document);
         //var stream = new FileStream(@"C:\Users\Documents\calculation.pdf", FileMode.Open); //diese Datei gibt es nicht
         ////return Ok("hello");

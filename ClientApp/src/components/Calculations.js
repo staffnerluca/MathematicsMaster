@@ -168,28 +168,28 @@ function getCalculationsType(option){
 }
 
 
-async function download(option) {
-    alert(option)
-    try {
-        let type = getCalculationsType(option);
-        alert(type);
-        const apiPath = `calculation?type=${type}`;
-        const response = await fetch(apiPath, {
-        headers: {
-          'Accept': 'application/json',
-        },
-      });
+function download(){
+    fetch('calculation')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      alert("Got something from Calculations:\n" + JSON.stringify(data));
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
-    }
-  }
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "calculations.pdf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+};
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
