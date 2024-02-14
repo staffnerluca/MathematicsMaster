@@ -10,9 +10,14 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MathMaster
 {
-
     public class PrimarySchoolTasks_withQuestPDF
     {
+        public string type;
+        public PrimarySchoolTasks_withQuestPDF(string type)
+        {
+            this.type = type;
+        }
+
         public List<string> CreateElementsForPDF(string type)
         {
             List<string> calcs = new List<string> { };

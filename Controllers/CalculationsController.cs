@@ -29,10 +29,10 @@ public class CalculationController : ControllerBase
     public static string pathNow = Directory.GetCurrentDirectory();
 
     [HttpGet]
-    public IActionResult Get(string type)
+    public void Get(string type)
     {
-        PrimarySchoolTasks_withQuestPDF primarySchoolTasks_WithQuestPDF = new PrimarySchoolTasks_withQuestPDF();
-        return primarySchoolTasks_WithQuestPDF.GenerateToMemoryStream(type);
+        PrimarySchoolTasks_withQuestPDF primarySchoolTasks_WithQuestPDF = new PrimarySchoolTasks_withQuestPDF(type);
+        primarySchoolTasks_WithQuestPDF.GenerateToMemoryStream(type);
     }
 }
 
