@@ -34,23 +34,25 @@ public class MyFontResolver : IFontResolver //this is inheriting from IFontResol
 
     public byte[] GetFont(string faceName)
     {
-        var faceNamePath = Path.Join("C:\\Users\\lukas.resch\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Font\\open-sans", faceName); //here we just get the path where the font was saved
-        using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish; backing store is memory
-        {
-            try
+        /*  var faceNamePath = Path.Join("\\Font\\open-sans", faceName); //here we*/ /*just get the path where the font was saved*/
+            var faceNamePath = Path.Join(pathNow + "\\Font\\open-sans", faceName);
+            //var faceNamePath = Path.Join("C:\\Users\\luker\\source\\repos\\HAK-KB\\2024-swp-4it-staffnerlresch\\Fonts23\\open-sans", faceName);
+            using (var ms = new MemoryStream()) //kind of like a streamreader / writer ish
             {
-                using (var fs = File.OpenRead(faceNamePath)) //Opens the file and reads it
+                try
                 {
-                    fs.CopyTo(ms); //font which gets copied to my MemoryStream
-                    ms.Position = 0; //font position in the stream
-                    return ms.ToArray(); //just returns an Array of the MemoryStream
+                    using (var fs = File.OpenRead(faceNamePath))
+                    {
+                        fs.CopyTo(ms); //font which gets copied to my MemoryStream
+                        ms.Position = 0; //font position in the stream
+                        return ms.ToArray();
+                    }
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw new Exception("No Font File Found - " + faceNamePath); //just an Exception message
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw new Exception($"No Font File Found - " + faceNamePath);
+                }
             }
         }
     }
-}

@@ -1,6 +1,11 @@
-﻿using System.Reflection.Metadata;
+﻿using System.Drawing;
+using System.Drawing.Text;
+using System.Reflection.Metadata;
+using System.Resources;
+using System.Runtime.InteropServices;
 using System.Xml.Linq;
 using PdfSharp.Drawing;
+using PdfSharp.Fonts;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
@@ -9,7 +14,7 @@ namespace MathMaster
     public class PrimarySchoolTasks
     {
         #region Variables
-        private static Random rand;
+        public static Random rand = new Random();
 
         //one list only later 
         private static List<string> calculationsList = new List<string>();
@@ -23,8 +28,9 @@ namespace MathMaster
         private static List<string> subtractionUnder = new List<string>();
         private static List<string> divisionUnder = new List<string>();
 
-        private static XFont xFont = new XFont("OpenSans", 20);
-        private static XFont headline = new XFont("OpenSans", 32);
+      
+        private static XFont xFont = new XFont("OpenSans", 12);
+        private static XFont headline = new XFont("OpenSans", 12);
 
         public static PdfDocument document = new PdfDocument();
         public static PdfPage page = document.AddPage();
@@ -34,82 +40,73 @@ namespace MathMaster
         //FrontEnd Gunther has to pass along calculationSign the User chose, dont bother with that
 
         #region optimization
-        //public PdfDocument CreateDocument(char calculationSign)
-        //{
+        public PdfDocument CreateDocument(string calculationSign)
+        {
+            //Create Calculations
+            List<string> calculationsList = CreateCalculationsList(calculationSign);
 
-        //    //Create the necessary Files to being able to actually return a PDF Document at some point
-        //    PdfDocument document = new PdfDocument();
-        //    XFont headline = new XFont("Arial", 32); //Prolly not working
-        //    XGraphics gfx = new XGraphics(); //Prolly not working
-        //    XFont xFont = new XFont("Arial", 20); //Prolly not working
-        //    PdfPage page = document.AddPage();
+            //x and y points of the startpoint (upper left corner) of the actual writeable surface
+            int x = 150;
+            int y = 70;
 
-        //    //Create Calculations
-        //    List<string> calculationsList = CreateCalculationsList(calculationSign);
+            //2 loops to create 3 columns in total with calculations
+            for (int i = 1; i <= 3; i++)
+            {
+                for (int j = 1; j <= 33; j++)
+                {
+                    gfx.DrawString("" + calculationsList[0], xFont, XBrushes.Black, new XRect(x, y, 0, 100), XStringFormats.Center);
+                    calculationsList.RemoveAt(0);
+                    y += 20;
+                }
+                x += 150;
+                y = 70;
+            }
+            return document;
+        }
 
-        //    //x and y points of the startpoint (upper left corner) of the actual writeable surface
-        //    int x = 150;
-        //    int y = 70;
+        public List<string> CreateCalculationsList(string calculationSign)
+        {
+            //Setup params
+            int firstNumber = -2, secondNumber = -1;
+            Random rng = new Random();
+            string firstOffSet = "", secondOffSet = "";
+            List<string> toReturn = new List<string>();
+            int firstMax = 100;
+            int secondMax = 100;
+            bool goodForDivison = false;
 
-        //    //2 loops to create 3 columns in total with calculations
-        //    for (int i = 1; i <= 3; i++)
-        //    {
-        //        for (int j = 1; j <= 33; j++)
-        //        {
-        //            gfx.DrawString("" + calculationList[0], xFont, XBrushes.Black, new XRect(x, y, 0, 100), XStringFormats.Center);
-        //            calculationList.RemoveAt(0);
-        //            y += 20;
-        //        }
-        //        x += 150;
-        //        y = 70;
-        //    }
-        //    return document;
-        //}
+            //a total of 100 calculations should be created
+            //Neither number should be 0
+            //firstNumber should be equal to or bigger than secondNumber
+            //Add Offset for 1 digit Numbers
+            for (int i = 0; i < 100; i++)
+                {
+                    while (firstNumber < secondNumber && goodForDivison)
+                    {
+                        if (calculationSign == "*")
+                        {
+                            firstMax = 10;
+                            secondMax = 10;
+                        }
+                        if (calculationSign == "/")
+                            secondMax = 10;
+                        firstNumber = rng.Next(1, firstMax);
+                        secondNumber = rng.Next(1, secondMax);
+                    }
 
+                    if (firstNumber % secondNumber == 0 || calculationSign != "/")
+                    {
+                        goodForDivison = true;
+                    }
+                    if (firstNumber < 10)
+                        firstOffSet = " ";
+                    if (secondNumber < 10)
+                        secondOffSet = " ";
 
-        //public List<string> CreateCalculationsList(char calculationSign)
-        //{
-        //    Setup params
-        //    int firstNumber = -2, secondNumber = -1;
-        //    Random rng = new Random();
-        //    string firstOffSet = "", secondOffSet = "";
-        //    List<string> toReturn = new List<string>();
-        //    int firstMax = 100;
-        //    int secondMax = 100;
-        //    bool goodForDivison = false;
-
-        //    a total of 100 calculations should be created
-        //    Neither number should be 0
-        //    firstNumber should be equal to or bigger than secondNumber
-        //    Add Offset for 1 digit Numbers
-        //    for (int i = 0; i < 100; i++)
-        //        {
-        //            while (firstNumber < secondNumber && goodForDivision)
-        //            {
-        //                if (calculationSign == "*")
-        //                {
-        //                    firstMax = 10;
-        //                    secondMax = 10;
-        //                }
-        //                if (calculationSign == "/")
-        //                    secondMax = 10;
-        //                firstNumber = rng.Next(1, firstMax);
-        //                secondNumber = rng.Next(1, secondMax);
-        //            }
-
-        //            if (firstNumber % secondNumber == 0 || calculationSign != "/")
-        //            {
-        //                goodForDivison = true;
-        //            }
-        //            if (firstNumber < 10)
-        //                firstOffSet = " ";
-        //            if (secondNumber < 10)
-        //                secondOffSet = " ";
-
-        //            toReturn.Add(firstOff Set + firstNumber + " " + calculationSign + " " + secondOffSet + secondNumber + " = _____");
-        //        }
-        //    return toReturn;
-        //}
+                    toReturn.Add(firstOffSet + firstNumber + " " + calculationSign + " " + secondOffSet + secondNumber + " = _____");
+                }
+            return toReturn;
+        }
 
         //Allgemeine Regeln:
         //Erste Zahl größer als Zweite
@@ -195,8 +192,9 @@ namespace MathMaster
             return document;
         }
 
-        public PdfDocument MultiplicationDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument MultiplicationDocument()
         {
+            GlobalFontSettings.FontResolver = new MyFontResolver();
             multiplication.Clear();
             CreatingMultiplicationList();
 
@@ -221,7 +219,7 @@ namespace MathMaster
             return document;
         }
 
-        public void AdditionDocument()
+        public PdfDocument AdditionDocument()
         {
             addition.Clear();
             CreatingAdditionList();
@@ -244,8 +242,8 @@ namespace MathMaster
                 x += 150;
                 y = 70;
             }
-            //return document;
-            document.Save("C:\\Users\\Documents\\PDF.pdf");
+            return document;
+            //document.Save("C:\\Users\\Documents\\PDF.pdf");
         }
 
         public PdfDocument AdditionUnderDocument(XGraphics gfx, PdfDocument document)
