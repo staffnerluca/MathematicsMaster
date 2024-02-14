@@ -1,6 +1,11 @@
-﻿using System.Reflection.Metadata;
+﻿using System.Drawing;
+using System.Drawing.Text;
+using System.Reflection.Metadata;
+using System.Resources;
+using System.Runtime.InteropServices;
 using System.Xml.Linq;
 using PdfSharp.Drawing;
+using PdfSharp.Fonts;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
@@ -9,7 +14,7 @@ namespace MathMaster
     public class PrimarySchoolTasks
     {
         #region Variables
-        private static Random rand;
+        public static Random rand = new Random();
 
         //one list only later 
         private static List<string> calculationsList = new List<string>();
@@ -24,8 +29,8 @@ namespace MathMaster
         private static List<string> divisionUnder = new List<string>();
 
       
-        private static XFont xFont = new XFont("Verdana", 12);
-        private static XFont headline = new XFont("Verdana", 12);
+        private static XFont xFont = new XFont("OpenSans", 12);
+        private static XFont headline = new XFont("OpenSans", 12);
 
         public static PdfDocument document = new PdfDocument();
         public static PdfPage page = document.AddPage();
@@ -187,8 +192,9 @@ namespace MathMaster
             return document;
         }
 
-        public PdfDocument MultiplicationDocument(XGraphics gfx, PdfDocument document)
+        public PdfDocument MultiplicationDocument()
         {
+            GlobalFontSettings.FontResolver = new MyFontResolver();
             multiplication.Clear();
             CreatingMultiplicationList();
 

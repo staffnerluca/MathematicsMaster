@@ -7,7 +7,8 @@ using PdfSharp.Pdf;
 using System.IO;
 using System.Net;
 using PdfSharp.Fonts;
-     
+using Microsoft.AspNetCore.SignalR.Protocol;
+
 namespace MathMaster.Controllers;
 
 [Route("[controller]")]
@@ -30,18 +31,29 @@ public class CalculationController : ControllerBase
     [HttpGet]
     public IActionResult Get(string calculationSign)
     {
-        ////Create the necessary Files to being able to actually return a PDF Document at some point
-        //PdfDocument document = new PdfDocument();
+        MemoryStream stream = new MemoryStream();
+        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        PdfDocument pdfDocument = primarySchoolTasks.MultiplicationDocument();
+        pdfDocument.Save(stream,false);
+        pdfDocument.Close();
+        stream.Position = 0;
+        return new FileStreamResult(stream, "application/pdf");
+    }
+}
+
+#region MAYBE WE NEED IT
+////Create the necessary Files to being able to actually return a PDF Document at some point
+//PdfDocument document = new PdfDocument();
         //XFont headline = new XFont("Arial", 32); //Prolly not working
         //PdfPage page = document.AddPage();
         //XGraphics gfx = XGraphics.FromPdfPage(page); //Prolly not working
         //XFont xFont = new XFont("Arial", 20); //Prolly not working
 
-        PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
+        //PrimarySchoolTasks primarySchoolTasks = new PrimarySchoolTasks();
 
-        MemoryStream stream = new MemoryStream(primarySchoolTasks.CreateDocument());
-        var stream = new FileStream(pathNow + "\\calculation.pdf", FileMode.Open); //diese Datei gibt es nicht
-        return new FileStreamResult(stream, "application/pdf");
+        //MemoryStream stream = new MemoryStream(primarySchoolTasks.CreateDocument());
+        //var stream = new FileStream(pathNow + "\\calculation.pdf", FileMode.Open); //diese Datei gibt es nicht
+        //return new FileStreamResult(stream, "application/pdf");
 
         //edit page
         //document = tasks.CreateDocument(calculationSign);
@@ -60,28 +72,28 @@ public class CalculationController : ControllerBase
         //    case "Multiplication":
         //        primarySchoolTasks.CreateDocument(calculationSign);
         //        break;
-            //case "Addition":
-            //    primarySchoolTasks.AdditionDocument(gfx, document);
-            //    break;
-            //case "Division":
-            //    primarySchoolTasks.DivisonDocument(gfx, document);
-            //    break;
-            //case "Subtraction":
-            //    primarySchoolTasks.SubtractionDocument(gfx, document);
-            //    break;
-            //case "AdditionUnder":
-            //    primarySchoolTasks.AdditionUnderDocument(gfx, document);
-            //    break;
-            //case "DivisionWithRemainder":
-            //    primarySchoolTasks.DivisionWithRestDocument(gfx, document);
-            //    break;
-            //case "SubtractionsUnder":
-            //    primarySchoolTasks.SubtractionUnderDocument(gfx, document);
-            //    break;
-            //case "DivisionUnder":
-            //    primarySchoolTasks.DivisionUnderDocument(gfx, document);
-            //    break;
-        }
+        //case "Addition":
+        //    primarySchoolTasks.AdditionDocument(gfx, document);
+        //    break;
+        //case "Division":
+        //    primarySchoolTasks.DivisonDocument(gfx, document);
+        //    break;
+        //case "Subtraction":
+        //    primarySchoolTasks.SubtractionDocument(gfx, document);
+        //    break;
+        //case "AdditionUnder":
+        //    primarySchoolTasks.AdditionUnderDocument(gfx, document);
+        //    break;
+        //case "DivisionWithRemainder":
+        //    primarySchoolTasks.DivisionWithRestDocument(gfx, document);
+        //    break;
+        //case "SubtractionsUnder":
+        //    primarySchoolTasks.SubtractionUnderDocument(gfx, document);
+        //    break;
+        //case "DivisionUnder":
+        //    primarySchoolTasks.DivisionUnderDocument(gfx, document);
+        //    break;
+    //}
         //return document;
         //return File(stream, "application/pdf", "FileDownloadName.ext");
         //#endregion
@@ -90,6 +102,5 @@ public class CalculationController : ControllerBase
         //var stream = new FileStream(pathNow + "\\calculation.pdf", FileMode.Open); //diese Datei gibt es nicht
         //return File(stream, "api/pdf", pathNow + "\\calculation.pdf"); //PDF as response Message  //Datei gibt es nicht, also PDF datei
         //////https://stackoverflow.com/questions/40486431/return-pdf-to-the-browser-using-asp-net-core
-    }
-}
+#endregion
       
