@@ -26,7 +26,6 @@ public class LoginController : ControllerBase
             login = true;
         }
         return Ok(login);
-
     }
 
     //only for test purposes, delete later
