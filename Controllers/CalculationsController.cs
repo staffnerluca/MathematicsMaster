@@ -29,6 +29,7 @@ public class CalculationController : ControllerBase
     public static string pathNow = Directory.GetCurrentDirectory();
 
     [HttpGet]
+
     public void Get(string type)
     {
         PrimarySchoolTasks_withQuestPDF primarySchoolTasks_WithQuestPDF = new PrimarySchoolTasks_withQuestPDF(type);
