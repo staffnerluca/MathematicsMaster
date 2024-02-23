@@ -46,16 +46,26 @@ function CreateData(){
     function CreateUser(){
         return(
             <div className='creation'>
-                <p>username: </p><input></input>
-                <p>firstname: </p><input></input>
-                <p>familyname: </p><input></input>
-                <p>E-mail: </p><input></input>
-                <p>Darkmode: </p><input type="checkbox"></input>
-                <p>Name: </p><input></input>
-                <p>Name: </p><input></input>
-
+                <p>username: </p><input id="inpUsername"></input>
+                <p>firstname: </p><input id="inpFirstname"></input>
+                <p>familyname: </p><input id="inpFamilyName"></input>
+                <p>E-mail: </p><input id="inpMail"></input>
+                <p>Darkmode: </p><input id="inpDarkmode" type="checkbox"></input>
+                <p>Teacher: </p><input id="inpTeacher" type='checkbox'></input>
             </div>
         )
+    }
+
+    function createUserJSON(){
+        let user = {
+            "username": document.getElementById("inpUsername"),
+            "firstname": document.getElementById("inpFirstname"),
+            "Familyname": document.getElementById("inpFamilyName"),
+            "Mail": document.getElementById("inpMail"),
+            "Darkmode": document.getElementById("inpDarkmode"),
+            "Teacher": document.getElementById("inpTeacher"),
+        }
+        return user;
     }
 
 
