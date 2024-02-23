@@ -154,16 +154,16 @@ function checkCalculations(option){
 
 function getCalculationsType(option){
     if(option == 1){
-        return "Addition";
+        return "a";
     }
     else if(option == 2){
-        return "Subtraction";
+        return "s";
     }
     else if(option == 3){
-        return "Multiplication";
+        return "m";
     }
     else if(option == 4){
-        return "Division";
+        return "d";
     }
 }
 
