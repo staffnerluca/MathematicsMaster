@@ -18,7 +18,7 @@ namespace MathMaster
             this.type = type;
         }
 
-        public List<string> CreateElementsForPDF(string type)
+        public List<string> CreateElementsForPDF()
         {
             List<string> calcs = new List<string> { };
             Random r = new Random();
@@ -62,7 +62,7 @@ namespace MathMaster
             return calcs;
         }
 
-        public MemoryStream GenerateToMemoryStream(string type)
+        public MemoryStream GenerateToMemoryStream()
         {
             QuestPDF.Settings.License = LicenseType.Community;
             MemoryStream stream = new MemoryStream();
@@ -72,26 +72,25 @@ namespace MathMaster
                 container.Page(page =>
                 {
                     page.Size(PageSizes.A4);
-                    page.Header().AlignCenter().Text("Multiplikationsaufgaben")
+                    page.Header().AlignCenter().Text(type)
                     .SemiBold().FontSize(20).FontColor(Colors.Blue.Medium);
 
                     page.Content()
                         .Row(row =>
                         {
-                            List<string> calcs = CreateElementsForPDF(type);
+                            List<string> calcs = CreateElementsForPDF();
                             row.Spacing(3);
                             row.RelativeItem(2).AlignCenter().Text(ro =>
                             {
                                 foreach (string c in calcs)
                                 {
-                                    Console.WriteLine(c);
                                     ro.Line("" + c);
                                 }
                             });
                             row.RelativeItem(1).AlignCenter().Text(ro =>
                             {
                                 calcs.Clear();
-                                List<string> d = CreateElementsForPDF(type);
+                                List<string> d = CreateElementsForPDF();
                                 foreach (string c in d)
                                 {
                                     Console.WriteLine(c);
@@ -101,7 +100,7 @@ namespace MathMaster
                             row.RelativeItem(1).AlignCenter().Text(ro =>
                             {
                                 calcs.Clear();
-                                List<string> d = CreateElementsForPDF(type);
+                                List<string> d = CreateElementsForPDF();
                                 foreach (string c in d)
                                 {
                                     Console.WriteLine(c);
@@ -111,7 +110,7 @@ namespace MathMaster
                             row.RelativeItem(2).AlignCenter().Text(ro =>
                             {
                                 calcs.Clear();
-                                List<string> d = CreateElementsForPDF(type);
+                                List<string> d = CreateElementsForPDF();
                                 foreach (string c in d)
                                 {
                                     Console.WriteLine(c);

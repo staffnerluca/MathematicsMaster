@@ -168,8 +168,9 @@ function getCalculationsType(option){
 }
 
 
-function download(){
-    fetch('calculation')
+function download(option){
+    const opt = "?type="+getCalculationsType(option);
+    fetch('calculation'+opt)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

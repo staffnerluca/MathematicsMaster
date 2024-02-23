@@ -30,10 +30,12 @@ public class CalculationController : ControllerBase
 
     [HttpGet]
 
-    public void Get(string type)
+    public IActionResult Get(string type)
     {
         PrimarySchoolTasks_withQuestPDF primarySchoolTasks_WithQuestPDF = new PrimarySchoolTasks_withQuestPDF(type);
-        primarySchoolTasks_WithQuestPDF.GenerateToMemoryStream(type);
+        MemoryStream stream = primarySchoolTasks_WithQuestPDF.GenerateToMemoryStream();
+        stream.Seek(0, SeekOrigin.Begin);
+        return File(stream, "application/pdf", "calculations.pdf");
     }
 }
 
