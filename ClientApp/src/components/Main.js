@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './main.css';
+var Latex = require("react-latex");
 
 export function Main() {
     const [card, setCard] = useState(null);
@@ -75,6 +76,18 @@ export function Main() {
         );
     }
 
+    function LatexNote(){
+        const content = `What is $(3\\times 4) \\sum \\div (5-3)$`
+        return(<div>
+                <Latex>What is $(3\times 4) \sum \div (5-3)$</Latex>
+                <br>
+                </br>
+                <Latex>{content}</Latex>
+
+        </div>)
+    }
+
+
     return (
         <div>
             <center><h1>TASKS</h1></center><h1></h1>
@@ -84,6 +97,7 @@ export function Main() {
                     <DisplayUserInfo />
                     <QuestionField />
                     <AnswerField />
+                    <LatexNote />
                 </div>
             </div>
         </div>
