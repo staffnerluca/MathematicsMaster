@@ -76,6 +76,7 @@ export function Main() {
         );
     }
 
+
     function LatexNote(){
         const content = `What is $(3\\times 4) \\sum \\div (5-3)$`
         return(<div>
