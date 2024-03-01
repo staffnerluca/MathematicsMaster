@@ -98,7 +98,7 @@ namespace MathMaster
             {
                 conn.Open();
                 conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
-                cmd.CommandText = "CREATE TABLE User([id] INT NOT NULL PRIMARY KEY IDENTITY, [username] NVARCHAR(50)), [E-Mail] NVARCHAR(80), [points] INT," +
+                cmd.CommandText = "CREATE TABLE User([id] INT NOT NULL PRIMARY KEY IDENTITY, [username] NVARCHAR(50)), [E_Mail] NVARCHAR(80), [points] INT," +
                     " [userType] NVARCHAR(25), [lastLogin] DATETIME, [lastLogout] DATETIME, [darkmode] BOOL, [birthDate] DATETIME);";
                 cmd.ExecuteNonQuery();
                 cmd.CommandText = "CREATE TABLE UserAndGroups([UID] INT, [GID] INT);";
@@ -116,6 +116,91 @@ namespace MathMaster
                 conn.Close();
             }
             catch (Exception ex) { }
+        }
+
+        public void AddGroup(int id, string name, int owner)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "INSERT INTO User (id, name, owner) VALUES (" + id + ", " + name + ", " + owner + ");";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void UpdateGroup(int id, string name, int owner)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "UPDATE Group SET " + id + ", " + name + ", " + owner + ");";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void DeleteGroup(int id)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "DELETE FROM Group WHERE id = " + id + ";";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void AddUser(int id, string username, string E_Mail, int points, string userType, DateTime lastLogin, DateTime lastLogout, bool darkmode, DateTime birthDate)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "INSERT INTO User (id, username, E_Mail, points, userType, lastLogin, lastLogout, darkmode, birthDate) VALUES (" + id + ", " + username + ", " + E_Mail + ", " + points + ", " + userType + ", " + lastLogin
+                + ", " + lastLogout + ", " + darkmode + ", " + birthDate + ");";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void UpdateUser(int id, string username, string E_Mail, int points, string userType, DateTime lastLogin, DateTime lastLogout, bool darkmode, DateTime birthDate)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "UPDATE User SET " + id + ", " + username + ", " + E_Mail + ", " + points + ", " + userType + ", " + lastLogin
+                + ", " + lastLogout + ", " + darkmode + ", " + birthDate + ");";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void DeleteUser(int id)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "DELETE FROM User WHERE id = " + id + ";";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void UpdateTask(int nr, string name, char sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string imagePath)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "UPDATE Task SET " + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing 
+                + ", " + question + ", " + answer + ", " + source + ", " + group + ", " + imagePath + ";";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void AddTask(int nr, string name, char sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string imagePath)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "INSERT INTO Task (nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath) VALUES (" + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing 
+                + ", " + question + ", " + answer + ", " + source + ", " + group + ", " + imagePath + ");";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void DeleteTask(int nr)
+        {
+            conn.Open();
+            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            cmd.CommandText = "DELETE FROM Task WHERE nr = " + nr + ";";
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
     }
 }
