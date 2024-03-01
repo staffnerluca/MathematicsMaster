@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './main.css';
 var Latex = require("react-latex");
 
+
 export function Main() {
     const [card, setCard] = useState(null);
-
+    const [latexContent, setLatexContent] = useState(`What is $(3\\times 4) \\sum \\div (5-3)$`);
     useEffect(() => {
         // Load the initial task when the component mounts
         loadTask();
     }, []);
+
 
     async function loadTask() {
         try {
@@ -18,6 +20,7 @@ export function Main() {
             console.error("Error loading task:", error);
         }
     }
+
 
     async function getDataFromServer() {
         try {
@@ -36,21 +39,23 @@ export function Main() {
             return card;
         } catch (error) {
             console.error("Error fetching data:", error.message);
-            throw error; // Re-throw the error to handle it in the caller
+            throw error;
         }
     }
+
 
     function DisplayUserInfo() {
         return (
             <div>
-                {/* Display user info */}
+                <p>One day there will be info about the user here</p>
             </div>
         );
     }
 
+
     function QuestionField() {
         if (!card) {
-            return null; // Render nothing if card data is not available
+            return null; 
         }
 
         return (
@@ -62,9 +67,10 @@ export function Main() {
         );
     }
 
+
     function AnswerField() {
         if (!card) {
-            return null; // Render nothing if card data is not available
+            return null;
         }
 
         return (
@@ -77,18 +83,38 @@ export function Main() {
     }
 
 
-    function LatexNote(){
-        const content = `What is $(3\\times 4) \\sum \\div (5-3)$`
+    function CompiledLatexNote(){
+        //const content = `What is $(3\\times 4) \\sum \\div (5-3)$`;
         return(<div>
-                <Latex>What is $(3\times 4) \sum \div (5-3)$</Latex>
-                <br>
-                </br>
-                <Latex>{content}</Latex>
-
+                <Latex>{latexContent}</Latex>
         </div>)
     }
 
 
+    function PureLatexNote(){
+        return(
+            <div>
+                <textarea id="taLatexEditor" placeholder='Enter you Latex here'></textarea>
+                <br></br>
+                <button className="btn btn-primary" onClick={changeLatex}>Compile Latex</button>
+                <button className="btn btn-primary" onClick={clearLatex}>Clear</button>
+            </div>
+        )
+    }
+
+
+    function changeLatex(){
+        const editor = document.getElementById("taLatexEditor");
+        const editorText = editor.value;
+        setLatexContent(latexContent+editorText);
+    }
+
+
+    function clearLatex(){
+        setLatexContent(``);
+    }
+
+    
     return (
         <div>
             <center><h1>TASKS</h1></center><h1></h1>
@@ -98,7 +124,9 @@ export function Main() {
                     <DisplayUserInfo />
                     <QuestionField />
                     <AnswerField />
-                    <LatexNote />
+                    <br></br>
+                    <PureLatexNote />
+                    <CompiledLatexNote />
                 </div>
             </div>
         </div>
