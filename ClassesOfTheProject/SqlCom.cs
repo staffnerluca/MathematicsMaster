@@ -11,14 +11,14 @@ namespace MathMaster
 {
     internal class SQLCom
     {
-        private static SqlConnection conn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true");
+        public static string _database = "MathMaster";
+        private static SqlConnection conn = new SqlConnection("server = (localdb)\\MSSQLLocalDB" + _database + "; integrated security = true");
         private static SqlCommand cmd = new SqlCommand("", conn);
-        
 
+        User user;
         #region variablesAndConst.
-        string _server, _database = "MathMaster", _username, _password;
+        string _server, _username, _password;
         bool _integratedSecurity;
-
         public string server
         {
             get { return _server; }
@@ -97,7 +97,6 @@ namespace MathMaster
             try
             {
                 conn.Open();
-                conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
                 cmd.CommandText = "CREATE TABLE User([id] INT NOT NULL PRIMARY KEY IDENTITY, [username] NVARCHAR(50)), [E_Mail] NVARCHAR(80), [points] INT," +
                     " [userType] NVARCHAR(25), [lastLogin] DATETIME, [lastLogout] DATETIME, [darkmode] BOOL, [birthDate] DATETIME);";
                 cmd.ExecuteNonQuery();
@@ -120,8 +119,7 @@ namespace MathMaster
 
         public void AddGroup(int id, string name, int owner)
         {
-            conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
+            conn.Open();  
             cmd.CommandText = "INSERT INTO User (id, name, owner) VALUES (" + id + ", " + name + ", " + owner + ");";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -130,7 +128,6 @@ namespace MathMaster
         public void UpdateGroup(int id, string name, int owner)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "UPDATE Group SET " + id + ", " + name + ", " + owner + ");";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -139,7 +136,6 @@ namespace MathMaster
         public void DeleteGroup(int id)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "DELETE FROM Group WHERE id = " + id + ";";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -148,7 +144,6 @@ namespace MathMaster
         public void AddUser(int id, string username, string E_Mail, int points, string userType, DateTime lastLogin, DateTime lastLogout, bool darkmode, DateTime birthDate)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "INSERT INTO User (id, username, E_Mail, points, userType, lastLogin, lastLogout, darkmode, birthDate) VALUES (" + id + ", " + username + ", " + E_Mail + ", " + points + ", " + userType + ", " + lastLogin
                 + ", " + lastLogout + ", " + darkmode + ", " + birthDate + ");";
             cmd.ExecuteNonQuery();
@@ -158,7 +153,6 @@ namespace MathMaster
         public void UpdateUser(int id, string username, string E_Mail, int points, string userType, DateTime lastLogin, DateTime lastLogout, bool darkmode, DateTime birthDate)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "UPDATE User SET " + id + ", " + username + ", " + E_Mail + ", " + points + ", " + userType + ", " + lastLogin
                 + ", " + lastLogout + ", " + darkmode + ", " + birthDate + ");";
             cmd.ExecuteNonQuery();
@@ -168,7 +162,6 @@ namespace MathMaster
         public void DeleteUser(int id)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "DELETE FROM User WHERE id = " + id + ";";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -177,7 +170,6 @@ namespace MathMaster
         public void UpdateTask(int nr, string name, char sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string imagePath)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "UPDATE Task SET " + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing 
                 + ", " + question + ", " + answer + ", " + source + ", " + group + ", " + imagePath + ";";
             cmd.ExecuteNonQuery();
@@ -187,7 +179,6 @@ namespace MathMaster
         public void AddTask(int nr, string name, char sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string imagePath)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "INSERT INTO Task (nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath) VALUES (" + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing 
                 + ", " + question + ", " + answer + ", " + source + ", " + group + ", " + imagePath + ");";
             cmd.ExecuteNonQuery();
@@ -197,10 +188,49 @@ namespace MathMaster
         public void DeleteTask(int nr)
         {
             conn.Open();
-            conn.ConnectionString = @"Data Soruce = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + database;
             cmd.CommandText = "DELETE FROM Task WHERE nr = " + nr + ";";
             cmd.ExecuteNonQuery();
             conn.Close();
+        }
+
+        public User GetUserById(int id)
+        {
+            cmd.CommandText = "select * from User where id = " + id.ToString();
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            string username = reader.GetString(1);
+            string useremail = reader.GetString(2);
+            string password = reader.GetString(3);
+            int points = reader.GetInt32(4);
+            bool isTeacher = reader.GetBoolean(5);
+            DateTime lastlogin = reader.GetDateTime(6);
+            DateTime lastlogout = reader.GetDateTime(7);
+            bool darkmode = reader.GetBoolean(8);
+            DateTime birthdate = reader.GetDateTime(9);
+            conn.Close();
+            //select * from User where id = id
+            user = new User(id, username, useremail, password, points, isTeacher, lastlogin, lastlogout, darkmode, birthdate);
+            return user;
+        }
+        //user im User Klasse erstellen und dann mit SQL verknüpfen. 
+
+        public Task ChooseTask()
+        {
+            //difficulty //Elo System
+            cmd.CommandText = "SELECT * FROM Task WHERE difficulty = " + user.points; 
+            conn.Open();
+            //Reader or Table a Random Task
+            SqlDataReader reader = cmd.ExecuteReader();
+            int nr = reader.GetInt32(1);
+            string name = reader.GetString(2);
+            string sector = reader.GetString(3);
+            int difficulty = reader.GetInt32(4);
+            int points = reader.GetInt32(5); 
+            bool drawing = reader.GetBoolean(6);
+            string question = reader.GetString(7);
+            conn.Close();
+            Task task = new Task(nr, name, sector, difficulty, points, drawing, );
+            return task; 
         }
     }
 }

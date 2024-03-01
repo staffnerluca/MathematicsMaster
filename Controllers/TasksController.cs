@@ -14,8 +14,11 @@ public class TaskController : ControllerBase
         _logger = logger;
     }
 
+    //HTTP Get TaskController: Soll ihm dann einen Task geben
+    //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
+
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get(int userID)
     {
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("name", "first task");
@@ -25,7 +28,7 @@ public class TaskController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] Filter filter)
+    public IActionResult Post()
     {
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("name", "first task");
