@@ -39,7 +39,7 @@ export function Main() {
             return card;
         } catch (error) {
             console.error("Error fetching data:", error.message);
-            throw error; // Re-throw the error to handle it in the caller
+            throw error;
         }
     }
 
@@ -97,6 +97,7 @@ export function Main() {
                 <textarea id="taLatexEditor" placeholder='Enter you Latex here'></textarea>
                 <br></br>
                 <button className="btn btn-primary" onClick={changeLatex}>Compile Latex</button>
+                <button className="btn btn-primary" onClick={clearLatex}>Clear</button>
             </div>
         )
     }
@@ -109,6 +110,11 @@ export function Main() {
     }
 
 
+    function clearLatex(){
+        setLatexContent(``);
+    }
+
+    
     return (
         <div>
             <center><h1>TASKS</h1></center><h1></h1>
