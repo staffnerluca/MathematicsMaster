@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Transactions;
 
 
 namespace MathMaster
@@ -214,23 +215,43 @@ namespace MathMaster
         }
         //user im User Klasse erstellen und dann mit SQL verknüpfen. 
 
-        public Task ChooseTask()
+        public Task ChooseTheTask()
         {
             //difficulty //Elo System
-            cmd.CommandText = "SELECT * FROM Task WHERE difficulty = " + user.points; 
+            int upper_bound = (int)Math.Round(user.points*1.2);
+            int lower_bound = (int)Math.Round(user.points * 0.8);
+            cmd.CommandText = "SELECT nr FROM Task WHERE difficulty >" + lower_bound.ToString() +" and difficulty <"+upper_bound.ToString();       
+            Random rand = new Random();
+            //get number of tasks between the bonds => choose a random one and read its data
             conn.Open();
+            cmd.ExecuteNonQuery();
+            SqlDataReader getRandomTask = cmd.ExecuteReader();
+            int id = getRandomTask.GetInt32(1); 
+            rand.Next(id);
+            cmd.CommandText = "SELECT * FROM Task WHERE nr" + rand;
+            cmd.ExecuteNonQuery();
             //Reader or Table a Random Task
+
             SqlDataReader reader = cmd.ExecuteReader();
             int nr = reader.GetInt32(1);
             string name = reader.GetString(2);
             string sector = reader.GetString(3);
             int difficulty = reader.GetInt32(4);
-            int points = reader.GetInt32(5); 
+            int points = reader.GetInt32(5);
             bool drawing = reader.GetBoolean(6);
             string question = reader.GetString(7);
+            string answer = reader.GetString(8);
+            string source = reader.GetString(9);
+            int group = reader.GetInt32(10);
+            string image = reader.GetString(11); 
             conn.Close();
-            Task task = new Task(nr, name, sector, difficulty, points, drawing, );
-            return task; 
+            Task task = new Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, image);
+            return task;
+        }
+
+        public void SampleUsers()
+        {
+            cmd.CommandText();
         }
     }
 }

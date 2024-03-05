@@ -2,12 +2,12 @@
 {
     public class ChooseTask
     {
-        ChooseTask(int userID) 
+        public ChooseTask() 
         {
             
         }
 
-        public int GetTaskID(int id)
+        public void ChooseYourTask(int id)
         {
             //difficulty
             //history
@@ -15,9 +15,7 @@
             //difficulty mode of the user
             SQLCom sqlCom = new SQLCom();
             sqlCom.GetUserById(id);
-            sqlCom.ChooseTask(); 
-            return 0;
+            sqlCom.ChooseTheTask(); 
         }
-
     }
 }
