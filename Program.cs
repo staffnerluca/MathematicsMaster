@@ -1,3 +1,7 @@
+using MathMaster;
+
+SQLCom sqlCom = new SQLCom();
+sqlCom.CreateDatabase();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

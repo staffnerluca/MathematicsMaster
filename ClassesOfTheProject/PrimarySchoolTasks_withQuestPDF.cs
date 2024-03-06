@@ -71,8 +71,17 @@ namespace MathMaster
             {
                 container.Page(page =>
                 {
+                    string heading = "";
+                    if (type == "a")
+                        heading = "Addition";
+                    else if (type == "s")
+                        heading = "Subtraction";
+                    else if (type == "m")
+                        heading = "Multiplication";
+                    else if (type == "d")
+                        heading = "Division";
                     page.Size(PageSizes.A4);
-                    page.Header().AlignCenter().Text(type)
+                    page.Header().AlignCenter().Text(heading)
                     .SemiBold().FontSize(20).FontColor(Colors.Blue.Medium);
 
                     page.Content()

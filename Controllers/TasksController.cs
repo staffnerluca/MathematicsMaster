@@ -1,4 +1,5 @@
 using System.Data.SqlTypes;
+using MathMaster.ClassesOfTheProject;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MathMaster.Controllers;
@@ -14,18 +15,19 @@ public class TaskController : ControllerBase
         _logger = logger;
     }
 
+    //HTTP Get TaskController: Soll ihm dann einen Task geben
+    //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
+
     [HttpGet]
-    public IActionResult Get()
+    public IActionResult Get(int id)
     {
-        Dictionary<string, string> task = new Dictionary<string, string>();
-        task.Add("name", "first task");
-        task.Add("question", "1 + 1 = ");
-        task.Add("answer", "2");
-        return Ok(task);
+        ChooseTask choose = new ChooseTask();
+        choose.ChooseYourTask(id);
+        return Ok("works");
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] Filter filter)
+    public IActionResult Post()
     {
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("name", "first task");
