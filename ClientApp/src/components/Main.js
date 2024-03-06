@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './main.css';
-var Latex = require("react-latex");
+import 'katex/dist/katex.min.css';
 
+var Latex = require("react-latex");
 
 export function Main() {
     const [card, setCard] = useState(null);
-    const [latexContent, setLatexContent] = useState(`What is $(3\\times 4) \\sum \\div (5-3)$`);
+    const [latexContent, setLatexContent] = useState(``);
     useEffect(() => {
         // Load the initial task when the component mounts
         loadTask();
@@ -65,6 +66,7 @@ export function Main() {
                 <p className="lblQuestion" id="question">{card.question}</p>
             </div>
         );
+
     }
 
 
@@ -85,8 +87,9 @@ export function Main() {
 
     function CompiledLatexNote(){
         //const content = `What is $(3\\times 4) \\sum \\div (5-3)$`;
+        alert(latexContent);
         return(<div>
-                <Latex>{latexContent}</Latex>
+                <Latex output="mathml">{latexContent}</Latex>
         </div>)
     }
 
@@ -120,13 +123,17 @@ export function Main() {
             <center><h1>TASKS</h1></center><h1></h1>
             <button className='btn btn-primary' onClick={loadTask}>Load task</button>
             <div className='container d-flex justify-content-center align-items-center vh-100'>
-                <div className='text-center'>
-                    <DisplayUserInfo />
-                    <QuestionField />
-                    <AnswerField />
+                <div className='mainContent'>
+                    <div className='text-center'>
+                        <DisplayUserInfo />
+                        <QuestionField />
+                        <AnswerField />
+                    </div>
                     <br></br>
-                    <PureLatexNote />
-                    <CompiledLatexNote />
+                    <div className='sidebar'>
+                        <PureLatexNote />
+                        <CompiledLatexNote />
+                    </div>
                 </div>
             </div>
         </div>

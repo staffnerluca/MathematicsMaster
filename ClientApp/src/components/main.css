@@ -17,3 +17,21 @@
     display: flex;
     gap: 10px;
 }
+
+.mainContent{
+    margin-top: -400px;
+    position: absolute;
+    left: 10%;
+    width: 60%;
+}
+
+.sidebar{
+    position: absolute;
+    left: 100%;
+    width: 30%;
+    top: 0%;
+}
+
+#taLatexEditor{
+    height: 250px;
+}
