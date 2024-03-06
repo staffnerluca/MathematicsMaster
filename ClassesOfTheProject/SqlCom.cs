@@ -251,7 +251,7 @@ namespace MathMaster
 
         public void SampleUsers()
         {
-            cmd.CommandText();
+            cmd.CommandText = "INSERT INTO Users (id, username, E_Mail, points, userType, lastLogin, lastLogout, darkmode, birthDate) VALUES (1, 'lukasr', 'lukas.resch@hak-kitz.ac.at', '120', );";
         }
     }
 }
