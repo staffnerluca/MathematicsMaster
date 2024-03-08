@@ -16,8 +16,8 @@
   <ItemGroup>
     <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" Version="7.3.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
     <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="17.9.0" />
-    <PackageReference Include="PDFsharp" Version="6.0.0" />
     <PackageReference Include="QuestPDF" Version="2023.12.5" />
     <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
