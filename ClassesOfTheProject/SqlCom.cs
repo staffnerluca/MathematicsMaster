@@ -83,7 +83,7 @@ namespace MathMaster
 
         public void CreateDatabase()
         {
-            cmd.CommandText = "create database " + database;
+            cmd.CommandText = "CREATE DATABASE " + database;
             try
             {
                 conn.Open();

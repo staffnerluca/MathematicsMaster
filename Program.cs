@@ -1,7 +1,8 @@
 using MathMaster;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Linq;
 
-SQLCom sqlCom = new SQLCom();
-sqlCom.CreateDatabase();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
