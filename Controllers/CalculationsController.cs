@@ -2,11 +2,8 @@ using System.Data.SqlTypes;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using Microsoft.AspNetCore.Mvc;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
 using System.IO;
 using System.Net;
-using PdfSharp.Fonts;
 using Microsoft.AspNetCore.SignalR.Protocol;
 
 namespace MathMaster.Controllers;
