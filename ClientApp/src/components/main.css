@@ -35,3 +35,7 @@
 #taLatexEditor{
     height: 250px;
 }
+
+.drawingField{
+    background-color: grey;
+}
