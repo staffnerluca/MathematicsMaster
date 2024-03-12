@@ -7,6 +7,7 @@ var Latex = require("react-latex");
 export function Main() {
     const [card, setCard] = useState(null);
     const [latexContent, setLatexContent] = useState(``);
+    const [drawing, setDrawing] = useState(false);
     useEffect(() => {
         // Load the initial task when the component mounts
         loadTask();
@@ -18,7 +19,14 @@ export function Main() {
             const data = await getDataFromServer();
             setCard(data);
         } catch (error) {
-            console.error("Error loading task:", error);
+            alert("Internal Server error");
+            let c = {
+                type: "A",
+                points: 500,
+                question: "Why is this not working?",
+                answer: "We don't have a clue. If it stays down contact our support team"
+            };
+            setCard(c);
         }
     }
 
@@ -87,7 +95,6 @@ export function Main() {
 
     function CompiledLatexNote(){
         //const content = `What is $(3\\times 4) \\sum \\div (5-3)$`;
-        alert(latexContent);
         return(<div>
                 <Latex output="mathml">{latexContent}</Latex>
         </div>)
@@ -117,7 +124,56 @@ export function Main() {
         setLatexContent(``);
     }
 
+
+    function DrawingField(){
+        if(drawing){
+            return(<div className='drawingField'>
+                <h1>the drawing field</h1>
+            </div>)
+        }
+        return(
+            <div>
+                <button onClick={changeDrawing()}>Draw</button>
+            </div>
+        )
+    }
+
+
+    function changeDrawing(){
+        const draw = !drawing;
+        setDrawing(draw);
+    }
+
     
+    function getStringFromDrawing(){
+        if(drawing){
+            return "Latex";
+        }
+        else{
+            return "Drawing";
+        }
+    }
+    
+    
+    function RenderDrawingOrLatex(){
+        if(drawing){
+            return(
+                <div>
+                    <DrawingField />
+                </div>
+            )
+        }
+        else{
+            return(
+                <div>
+                    <PureLatexNote />
+                    <CompiledLatexNote />
+                </div>
+            )
+        }
+    }
+
+
     return (
         <div>
             <center><h1>TASKS</h1></center><h1></h1>
@@ -131,8 +187,8 @@ export function Main() {
                     </div>
                     <br></br>
                     <div className='sidebar'>
-                        <PureLatexNote />
-                        <CompiledLatexNote />
+                        <RenderDrawingOrLatex />
+                        <button className='btnLatexOrDrawing btn btn-primary' onClick={x => setDrawing(!drawing)}>{getStringFromDrawing()}</button>
                     </div>
                 </div>
             </div>
