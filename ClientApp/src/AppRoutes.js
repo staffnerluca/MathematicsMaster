@@ -6,6 +6,7 @@ import { Register } from "./components/Register";
 import { StrengthsWeaknesses } from "./components/StrengthsWeaknesses"
 import { UserSettings } from "./components/UserSettings"
 import { FetchTest } from "./components/FetchTest";
+import { DrawingField} from "./components/DrawingField"
 
 const AppRoutes = [
   {
@@ -43,6 +44,10 @@ const AppRoutes = [
   {
     path: "/myTest",
     element: <FetchTest/>
+  },
+  {
+    path: "/drawingField",
+    element: <DrawingField />
   }
 ];
 
