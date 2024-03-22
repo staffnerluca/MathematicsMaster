@@ -185,13 +185,16 @@ function getCalculationsType(option){
 }
 
 
-function download(option){
-    const opt = "?type="+getCalculationsType(option);
+function download(option)
+{
+    //gets the calculation sign 
+    const opt = "?type=" + getCalculationsType(option);
     fetch('calculation'+opt)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+            //file-like object, text or binary data
             return response.blob();
         })
         .then(blob => {
