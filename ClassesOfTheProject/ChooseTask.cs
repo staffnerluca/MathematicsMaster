@@ -13,9 +13,6 @@
             //history
             //different types of tasks
             //difficulty mode of the user
-            SQLCom sqlCom = new SQLCom();
-            sqlCom.GetUserById(id);
-            sqlCom.ChooseTheTask(); 
         }
     }
 }

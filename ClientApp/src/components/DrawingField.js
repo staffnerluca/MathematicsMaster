@@ -8,7 +8,6 @@ export function DrawingField(){
     
     useEffect(() => {
         if(!loaded){
-            alert(createPoints())
             setPoints(createPoints());
             setLoaded(true);
         }
@@ -19,16 +18,23 @@ export function DrawingField(){
         //1x1 points for the entire div, reloading if div size changes
         const field = document.getElementById("drawingField");
         alert("The field is" + field)
-        const height = field.getAttribute("height");
-        const width =  field.getAttribute("width");
-        let pointsList = [];
+        const height = field.offsetHeight;
+        alert(height);
+        const width =  field.offsetWidth;
+        alert(width);
+        let pointsList = ["bla"];
         for(let i = 0; i < height; i++){
-            for(let y = 0; y < width; i++){
+            for(let y = 0; y < width; y++){
                 pointsList.push([y, i]);
             }
         }
-        return "Dieter"
+        alert("the list of points: "+pointsList);
         return pointsList;
+    }
+
+
+    function createDivForPoint(){
+        
     }
 
 
