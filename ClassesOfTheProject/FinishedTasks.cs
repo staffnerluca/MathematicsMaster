@@ -41,6 +41,7 @@ public class FinishedTasks
         }
         set
         {
+            //specification of allowed values how well the user finished a task
             if (_percent == 0.0 || _percent == 0.25 || _percent == 0.5 || _percent == 0.75 || _percent == 1.0)
             {
                 _percent = value;
