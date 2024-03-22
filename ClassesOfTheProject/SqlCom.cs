@@ -120,7 +120,7 @@ namespace MathMaster
 
         public void AddGroup(int id, string name, int owner)
         {
-            conn.Open();  
+            conn.Open();
             cmd.CommandText = "INSERT INTO User (id, name, owner) VALUES (" + id + ", " + name + ", " + owner + ");";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -171,7 +171,7 @@ namespace MathMaster
         public void UpdateTask(int nr, string name, char sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string imagePath)
         {
             conn.Open();
-            cmd.CommandText = "UPDATE Task SET " + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing 
+            cmd.CommandText = "UPDATE Task SET " + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing
                 + ", " + question + ", " + answer + ", " + source + ", " + group + ", " + imagePath + ";";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -180,7 +180,7 @@ namespace MathMaster
         public void AddTask(int nr, string name, char sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string imagePath)
         {
             conn.Open();
-            cmd.CommandText = "INSERT INTO Task (nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath) VALUES (" + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing 
+            cmd.CommandText = "INSERT INTO Task (nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath) VALUES (" + nr + ", " + name + ", " + sector + ", " + difficulty + ", " + points + ", " + drawing
                 + ", " + question + ", " + answer + ", " + source + ", " + group + ", " + imagePath + ");";
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -218,15 +218,15 @@ namespace MathMaster
         public Task ChooseTheTask()
         {
             //difficulty //Elo System
-            int upper_bound = (int)Math.Round(user.points*1.2);
+            int upper_bound = (int)Math.Round(user.points * 1.2);
             int lower_bound = (int)Math.Round(user.points * 0.8);
-            cmd.CommandText = "SELECT nr FROM Task WHERE difficulty >" + lower_bound.ToString() +" and difficulty <"+upper_bound.ToString();       
+            cmd.CommandText = "SELECT nr FROM Task WHERE difficulty >" + lower_bound.ToString() + " and difficulty <" + upper_bound.ToString();
             Random rand = new Random();
             //get number of tasks between the bonds => choose a random one and read its data
             conn.Open();
             cmd.ExecuteNonQuery();
             SqlDataReader getRandomTask = cmd.ExecuteReader();
-            int id = getRandomTask.GetInt32(1); 
+            int id = getRandomTask.GetInt32(1);
             rand.Next(id);
             cmd.CommandText = "SELECT * FROM Task WHERE nr" + rand;
             cmd.ExecuteNonQuery();
@@ -243,7 +243,7 @@ namespace MathMaster
             string answer = reader.GetString(8);
             string source = reader.GetString(9);
             int group = reader.GetInt32(10);
-            string image = reader.GetString(11); 
+            string image = reader.GetString(11);
             conn.Close();
             Task task = new Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, image);
             return task;
