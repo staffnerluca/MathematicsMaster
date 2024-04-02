@@ -2,44 +2,40 @@ import React, { setState, useEffect, useState } from 'react';
 import "./drawingField.css"
 
 export function DrawingField(){
-    const [points, setPoints] = useState([]);
+    //key: point id; value: color
+    const [pointsWithColor, setPointsWithColor] = useState({});
     const [loaded, setLoaded] = useState(false);
+    const [backgroundColor, setBackgroundColor] = useState("black")
 
-    
     useEffect(() => {
         if(!loaded){
-            setPoints(createPoints());
+            setPointsWithColor(createPoints());
             setLoaded(true);
         }
     })
 
 
     function createPoints(){
-        //1x1 points for the entire div, reloading if div size changes
         const field = document.getElementById("drawingField");
-        alert("The field is" + field)
         const height = field.offsetHeight;
-        alert(height);
         const width =  field.offsetWidth;
-        alert(width);
-        let pointsList = ["bla"];
-        for(let i = 0; i < height; i++){
-            for(let y = 0; y < width; y++){
-                pointsList.push([y, i]);
-            }
-        }
-        alert("the list of points: "+pointsList);
-        return pointsList;
-    }
-
-
-    function createDivForPoint(){
         
+        let tempPointsWithColor = {};
+        for(let i = 0; i < height*width; i++){
+            tempPointsWithColor[i] = backgroundColor;
+        }
+        setPointsWithColor(tempPointsWithColor);
     }
 
 
     function DrawPoint(){
-
+        return(
+            <div>
+                {Object.keys(pointsWithColor).map((pointID) => (
+                    <div cid={'dfP'+ pointID.toString()} lassName='dfPoint' height='1px' width='1px' backgroundColor={pointsWithColor[pointID]}></div>
+                ))}
+            </div>
+        )
     }
 
     
@@ -49,13 +45,17 @@ export function DrawingField(){
 
 
     function ClearField(){
-
+        for(let i = 0; i < Object.keys(pointsWithColor).length(); i++){
+            pointsWithColor[i] = backgroundColor;
+        }
+        alert("Erased the drawing");
     }
 
 
     return(
-        <div id="drawingField">
+        <div id="drawingField" height='400px' width='200px'>
             <h1>Drawing field</h1>
+            <DrawingField />
         </div>
     )
 }
