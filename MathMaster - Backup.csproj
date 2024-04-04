@@ -32,6 +32,7 @@
     <PackageReference Include="ODP.NetCore" Version="2.0.12" />
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="7.21.13" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.130" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
     <PackageReference Include="QuestPDF" Version="2023.12.5" />
     <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.7" />
     <PackageReference Include="System.Data.OracleClient" Version="1.0.8" />
@@ -52,7 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="efpt.config.json.user" />
     <None Include="EntityFramework\Model.cs" />
   </ItemGroup>
 
