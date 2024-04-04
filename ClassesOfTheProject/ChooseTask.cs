@@ -11,6 +11,10 @@ namespace MathMaster.ClassesOfTheProject
 
         public void ChooseYourTask(int id)
         {
+            Models.User user = new Models.User();
+            user.birthDate = DateTime.Now;
+            user.points = 20;
+            user.username = "username";
             //difficulty
             //history
             //different types of tasks

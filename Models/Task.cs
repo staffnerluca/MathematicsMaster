@@ -7,11 +7,25 @@ namespace MathMaster.Models;
 
 public partial class Task
 {
-    public int ID { get; set; }
+    public int nr { get; set; }
 
-    public int Difficulty { get; set; }
+    public string name { get; set; }
 
-    public int Defefe { get; set; }
+    public string sector { get; set; }
 
-    public int dfewfwerwerwrwe { get; set; }
+    public int difficulty { get; set; }
+
+    public int points { get; set; }
+
+    public bool drawing { get; set; }
+
+    public string question { get; set; }
+
+    public string answer { get; set; }
+
+    public string source { get; set; }
+
+    public int group { get; set; }
+
+    public string imagePath { get; set; }
 }

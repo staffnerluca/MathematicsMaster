@@ -15,7 +15,27 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "FinishedTasks",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Group",
+         "ObjectType": 0
+      },
+      {
+         "Name": "Institution",
+         "ObjectType": 0
+      },
+      {
          "Name": "Task",
+         "ObjectType": 0
+      },
+      {
+         "Name": "User",
+         "ObjectType": 0
+      },
+      {
+         "Name": "UserAndGroups",
          "ObjectType": 0
       }
    ],

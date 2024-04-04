@@ -13,7 +13,17 @@ public partial class lresch_MathMasterContext : DbContext
     {
     }
 
+    public virtual DbSet<FinishedTask> FinishedTasks { get; set; }
+
+    public virtual DbSet<Group> Groups { get; set; }
+
+    public virtual DbSet<Institution> Institutions { get; set; }
+
     public virtual DbSet<Task> Tasks { get; set; }
+
+    public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UserAndGroup> UserAndGroups { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,11 +31,105 @@ public partial class lresch_MathMasterContext : DbContext
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
+        modelBuilder.Entity<FinishedTask>(entity =>
+        {
+            entity.HasNoKey();
+        });
+
+        modelBuilder.Entity<Group>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PRIMARY");
+
+            entity.ToTable("Group");
+
+            entity.Property(e => e.id).ValueGeneratedNever();
+            entity.Property(e => e.name)
+                .IsRequired()
+                .HasMaxLength(200);
+        });
+
+        modelBuilder.Entity<Institution>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PRIMARY");
+
+            entity.ToTable("Institution");
+
+            entity.Property(e => e.id).ValueGeneratedNever();
+            entity.Property(e => e.address)
+                .IsRequired()
+                .HasMaxLength(400);
+            entity.Property(e => e.country)
+                .IsRequired()
+                .HasMaxLength(60);
+            entity.Property(e => e.mail)
+                .IsRequired()
+                .HasMaxLength(200);
+            entity.Property(e => e.phoneNumber)
+                .IsRequired()
+                .HasMaxLength(15);
+            entity.Property(e => e.postalCode)
+                .IsRequired()
+                .HasMaxLength(14);
+            entity.Property(e => e.type)
+                .IsRequired()
+                .HasMaxLength(1)
+                .IsFixedLength();
+        });
+
         modelBuilder.Entity<Task>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Task");
+            entity.HasKey(e => e.nr).HasName("PRIMARY");
+
+            entity.ToTable("Task");
+
+            entity.Property(e => e.nr).ValueGeneratedNever();
+            entity.Property(e => e.answer)
+                .IsRequired()
+                .HasMaxLength(2000);
+            entity.Property(e => e.imagePath)
+                .IsRequired()
+                .HasMaxLength(4000);
+            entity.Property(e => e.name)
+                .IsRequired()
+                .HasMaxLength(500);
+            entity.Property(e => e.question)
+                .IsRequired()
+                .HasMaxLength(400);
+            entity.Property(e => e.sector)
+                .IsRequired()
+                .HasMaxLength(1)
+                .IsFixedLength();
+            entity.Property(e => e.source)
+                .IsRequired()
+                .HasMaxLength(400);
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.id).HasName("PRIMARY");
+
+            entity.ToTable("User");
+
+            entity.Property(e => e.id).ValueGeneratedNever();
+            entity.Property(e => e.E_Mail)
+                .IsRequired()
+                .HasMaxLength(64)
+                .HasColumnName("E-Mail");
+            entity.Property(e => e.birthDate).HasColumnType("datetime");
+            entity.Property(e => e.lastLogin).HasColumnType("datetime");
+            entity.Property(e => e.lastLogout).HasColumnType("datetime");
+            entity.Property(e => e.username)
+                .IsRequired()
+                .HasMaxLength(20);
+            entity.Property(e => e.usertype)
+                .IsRequired()
+                .HasMaxLength(1)
+                .IsFixedLength();
+        });
+
+        modelBuilder.Entity<UserAndGroup>(entity =>
+        {
+            entity.HasNoKey();
         });
 
         OnModelCreatingPartial(modelBuilder);
