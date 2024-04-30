@@ -19,10 +19,10 @@ public class TaskController : ControllerBase
     //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
 
     [HttpGet]
-    public IActionResult Get(int id)
+    public IActionResult Get(int userid)
     {
         ChooseTask choose = new ChooseTask();
-        choose.ChooseYourTask(id);
+        choose.ChooseYourTask(userid);
         return Ok("works");
     }
 
