@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Transactions;
-
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
+using SkiaSharp;
+using System.Configuration;
 
 namespace MathMaster
 {
@@ -194,33 +198,24 @@ namespace MathMaster
             conn.Close();
         }
 
-        public User GetUserById(int id)
+        public Models.User GetUserById(int id)
         {
-            cmd.CommandText = "select * from User where id = " + id.ToString();
-            conn.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            string username = reader.GetString(1);
-            string useremail = reader.GetString(2);
-            string password = reader.GetString(3);
-            int points = reader.GetInt32(4);
-            bool isTeacher = reader.GetBoolean(5);
-            DateTime lastlogin = reader.GetDateTime(6);
-            DateTime lastlogout = reader.GetDateTime(7);
-            bool darkmode = reader.GetBoolean(8);
-            DateTime birthdate = reader.GetDateTime(9);
-            conn.Close();
-            //select * from User where id = id
-            user = new User(id, username, useremail, password, points, isTeacher, lastlogin, lastlogout, darkmode, birthdate);
-            return user;
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            Models.User returnObject = context.Users.FirstOrDefault(x => x.id == id);
+
+            return returnObject;
         }
         //user im User Klasse erstellen und dann mit SQL verknüpfen. 
 
-        public Task ChooseTheTask()
+        public Models.Task ChooseTheTask()
         {
             //difficulty //Elo System
             int upper_bound = (int)Math.Round(user.points*1.2);
             int lower_bound = (int)Math.Round(user.points * 0.8);
-            cmd.CommandText = "SELECT nr FROM Task WHERE difficulty >" + lower_bound.ToString() +" and difficulty <"+upper_bound.ToString();       
+            Models.Task task1 = new Models.Task();
+            
+
+            "SELECT nr FROM Task WHERE difficulty >" + lower_bound.ToString() +" and difficulty <"+upper_bound.ToString();       
             Random rand = new Random();
             //get number of tasks between the bonds => choose a random one and read its data
             conn.Open();
