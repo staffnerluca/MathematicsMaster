@@ -2,11 +2,27 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace MathMaster.Models;
 
 public partial class Task
 {
+    public Task(int nr, string name, string sector, int difficulty, int points, bool drawing, string quest, string answer, string source, int group, string image)
+    {
+        this.nr = nr;
+        this.name = name;
+        this.sector = sector;
+        this.difficulty = difficulty;
+        this.points = points;
+        this.drawing = drawing;
+        this.question = quest;
+        this.answer = answer;
+        this.source = source;
+        this.group = group;
+        this.imagePath = image;
+    }
+
     public int nr { get; set; }
 
     public string name { get; set; }

@@ -7,6 +7,22 @@ namespace MathMaster.Models;
 
 public partial class Institution
 {
+    public Institution() 
+    {
+
+    }
+
+    public Institution(int id, string adress, string country, string type, string phonenr, string email, string plz)
+    {
+        this.id = id;
+        this.address = adress;
+        this.country = country;
+        this.type = type;
+        this.phoneNumber = phonenr;
+        this.mail = email;
+        this.postalCode = plz;
+    }
+
     public int id { get; set; }
 
     public string address { get; set; }

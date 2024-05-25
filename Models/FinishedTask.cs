@@ -7,6 +7,12 @@ namespace MathMaster.Models;
 
 public partial class FinishedTask
 {
+    public FinishedTask(int nr, string name, string sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image) 
+    {
+
+    }
+
+
     public int TaskID { get; set; }
 
     public int UserID { get; set; }

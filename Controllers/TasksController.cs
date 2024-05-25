@@ -21,19 +21,17 @@ public class TaskController : ControllerBase
     [HttpGet]
     public IActionResult Get(int id)
     {
-        ChooseTask choose = new ChooseTask();
-        choose.ChooseYourTask(id);
+        GetTask task = new GetTask();
+        task.GetTaskFromInput(id);
         return Ok("works");
     }
 
     [HttpPost]
-    public IActionResult Post()
+    public IActionResult Post(int nr, string name, string sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
     {
-        Dictionary<string, string> task = new Dictionary<string, string>();
-        task.Add("name", "first task");
-        task.Add("question", "1 + 1 = ");
-        task.Add("answer", "2");
-        return Ok(task);
+      
+        Models.Task task = new Models.Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, image);
+        return Ok("funktioniert");
     }
 
     //only for test purposes, delete later

@@ -24,5 +24,18 @@ namespace MathMaster.ClassesOfTheProject
             //sqlCom.GetUserById(id);
             //sqlCom.ChooseTheTask(); 
         }
+
+        public void RandomTasks()
+        {
+            List<string[]> values = new List<string[]>();
+            using (StreamReader reader = new StreamReader("D:\\MyFolder\\Files\\case.txt"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    values.Add(reader.ReadLine().Split(','));
+                }
+            }
+        }
+
     }
 }

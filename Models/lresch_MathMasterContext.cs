@@ -8,6 +8,11 @@ namespace MathMaster.Models;
 
 public partial class lresch_MathMasterContext : DbContext
 {
+    public lresch_MathMasterContext()
+    {
+
+    }
+
     public lresch_MathMasterContext(DbContextOptions<lresch_MathMasterContext> options)
         : base(options)
     {
