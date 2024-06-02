@@ -7,6 +7,18 @@ namespace MathMaster.Models;
 
 public partial class Group
 {
+    public Group() 
+    {
+
+    }
+
+    public Group(int id, string name, int owner)
+    {
+        this.id = id;
+        this.name = name; 
+        this.owner = owner;
+    }
+
     public int id { get; set; }
 
     public string name { get; set; }

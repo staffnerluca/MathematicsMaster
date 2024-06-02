@@ -12,7 +12,6 @@ public partial class FinishedTask
 
     }
 
-
     public int TaskID { get; set; }
 
     public int UserID { get; set; }

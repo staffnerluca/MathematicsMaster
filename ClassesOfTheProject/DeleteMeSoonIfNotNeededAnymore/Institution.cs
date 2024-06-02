@@ -1,14 +1,14 @@
 using System;
 
-namespace MathMaster;
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
 
 public class Task
 {
     public Task(int tasknr, string taskname, string tasksector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
     {
-        this.taskNr = tasknr;
-        this.taskName = taskname;
-        this.taskSector = tasksector;
+        taskNr = tasknr;
+        taskName = taskname;
+        taskSector = tasksector;
         this.difficulty = difficulty;
         this.points = points;
         this.drawing = drawing;
@@ -17,7 +17,7 @@ public class Task
         this.source = source;
         this.group = group;
         this.image = image;
-    }   
+    }
 
     private int _tasknr;
     public int taskNr
@@ -80,7 +80,7 @@ public class Task
         }
         set
         {
-            if(value >= 0 && value < 100)
+            if (value >= 0 && value < 100)
                 _points = value;
         }
     }
@@ -105,9 +105,9 @@ public class Task
         {
             return _question;
         }
-        set 
+        set
         {
-            _question = value; 
+            _question = value;
         }
     }
 
@@ -118,9 +118,9 @@ public class Task
         {
             return _answer;
         }
-        set 
+        set
         {
-            _answer = value; 
+            _answer = value;
         }
     }
 
@@ -131,10 +131,10 @@ public class Task
         {
             return _source;
         }
-        
-        set 
+
+        set
         {
-            _source = value; 
+            _source = value;
         }
     }
 
@@ -148,7 +148,7 @@ public class Task
         set
         {
             _group = value;
-            if (value != (-2))
+            if (value != -2)
             {
                 _group = value;
             }

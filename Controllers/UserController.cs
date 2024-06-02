@@ -30,7 +30,10 @@ public class UserController : ControllerBase
     [HttpPost]
     public IActionResult Post(int id, string username, string email, int points, string utype, DateTime lastlogin, DateTime lastLogout, bool darkmode, DateTime birthdate)
     {
-        Models.User user = new Models.User(id, username, email, points, utype, lastlogin, lastLogout, darkmode, birthdate); 
+        Models.User user = new Models.User(id, username, email, points, utype, lastlogin, lastLogout, darkmode, birthdate);
+        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        context.Users.Add(user);
+        context.SaveChanges();
         return Ok("funktioniert");
     }    
 }

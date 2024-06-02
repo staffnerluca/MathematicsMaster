@@ -1,6 +1,6 @@
 using System;
 
-namespace MathMaster;
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
 
 public class FinishedTasks
 {
@@ -47,7 +47,7 @@ public class FinishedTasks
             }
             else
             {
-                Console.WriteLine("This isn't allowed!"); 
+                Console.WriteLine("This isn't allowed!");
             }
         }
     }

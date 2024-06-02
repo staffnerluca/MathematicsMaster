@@ -29,8 +29,10 @@ public class TaskController : ControllerBase
     [HttpPost]
     public IActionResult Post(int nr, string name, string sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
     {
-      
         Models.Task task = new Models.Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, image);
+        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        context.Tasks.Add(task);
+        context.SaveChanges();
         return Ok("funktioniert");
     }
 

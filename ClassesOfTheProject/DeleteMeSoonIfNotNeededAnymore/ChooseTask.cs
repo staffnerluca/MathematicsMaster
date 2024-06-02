@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace MathMaster.ClassesOfTheProject
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore
 {
     public class ChooseTask
     {
-        public ChooseTask() 
+        public ChooseTask()
         {
-            
+
         }
 
         public void ChooseYourTask(int id)

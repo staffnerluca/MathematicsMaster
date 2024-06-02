@@ -8,6 +8,11 @@ namespace MathMaster.Models;
 
 public partial class Task
 {
+    public Task()
+    {
+
+    }
+
     public Task(int nr, string name, string sector, int difficulty, int points, bool drawing, string quest, string answer, string source, int group, string image)
     {
         this.nr = nr;
