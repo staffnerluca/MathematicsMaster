@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-var bcrypt = require('bcryptjs');
+//var bcrypt = require('bcryptjs');
 
 function RegisterBox(){
     return(
@@ -12,6 +12,8 @@ function RegisterBox(){
             <p>Password: </p><input id='inpPassword' type='password' className='usInpLogOrRegister'></input>
             <br></br><br></br>
             <p>Password again: </p><input id="inpPassword2" type='password' className='usInpLogOrRegister'></input>
+            <br></br>
+            <p>Join Group: </p><input id="inpGroup" className='usInpLogOrRegister'></input>
             <br></br>
             <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
             <br></br><br></br>
@@ -42,6 +44,7 @@ async function sendDataToServer(){
     const name = document.getElementById("inpName").value;
     const password = document.getElementById("inpPassword").value;
     const password2 = document.getElementById("inpPassword2").value;
+    const group = document.getElementById('inpGroup').value;
     if(password !== password2){
         alert("The passwords are not the same! Try again.");
         document.getElementById("inpPassword").textContent = "";
@@ -54,22 +57,27 @@ async function sendDataToServer(){
     }
     try{
         //how often the salt gets computed
+        
+        /* if you would want to hash it on the client
         const saltRounds = 10;
         const salt = await bcrypt.genSalt(saltRounds);
         const hashedPassword = await bcrypt.hash(password, salt);
-        alert(hashedPassword);
+        */
+        
         const registrationData = {
             name: name,
-            password: hashedPassword
+            mail: mail,
+            password: password,
+            group: group
         }
-        const send = await fetch("register", {
+        await fetch("register", {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(registrationData)
         })
     }
     catch(error){
-        alert("An error occured!");
+        alert("An error occured!"+toString(error));
     }
     return 0;
 }
