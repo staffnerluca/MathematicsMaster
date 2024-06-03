@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "react-latex": "^2.0.0"
+    "bcryptjs": "^2.4.3",
+    "react-latex": "^1.2.0"
   }
 }

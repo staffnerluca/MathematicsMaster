@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+var bcrypt = require('bcryptjs');
 
 function RegisterBox(){
     return(
@@ -8,9 +9,9 @@ function RegisterBox(){
             <br></br><br></br>
             <p>Username: </p><input id="inpName" className='usInpLogOrRegister'></input>
             <br></br><br></br>
-            <p>Password: </p><input className='usInpLogOrRegister'></input>
+            <p>Password: </p><input id='inpPassword' type='password' className='usInpLogOrRegister'></input>
             <br></br><br></br>
-            <p>Password again: </p><input id="inpPassword2" className='usInpLogOrRegister'></input>
+            <p>Password again: </p><input id="inpPassword2" type='password' className='usInpLogOrRegister'></input>
             <br></br>
             <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
             <br></br><br></br>
@@ -20,41 +21,56 @@ function RegisterBox(){
 }
 
 function checkIfMailValid(mail){
-    let atIsHere = false;
-    for(let char in mail){
-        if(char === "@"){
-            atIsHere = true;
+    if(mail.length > 0 && mail.length < 50){
+        let atIsHere = false;
+        for(let char of mail){
+            if(char === "@"){
+                atIsHere = true;
+                break;
+            }
         }
-    }
-    if(atIsHere){
-        return true;
+        if(atIsHere){
+            return true;
+        }
     }
     return false;
 }
 
 async function sendDataToServer(){
-    const mail = document.getElementById("mail");
-    const name = document.getElementById("inpName");
-    const password = document.getElementById("inpPassword1")
-    const password2 = document.getElementById("inpPassword2")
+    const mail = document.getElementById("inpMail").value;
+    alert(mail)
+    const name = document.getElementById("inpName").value;
+    const password = document.getElementById("inpPassword").value;
+    const password2 = document.getElementById("inpPassword2").value;
     if(password !== password2){
         alert("The passwords are not the same! Try again.");
-        document.getElementById("password1").textContent = "";
-        document.getElementById("password2").textContent = "";
+        document.getElementById("inpPassword").textContent = "";
+        document.getElementById("inpPassword2").textContent = "";
         return;
     }
     if(!checkIfMailValid(mail)){
         alert("The mail is not valid.");
         return;
     }
-    const registrationData = {
-        name: "luggi"
+    try{
+        //how often the salt gets computed
+        const saltRounds = 10;
+        const salt = await bcrypt.genSalt(saltRounds);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        alert(hashedPassword);
+        const registrationData = {
+            name: name,
+            password: hashedPassword
+        }
+        const send = await fetch("register", {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(registrationData)
+        })
     }
-    const send = await fetch("register", {
-        method: "POST",
-        headers: {"Content-type": "application/json"},
-        body: registrationData
-    })
+    catch(error){
+        alert("An error occured!");
+    }
     return 0;
 }
 
