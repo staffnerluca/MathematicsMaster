@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import { diff } from 'semver';
 
 function CreateTaskBox(){
     return(
@@ -15,10 +16,10 @@ function CreateTaskBox(){
             <p>Answer: </p><input id='inpAnswer' className='usInpCreate'></input>
             <br></br><br></br>
             <p>Group: </p><input id="inpGroup" className='usInpCreate'></input>
-            <br></br>
+            <br></br><br></br><br></br>
             <p>Estimated difficulte (optional): </p>
             <p>0 to 10 easy, 10 - 35 easy medium, 35 - 65 medium, 65 - 80 hard, 80 - 100 really hard</p><br></br>
-            <input id="inpGroup" className='usInpCreate'></input>
+            <input id="inpDifficulty" className='usInpCreate'></input>
             <br></br>
             <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
             <br></br><br></br>
@@ -59,16 +60,21 @@ async function sendDataToServer(){
     const question = document.getElementById("inpQuestion").value;
     const answer = document.getElementById("inpAnswer").valu;
     const group = document.getElementById("inpGroup");
+    const difficulty = document.getElementById("inpDifficulty").value;
     if(!askServerIfGroupExists(group)){
         alert("Group doesn't exist.");
         document.getElementById("inpGroup").valu = "";
         return;
     }
+    if(typeof difficulty !== "number" || difficulty === ""){
+        difficulty = 50;
+    }
     const taskData = {
         type: type,
         question: question,
         answer: answer,
-        group: group
+        group: group,
+        difficulty: difficulty
     }
     try{
         await fetch("createTask", {
