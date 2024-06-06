@@ -7,6 +7,7 @@ import { StrengthsWeaknesses } from "./components/StrengthsWeaknesses"
 import { UserSettings } from "./components/UserSettings"
 import { FetchTest } from "./components/FetchTest";
 import { DrawingField} from "./components/DrawingField"
+import { CreateTask } from "./components/CreateTask";
 
 const AppRoutes = [
   {
@@ -46,9 +47,9 @@ const AppRoutes = [
     element: <FetchTest/>
   },
   {
-    path: "/drawingField",
-    element: <DrawingField />
-  }
+    path: "/createTask",
+    element: <CreateTask />
+  },
 ];
 
 export default AppRoutes;

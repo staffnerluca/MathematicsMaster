@@ -4,13 +4,21 @@ import {Link} from "react-router-dom";
 function CreateTaskBox(){
     return(
         <div className='createTaskBox'>
-            <p>Typ: </p><input id='inpQuestion' className='usInpCreate' placeholder='A = Algebra, L = Logic, G = Gemoetry'></input>
+            <p>Typ: </p><select id='selType' className='usInpCreate' placeholder='A = Algebra, L = Logic, G = Gemoetry'>
+                <option>Logic</option>
+                <option>Algebra</option>
+                <option>Geometry</option>
+            </select>
             <br></br><br></br>
             <p>Question: </p><input id='inpQuestion' className='usInpCreate'></input>
             <br></br><br></br>
             <p>Answer: </p><input id='inpAnswer' className='usInpCreate'></input>
             <br></br><br></br>
             <p>Group: </p><input id="inpGroup" className='usInpCreate'></input>
+            <br></br>
+            <p>Estimated difficulte (optional): </p>
+            <p>0 to 10 easy, 10 - 35 easy medium, 35 - 65 medium, 65 - 80 hard, 80 - 100 really hard</p><br></br>
+            <input id="inpGroup" className='usInpCreate'></input>
             <br></br>
             <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
             <br></br><br></br>
@@ -20,8 +28,58 @@ function CreateTaskBox(){
 }
 
 
+function askServerIfGroupExists(group){  
+      const handleSubmit = async () => {
+        try {
+          const response = await fetch('checkIfGroupExists', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ input: group }),
+          });
+    
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+    
+          const result = await response.json();
+    
+          return result;
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error communicating with the server.');
+          return true;
+        }
+      };
+}
+
 async function sendDataToServer(){
-    return 0;
+    const type = document.getElementById("selType").value;
+    const question = document.getElementById("inpQuestion").value;
+    const answer = document.getElementById("inpAnswer").valu;
+    const group = document.getElementById("inpGroup");
+    if(!askServerIfGroupExists(group)){
+        alert("Group doesn't exist.");
+        document.getElementById("inpGroup").valu = "";
+        return;
+    }
+    const taskData = {
+        type: type,
+        question: question,
+        answer: answer,
+        group: group
+    }
+    try{
+        await fetch("createTask", {
+            method: "POST",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(taskData)
+        })
+
+    }catch(error){
+       alert("An error occurde. Please try again.")     
+    }
 }
 
 export class CreateTask extends Component{
