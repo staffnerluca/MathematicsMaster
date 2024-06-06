@@ -1,18 +1,38 @@
 ﻿using MathMaster.ClassesOfTheProject;
+using MathMaster.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic;
 using System;
+using System.Data.SqlClient;
+using System.DirectoryServices;
 using System.Linq;
 
 namespace MathMaster;
 
     class Program
     {
+        public static SqlConnection conn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true;");
+        public static SqlCommand cmmd = new SqlCommand("", conn);
+
         public static void Main(string[] args)
         {
-            ExampleTasks();     
+        string db = "MathMaster";
+
+        if (CheckIfDatabaseExists(conn, db) == false)
+        {
+            CreateDatabase(conn, cmmd, db);
+            CreateTables(conn, cmmd, db);
+            ExampleTasks();
+            Console.WriteLine("works");
+        }
+
+        else
+        {
+            ExampleTasks();
+            Console.WriteLine("works");
+        }
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -43,20 +63,68 @@ namespace MathMaster;
             app.Run();
         }
 
+
+    public static void CreateDatabase(SqlConnection conn, SqlCommand cmmd, string databasen)
+    {
+        try
+        {
+            //here I create my database whit the create statement
+            cmmd.CommandText = "CREATE DATABASE " + databasen;
+            cmmd.ExecuteNonQuery();
+        }
+        catch
+        {
+            Console.WriteLine("Wir wissen leider nicht was falsch gelaufen ist. Bitte machen Sie das was Sie gerade gemacht haben nicht mehr!");
+        }
+    }
+
+    public static void CreateTables(SqlConnection conn, SqlCommand cmmd, string databasen)
+    {
+        try
+        {
+            //here I create all of my tables, this makes my programm lag a bit, because there are a lot of Insert statements
+            //and a lot of knowledge includements (includings) aswell. With the Create statement I create all of my tables and
+            //then I just Insert the whole data. 
+            conn.Close();
+            conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + databasen;
+            conn.Open();
+
+            cmmd = new SqlCommand("", conn);
+            cmmd.CommandText = "CREATE TABLE Conti([Id] INT NOT NULL PRIMARY KEY IDENTITY, [Name] NVARCHAR(100))";
+            cmmd.ExecuteNonQuery();
+        }
+        catch
+        {
+            Console.Write("Wir wissen leider nicht was falsch gelaufen ist. Bitte machen Sie das was Sie gerade gemacht haben nicht mehr!");
+        }
+    }
+
+
+    public static bool CheckIfDatabaseExists(SqlConnection conn, string db)
+        {
+            //here I can check if a database exists, with the select command, if the value is null I know that it doesn't. Here I select
+            //the id/names of the databases and look for my name if the value is not null it the programm knows that it exists, if there is null
+            //it doesn't exist
+            conn.Close();
+            SqlCommand comm = new SqlCommand($"SELECT db_id('{db}')", conn);
+            conn.Open();
+            return comm.ExecuteScalar() != DBNull.Value; 
+        }
+
         public static void ExampleTasks()
         {
-            Models.Task task1 = new Models.Task();
-            task1.nr = 1;
-            task1.name = "Algebra: Lineare Gleichungen";
-            task1.sector = "Algebra";
-            task1.difficulty = 1;
-            task1.points = 10;
-            task1.drawing = false;
-            task1.question = "Löse die Gleichung 2x + 3 = 11.";
-            task1.answer = "x = 4";
-            task1.source = "ChatGPT";
-            task1.group = 1;
-            task1.imagePath = "";
+            int nr = 1;
+            string name = "Algebra: Lineare Gleichungen";
+            string sector = "Algebra";
+            int difficulty = 1;
+            int points = 10;
+            bool drawing = false;
+            string question = "Löse die Gleichung 2x + 3 = 11.";
+            string answer = "x = 4";
+            string source = "ChatGPT";
+            int group = 1;
+            string imagePath = "";
+            Models.Task task1 = new Models.Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath);
 
             Models.Task task2 = new Models.Task();
             task2.nr = 2;
@@ -124,7 +192,7 @@ namespace MathMaster;
             task6.imagePath = "";
 
             Models.Task task7 = new Models.Task();
-            task7.nr = 1;
+            task7.nr = 7;
             task7.name = "Zahlentheorie: Primzahlen";
             task7.sector = "Zahlentheorie";
             task7.difficulty = 1;
@@ -137,7 +205,7 @@ namespace MathMaster;
             task7.imagePath = "";
 
             Models.Task task8 = new Models.Task();
-            task8.nr = 1;
+            task8.nr = 8;
             task8.name = "Integralrechnung: Bestimmtes Integral";
             task8.sector = "Integralrechnung";
             task8.difficulty = 2;
@@ -150,7 +218,7 @@ namespace MathMaster;
             task8.imagePath = "";
 
             Models.Task task9 = new Models.Task();
-            task9.nr = 1;
+            task9.nr = 9;
             task9.name = "Diskrete Mathematik: Kombinatorik";
             task9.sector = "Diskrete Mathematik";
             task9.difficulty = 4;
@@ -163,7 +231,7 @@ namespace MathMaster;
             task9.imagePath = "";
 
             Models.Task task10 = new Models.Task();
-            task10.nr = 1;
+            task10.nr = 10;
             task10.name = "Finanzmathematik: Zinsrechnung";
             task10.sector = "Finanzmathematik";
             task10.difficulty = 2;
@@ -175,11 +243,39 @@ namespace MathMaster;
             task10.group = 1;
             task10.imagePath = "";
 
-            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            context.Tasks.AddRange(task1, task2, task3, task4, task5, task6, task7, task8, task9, task10);
-            context.SaveChanges();
-        }
+         //Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        //context.Tasks.Add(task1.nr, task1.name, task1.sector, task1.difficulty, task1.points, task1.drawing, task1.question, task1.answer, task1.source, task1.group, task1.imagePath);    
+        //context.Tasks.AddRange(task1, task2, task3, task4, task5, task6, task7, task8, task9, task10);
+        //context.Add(new Models.Task{nr = 1, name = "Erisa", sector = "A", difficulty = 120, points = 1234, drawing = false, question = "ewedewwe", answer = "dsf", group = 0, imagePath = "ddede"});     
+        //context.Add(task10);        
+        //context.SaveChanges();
 
+
+        using(var context = new lresch_MathMasterContext())
+        {
+            var task = new Models.Task()
+            {
+                nr = 12,
+                name = "Gates",
+                sector = "d",
+                difficulty = 4,
+                points = 20,
+                drawing = false,
+                question = "3d",
+                answer = "12",
+                source = "12",
+                group = 1,
+                imagePath = "12"
+            };
+            context.Tasks.Add(task);
+
+            // or
+            // context.Add<Student>(std);
+
+            context.SaveChanges();
+            Console.Write("Task ist drinnen");
+        }
+    }
 
         public static void ExampleUsers()
         {

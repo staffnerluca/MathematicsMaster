@@ -16,6 +16,25 @@ public partial class lresch_MathMasterContext : DbContext
     public lresch_MathMasterContext(DbContextOptions<lresch_MathMasterContext> options)
         : base(options)
     {
+
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            //optionsBuilder.UseSqlServer("Server=localhost;Database=MathMaster;User Id=root;Password='';");
+            //Console.WriteLine("works");
+            //try
+            //{
+             optionsBuilder.UseSqlServer("Server=web.hak-kitz.eu;Database=l.resch_MathMaster;User Id=l.resch;Password=MyDatabase130;");
+            Console.WriteLine("works");
+            //}
+            //catch (Microsoft.Data.SqlClient.SqlException ex)
+            //{
+            //    optionsBuilder.UseSqlServer("Server=eduweb20;Database=l.resch;uid=l.resch_MathMaster;Password=MyDatabase130;");
+            //}
+        }
     }
 
     public virtual DbSet<FinishedTask> FinishedTasks { get; set; }
