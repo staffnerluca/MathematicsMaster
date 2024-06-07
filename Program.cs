@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic;
+using MySqlConnector;
 using System;
 using System.Data.SqlClient;
 using System.DirectoryServices;
@@ -13,11 +14,11 @@ namespace MathMaster;
 
     class Program
     {
-        public static SqlConnection conn = new SqlConnection("Server=eduweb20;Database=l.resch;User Id=l.resch;Password=MyDatabase130;");
-            
-    
-    
-    public static SqlCommand cmmd = new SqlCommand("", conn);
+        //public static SqlConnection conn = new SqlConnection("Server=localhost:3306;Database=l.resch;uid= l.resch@localhost;pwd=MyDatabase130;");
+    public static MySqlConnection conn = new MySqlConnection("Server=web.hak-kitz.eu;Database=l.resch;uid=l.resch;pwd=MyDatabase130;");
+
+
+    public static MySqlCommand cmmd = new MySqlCommand("", conn);
 
         public static void Main(string[] args)
         {
@@ -27,7 +28,7 @@ namespace MathMaster;
         conn.Close();
 
         string db = "MathMaster";
-
+        /*
         if (CheckIfDatabaseExists(conn, db) == false)
         {
             CreateDatabase(conn, cmmd, db);
@@ -40,7 +41,7 @@ namespace MathMaster;
         {
             ExampleTasks();
             Console.WriteLine("works");
-        }
+        }*/
 
             var builder = WebApplication.CreateBuilder(args);
 
