@@ -6,17 +6,13 @@ public class Institution
 {
     public Institution(int institutionID, string address, string country, char type, string phonenumber, string email, char postalcode)
     {
-        taskNr = tasknr;
-        taskName = taskname;
-        taskSector = tasksector;
-        this.difficulty = difficulty;
-        this.points = points;
-        this.drawing = drawing;
-        this.question = question;
-        this.answer = answer;
-        this.source = source;
-        this.group = group;
-        this.image = image;
+        this.institutiionID = institutionID;
+        this.address = address;
+        this.country = country;
+        this.type = type;
+        this.phoneNumber = phonenumber;
+        this.email = email;
+        this.postalcode = postalcode;
     }
 
     private int _institutionID;
@@ -68,7 +64,7 @@ public class Institution
         }
         set
         {
-            _difficulty = value;
+            _type = value;
         }
     }
 
@@ -86,34 +82,8 @@ public class Institution
         }
     }
 
-    private bool _drawing;
-    public bool drawing
-    {
-        get
-        {
-            return _drawing;
-        }
-        set
-        {
-            _drawing = value;
-        }
-    }
-
-    private string _question;
-    public string question
-    {
-        get
-        {
-            return _question;
-        }
-        set 
-        {
-            _question = value; 
-        }
-    }
-
-    private string? _phoneNumber;
-    public string? phoneNumber
+    private string _phoneNumber;
+    public string phoneNumber
     {
         get
         {
@@ -121,7 +91,7 @@ public class Institution
         }
         set
         {
-            _answer = value; 
+            _phoneNumber = value; 
         }
     }
 
@@ -135,7 +105,7 @@ public class Institution
         
         set 
         {
-            _source = value; 
+            _email = value; 
         }
     }
 
@@ -156,6 +126,7 @@ public class Institution
         }
     }
 
+    private char _postalcode;
     public char postalcode
     {
         get
