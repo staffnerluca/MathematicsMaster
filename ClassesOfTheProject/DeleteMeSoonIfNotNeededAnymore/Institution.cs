@@ -2,9 +2,9 @@ using System;
 
 namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
 
-public class Task
+public class Institution
 {
-    public Task(int tasknr, string taskname, string tasksector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
+    public Institution(int institutionID, string address, string country, char type, string phonenumber, string email, char postalcode)
     {
         taskNr = tasknr;
         taskName = taskname;
@@ -19,51 +19,52 @@ public class Task
         this.image = image;
     }
 
-    private int _tasknr;
-    public int taskNr
+    private int _institutionID;
+    public int institutiionID
     {
         get
         {
-            return _tasknr;
+            return _institutionID;
         }
         set
         {
-            _tasknr = value;
+            _institutionID = value;
         }
     }
 
-    private string _taskname;
-    public string taskName
+    //? makes a variable nullable
+    private string? _address;
+    public string? address
     {
         get
         {
-            return _taskname;
+            return _address;
         }
         set
         {
-            _taskname = value;
+            _address = value;
         }
     }
 
-    private string _tasksector;
-    public string taskSector
+    private string? _country;
+    public string? country
     {
         get
         {
-            return _tasksector;
+            return _country;
         }
         set
         {
-            _tasksector = value;
+            _country = value;
         }
     }
 
-    private int _difficulty;
-    public int difficulty
+    private char _type;
+    public char type
     {
         get
         {
-            return _difficulty;
+            return _type;
         }
         set
         {
@@ -80,7 +81,7 @@ public class Task
         }
         set
         {
-            if (value >= 0 && value < 100)
+            if(value >= 0 && value < 100)
                 _points = value;
         }
     }
@@ -105,36 +106,36 @@ public class Task
         {
             return _question;
         }
-        set
+        set 
         {
-            _question = value;
+            _question = value; 
         }
     }
 
-    private string _answer;
-    public string answer
+    private string? _phoneNumber;
+    public string? phoneNumber
     {
         get
         {
-            return _answer;
+            return _phoneNumber;
         }
         set
         {
-            _answer = value;
+            _answer = value; 
         }
     }
 
-    private string _source;
-    public string source
+    private string? _email;
+    public string? email
     {
         get
         {
-            return _source;
+            return _email;
         }
-
-        set
+        
+        set 
         {
-            _source = value;
+            _source = value; 
         }
     }
 
@@ -148,23 +149,22 @@ public class Task
         set
         {
             _group = value;
-            if (value != -2)
+            if (value != (-2))
             {
                 _group = value;
             }
         }
     }
 
-    private string _image;
-    public string image
+    public char postalcode
     {
         get
         {
-            return _image;
+            return _postalcode;
         }
         set
         {
-            _image = value;
+            _postalcode = value;
         }
     }
 }

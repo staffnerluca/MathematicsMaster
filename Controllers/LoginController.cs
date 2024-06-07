@@ -7,7 +7,6 @@ namespace MathMaster.Controllers;
 [Route("[controller]")]
 public class LoginController : ControllerBase
 {
-    //private SqlCom sql = new SqlCom();
     private readonly ILogger<LoginController> _logger;
 
     public LoginController(ILogger<LoginController> logger)
@@ -19,6 +18,7 @@ public class LoginController : ControllerBase
     [HttpPost]
     public IActionResult Post()
     {
+        //get data from form
         string username = Request.Form["username"];
         string password = Request.Form["password"];
         bool login = false;
@@ -26,14 +26,5 @@ public class LoginController : ControllerBase
             login = true;
         }
         return Ok(login);
-    }
-
-    //only for test purposes, delete later
-    public Dictionary<string, string> CreateExampleDictionary(){
-        Dictionary<string, string> users = new Dictionary<string, string>();
-        users.Add("Lukas", "I<3Billiard123");
-        users.Add("Alex", "3x+1");
-        users.Add("Counting", "Sort");
-        return users;
     }
 }

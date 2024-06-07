@@ -15,9 +15,6 @@ public class TaskController : ControllerBase
         _logger = logger;
     }
 
-    //HTTP Get TaskController: Soll ihm dann einen Task geben
-    //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
-
     [HttpGet]
     public IActionResult Get(int id)
     {
@@ -29,11 +26,11 @@ public class TaskController : ControllerBase
     [HttpPost]
     public IActionResult Post(int nr, string name, string sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
     {
-        Models.Task task = new Models.Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, image);
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        context.Tasks.Add(task);
-        context.SaveChanges();
-        return Ok("funktioniert");
+        Dictionary<string, string> task = new Dictionary<string, string>();
+        task.Add("name", "first task");
+        task.Add("question", "1 + 1 = ");
+        task.Add("answer", "2");
+        return Ok(task);
     }
 
     //only for test purposes, delete later
@@ -42,10 +39,10 @@ public class TaskController : ControllerBase
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("Nr", "1");
         task.Add("name", "Gewinnspiel");
-        task.Add("question", @"Auf dem Etikett einer Getr√§nkeflasche ist ein Code f√ºr ein Gewinnspiel aufgedruckt.
-        \n ‚Ä¢ Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von ‚Ç¨ 10 zu erzielen, betr√§gt 1 %.\n 
-        ‚Ä¢ Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von ‚Ç¨ 2 zu erzielen, betr√§gt 4 %. \n 
-        Es gibt keine weiteren Gewinne. Die Zufallsvariable X gibt den Gewinn (in ‚Ç¨) f√ºr einen Code an.\n \n
+        task.Add("question", @"Auf dem Etikett einer Getr‰nkeflasche ist ein Code f¸r ein Gewinnspiel aufgedruckt.
+        \n ï Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von Ä 10 zu erzielen, betr‰gt 1 %.\n 
+        ï Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von Ä 2 zu erzielen, betr‰gt 4 %. \n 
+        Es gibt keine weiteren Gewinne. Die Zufallsvariable X gibt den Gewinn (in Ä) f¸r einen Code an.\n \n
         Aufgabenstellung:\n
         Berechnen Sie den Erwartungswert E(X).");
         task.Add("answer", "0,18");
