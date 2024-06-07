@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient; 
 
 namespace MathMaster.Models;
 
