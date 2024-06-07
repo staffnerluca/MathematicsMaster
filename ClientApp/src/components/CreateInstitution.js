@@ -24,7 +24,7 @@ async function sendDataToServer(){
     const address = document.getElementById("inpAddress").value;
     const adminMail = document.getElementById("inpAdminMail").value;
     try{
-        const registrationData = {
+        const institutionData = {
             institutionName: instName,
             adminMail: adminMail,
             address: address,
@@ -32,7 +32,7 @@ async function sendDataToServer(){
         await fetch("createInstitution", {
             method: "POST",
             headers: {"Content-type": "application/json"},
-            body: JSON.stringify(registrationData)
+            body: JSON.stringify(institutionData)
         })
     }
     catch(error){

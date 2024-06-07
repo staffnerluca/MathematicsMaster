@@ -9,6 +9,7 @@ import { FetchTest } from "./components/FetchTest";
 import { CreateTask } from "./components/CreateTask";
 import { CreateInstitution } from "./components/CreateInstitution";
 import { CreateThings } from "./components/CreateThings";
+import { CreateGroup } from "./components/CreateGroup";
 
 const AppRoutes = [
   {
@@ -58,6 +59,10 @@ const AppRoutes = [
   {
     path: "createThings",
     element: <CreateThings />
+  },
+  {
+    path: "createGroup",
+    element: <CreateGroup />
   },
 ];
 
