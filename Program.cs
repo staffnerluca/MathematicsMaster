@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic;
-using MySqlConnector;
 using System;
 using MySql.Data;
 using MySql.Data.MySqlClient;
@@ -26,25 +25,29 @@ namespace MathMaster;
         public static void Main(string[] args)
         {
 
-        conn.Open();
-        Console.WriteLine("works perfectly");
-        conn.Close();
+        //conn.Open();
+        //Console.WriteLine("works perfectly");
+        //conn.Close();
 
-        string db = "MathMaster";
+        //string db = "MathMaster";
 
-        if (CheckIfDatabaseExists(conn, db) == false)
-        {
-            CreateDatabase(conn, cmmd, db);
-            CreateTables(conn, cmmd, db);
-            ExampleTasks();
-            Console.WriteLine("works");
-        }
+        //if (CheckIfDatabaseExists(conn, db) == false)
+        //{
+        //    CreateDatabase(conn, cmmd, db);
+        //    CreateTables(conn, cmmd, db);
+        //    ExampleTasks();
+        //    Console.WriteLine("works");
+        //}
 
-        else
-        {
-            ExampleTasks();
-            Console.WriteLine("works");
-        }
+        //else
+        //{
+        //    ExampleTasks();
+        //    Console.WriteLine("works");
+        //}
+
+        //ExampleTasks();
+        //ExampleUsers(); 
+        //IT WORKS FINALLY
 
         var builder = WebApplication.CreateBuilder(args);
 
