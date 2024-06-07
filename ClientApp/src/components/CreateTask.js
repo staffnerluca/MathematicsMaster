@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import { diff } from 'semver';
 
 function CreateTaskBox(){
     return(
@@ -21,7 +20,7 @@ function CreateTaskBox(){
             <p>0 to 10 easy, 10 - 35 easy medium, 35 - 65 medium, 65 - 80 hard, 80 - 100 really hard</p><br></br>
             <input id="inpDifficulty" className='usInpCreate'></input>
             <br></br>
-            <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
+            <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Create Task</button>
             <br></br><br></br>
             <Link to="/">Main</Link>
         </div>
@@ -54,6 +53,7 @@ function askServerIfGroupExists(group){
         }
       };
 }
+
 
 async function sendDataToServer(){
     const type = document.getElementById("selType").value;
