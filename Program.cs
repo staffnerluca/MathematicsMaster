@@ -6,9 +6,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic;
 using MySqlConnector;
 using System;
-using System.Data.SqlClient;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 using System.DirectoryServices;
 using System.Linq;
+using Microsoft.AspNetCore.Hosting.Server;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MathMaster;
 
@@ -23,27 +26,25 @@ namespace MathMaster;
         public static void Main(string[] args)
         {
 
-        //conn.Open();
-        //Console.WriteLine("works perfectly");
-        //conn.Close();
+        conn.Open();
+        Console.WriteLine("works perfectly");
+        conn.Close();
 
         string db = "MathMaster";
 
-        //if (CheckIfDatabaseExists(conn, db) == false)
-        //{
-        //    CreateDatabase(conn, cmmd, db);
-        //    CreateTables(conn, cmmd, db);
-        //    ExampleTasks();
-        //    Console.WriteLine("works");
-        //}
+        if (CheckIfDatabaseExists(conn, db) == false)
+        {
+            CreateDatabase(conn, cmmd, db);
+            CreateTables(conn, cmmd, db);
+            ExampleTasks();
+            Console.WriteLine("works");
+        }
 
-        //else
-        //{
-        //ExampleTasks(); noch schauen dass nicht zweimal erstellt
-        //ExampleUsers();
-        //IT WORKED FINALLY
-        //    Console.WriteLine("works");
-        //}
+        else
+        {
+            ExampleTasks();
+            Console.WriteLine("works");
+        }
 
         var builder = WebApplication.CreateBuilder(args);
 
@@ -72,54 +73,6 @@ namespace MathMaster;
             app.MapFallbackToFile("index.html");
 
             app.Run();
-        }
-
-
-    public static void CreateDatabase(SqlConnection conn, SqlCommand cmmd, string databasen)
-    {
-        try
-        {
-            //here I create my database whit the create statement
-            cmmd.CommandText = "CREATE DATABASE " + databasen;
-            cmmd.ExecuteNonQuery();
-        }
-        catch
-        {
-            Console.WriteLine("Wir wissen leider nicht was falsch gelaufen ist. Bitte machen Sie das was Sie gerade gemacht haben nicht mehr!");
-        }
-    }
-
-    public static void CreateTables(SqlConnection conn, SqlCommand cmmd, string databasen)
-    {
-        try
-        {
-            //here I create all of my tables, this makes my programm lag a bit, because there are a lot of Insert statements
-            //and a lot of knowledge includements (includings) aswell. With the Create statement I create all of my tables and
-            //then I just Insert the whole data. 
-            conn.Close();
-            conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Integrated Security = true; Database = " + databasen;
-            conn.Open();
-
-            cmmd = new SqlCommand("", conn);
-            cmmd.CommandText = "CREATE TABLE Conti([Id] INT NOT NULL PRIMARY KEY IDENTITY, [Name] NVARCHAR(100))";
-            cmmd.ExecuteNonQuery();
-        }
-        catch
-        {
-            Console.Write("Wir wissen leider nicht was falsch gelaufen ist. Bitte machen Sie das was Sie gerade gemacht haben nicht mehr!");
-        }
-    }
-
-
-    public static bool CheckIfDatabaseExists(SqlConnection conn, string db)
-        {
-            //here I can check if a database exists, with the select command, if the value is null I know that it doesn't. Here I select
-            //the id/names of the databases and look for my name if the value is not null it the programm knows that it exists, if there is null
-            //it doesn't exist
-            conn.Close();
-            SqlCommand comm = new SqlCommand($"SELECT db_id('{db}')", conn);
-            conn.Open();
-            return comm.ExecuteScalar() != DBNull.Value; 
         }
 
         public static void ExampleTasks()
