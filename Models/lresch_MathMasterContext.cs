@@ -27,7 +27,7 @@ public partial class lresch_MathMasterContext : DbContext
             //Console.WriteLine("works");
             //try
             //{
-             optionsBuilder.UseSqlServer("Server=web.hak-kitz.eu;Database=l.resch_MathMaster;User Id=l.resch;Password=MyDatabase130;");
+            optionsBuilder.UseSqlServer("Server=eduweb20;Database=l.resch;Uid=l.resch;password=MyDatabase130;"); //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
             Console.WriteLine("works");
             //}
             //catch (Microsoft.Data.SqlClient.SqlException ex)

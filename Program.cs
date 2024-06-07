@@ -13,11 +13,19 @@ namespace MathMaster;
 
     class Program
     {
-        public static SqlConnection conn = new SqlConnection("server = (localdb)\\MSSQLLocalDB; integrated security = true;");
-        public static SqlCommand cmmd = new SqlCommand("", conn);
+        public static SqlConnection conn = new SqlConnection("Server=eduweb20;Database=l.resch;User Id=l.resch;Password=MyDatabase130;");
+            
+    
+    
+    public static SqlCommand cmmd = new SqlCommand("", conn);
 
         public static void Main(string[] args)
         {
+
+        conn.Open();
+        Console.WriteLine("works perfectly");
+        conn.Close();
+
         string db = "MathMaster";
 
         if (CheckIfDatabaseExists(conn, db) == false)
@@ -272,8 +280,15 @@ namespace MathMaster;
             // or
             // context.Add<Student>(std);
 
-            context.SaveChanges();
-            Console.Write("Task ist drinnen");
+            //try 
+            //{
+                context.SaveChanges();
+                Console.Write("Task ist drinnen");
+            //}
+            //catch(Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //}
         }
     }
 
