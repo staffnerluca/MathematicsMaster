@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "katex": "^0.16.10",
-    "react-latex": "^2.0.0"
+    "latex.js": "^0.12.6",
+    "react-latex": "^1.2.0"
   }
 }
