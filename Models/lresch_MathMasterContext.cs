@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace MathMaster.Models;
 
@@ -27,7 +28,10 @@ public partial class lresch_MathMasterContext : DbContext
             //Console.WriteLine("works");
             //try
             //{
-            optionsBuilder.UseSqlServer("Server=eduweb20;Database=l.resch;Uid=l.resch;password=MyDatabase130;"); //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
+            //string connectionString = "Server=eduweb20;Database=l.resch;Uid=l.resch;password=MyDatabase130;"; //for school
+            string connectionString = "Server=web.hak-kitz.eu;Database=l.resch_MathMaster;Uid=l.resch;password=MyDatabase130;"; //for everfywhere else
+
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); //Server=myServerAddress;Database=myDataBase;Uid=myUsername;Pwd=myPassword;
             Console.WriteLine("works");
             //}
             //catch (Microsoft.Data.SqlClient.SqlException ex)

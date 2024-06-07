@@ -23,27 +23,29 @@ namespace MathMaster;
         public static void Main(string[] args)
         {
 
-        conn.Open();
-        Console.WriteLine("works perfectly");
-        conn.Close();
+        //conn.Open();
+        //Console.WriteLine("works perfectly");
+        //conn.Close();
 
         string db = "MathMaster";
-        /*
-        if (CheckIfDatabaseExists(conn, db) == false)
-        {
-            CreateDatabase(conn, cmmd, db);
-            CreateTables(conn, cmmd, db);
-            ExampleTasks();
-            Console.WriteLine("works");
-        }
 
-        else
-        {
-            ExampleTasks();
-            Console.WriteLine("works");
-        }*/
+        //if (CheckIfDatabaseExists(conn, db) == false)
+        //{
+        //    CreateDatabase(conn, cmmd, db);
+        //    CreateTables(conn, cmmd, db);
+        //    ExampleTasks();
+        //    Console.WriteLine("works");
+        //}
 
-            var builder = WebApplication.CreateBuilder(args);
+        //else
+        //{
+        //ExampleTasks(); noch schauen dass nicht zweimal erstellt
+        //ExampleUsers();
+        //IT WORKED FINALLY
+        //    Console.WriteLine("works");
+        //}
+
+        var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
@@ -124,7 +126,7 @@ namespace MathMaster;
         {
             int nr = 1;
             string name = "Algebra: Lineare Gleichungen";
-            string sector = "Algebra";
+            string sector = "A";
             int difficulty = 1;
             int points = 10;
             bool drawing = false;
@@ -138,7 +140,7 @@ namespace MathMaster;
             Models.Task task2 = new Models.Task();
             task2.nr = 2;
             task2.name = "Geometrie: Flächenberechnung";
-            task2.sector = "Geometrie";
+            task2.sector = "G";
             task2.difficulty = 1;
             task2.points = 10;
             task2.drawing = false;
@@ -151,7 +153,7 @@ namespace MathMaster;
             Models.Task task3 = new Models.Task();
             task3.nr = 3;
             task3.name = "Analysis: Ableitungen";
-            task3.sector = "Analysis";
+            task3.sector = "A";
             task3.difficulty = 2;
             task3.points = 20;
             task3.drawing = false;
@@ -164,7 +166,7 @@ namespace MathMaster;
             Models.Task task4 = new Models.Task();
             task4.nr = 4;
             task4.name = "Stochastik: Wahrscheinlichkeit";
-            task4.sector = "Stochastik";
+            task4.sector = "S";
             task4.difficulty = 2;
             task4.points = 20;
             task4.drawing = false;
@@ -177,7 +179,7 @@ namespace MathMaster;
             Models.Task task5 = new Models.Task();
             task5.nr = 5;
             task5.name = "Lineare Algebra: Matrizen";
-            task5.sector = "Lineare Algebra";
+            task5.sector = "A";
             task5.difficulty = 3;
             task5.points = 30;
             task5.drawing = false;
@@ -190,7 +192,7 @@ namespace MathMaster;
             Models.Task task6 = new Models.Task();
             task6.nr = 6;
             task6.name = "Trigonometrie: Winkelfunktionen";
-            task6.sector = "Trigonometrie";
+            task6.sector = "G";
             task6.difficulty = 1;
             task6.points = 10;
             task6.drawing = false;
@@ -203,7 +205,7 @@ namespace MathMaster;
             Models.Task task7 = new Models.Task();
             task7.nr = 7;
             task7.name = "Zahlentheorie: Primzahlen";
-            task7.sector = "Zahlentheorie";
+            task7.sector = "A";
             task7.difficulty = 1;
             task7.points = 10;
             task7.drawing = false;
@@ -216,7 +218,7 @@ namespace MathMaster;
             Models.Task task8 = new Models.Task();
             task8.nr = 8;
             task8.name = "Integralrechnung: Bestimmtes Integral";
-            task8.sector = "Integralrechnung";
+            task8.sector = "A";
             task8.difficulty = 2;
             task8.points = 20;
             task8.drawing = false;
@@ -229,7 +231,7 @@ namespace MathMaster;
             Models.Task task9 = new Models.Task();
             task9.nr = 9;
             task9.name = "Diskrete Mathematik: Kombinatorik";
-            task9.sector = "Diskrete Mathematik";
+            task9.sector = "A";
             task9.difficulty = 4;
             task9.points = 40;
             task9.drawing = false;
@@ -242,7 +244,7 @@ namespace MathMaster;
             Models.Task task10 = new Models.Task();
             task10.nr = 10;
             task10.name = "Finanzmathematik: Zinsrechnung";
-            task10.sector = "Finanzmathematik";
+            task10.sector = "A";
             task10.difficulty = 2;
             task10.points = 20;
             task10.drawing = false;
@@ -252,45 +254,42 @@ namespace MathMaster;
             task10.group = 1;
             task10.imagePath = "";
 
-         //Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        //context.Tasks.Add(task1.nr, task1.name, task1.sector, task1.difficulty, task1.points, task1.drawing, task1.question, task1.answer, task1.source, task1.group, task1.imagePath);    
-        //context.Tasks.AddRange(task1, task2, task3, task4, task5, task6, task7, task8, task9, task10);
-        //context.Add(new Models.Task{nr = 1, name = "Erisa", sector = "A", difficulty = 120, points = 1234, drawing = false, question = "ewedewwe", answer = "dsf", group = 0, imagePath = "ddede"});     
-        //context.Add(task10);        
-        //context.SaveChanges();
+        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        context.Tasks.AddRange(task1, task2, task3, task4, task5, task6, task7, task8, task9, task10);
+        context.SaveChanges();
 
 
-        using(var context = new lresch_MathMasterContext())
-        {
-            var task = new Models.Task()
-            {
-                nr = 12,
-                name = "Gates",
-                sector = "d",
-                difficulty = 4,
-                points = 20,
-                drawing = false,
-                question = "3d",
-                answer = "12",
-                source = "12",
-                group = 1,
-                imagePath = "12"
-            };
-            context.Tasks.Add(task);
+        //using (var context = new lresch_MathMasterContext())
+        //{
+        //    var task = new Models.Task()
+        //    {
+        //        nr = 12,
+        //        name = "Gates",
+        //        sector = "d",
+        //        difficulty = 4,
+        //        points = 20,
+        //        drawing = false,
+        //        question = "3d",
+        //        answer = "12",
+        //        source = "12",
+        //        group = 1,
+        //        imagePath = "12"
+        //    };
+        //    context.Tasks.Add(task);
 
-            // or
-            // context.Add<Student>(std);
 
-            //try 
-            //{
-                context.SaveChanges();
-                Console.Write("Task ist drinnen");
-            //}
-            //catch(Exception ex)
-            //{
-            //    Console.WriteLine(ex.ToString());
-            //}
-        }
+        //    try
+        //    {
+        //        context.SaveChanges();
+        //        Console.Write("Task ist drinnen");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //}
+        //this works
+    
     }
 
         public static void ExampleUsers()
