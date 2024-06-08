@@ -12,7 +12,7 @@ public partial class User
 
     }
 
-    public User(int id, string username, string email, int points, string utype, DateTime lastlogin, DateTime lastLogout, bool darkmode, DateTime birthdate)
+    public User(int id, string username, string email, int points, string utype, string lastlogin, string lastLogout, string birthdate, string password, int group)
     {
         this.id = id;
         this.username = username;
@@ -21,8 +21,9 @@ public partial class User
         this.usertype = utype;
         this.lastLogin = lastlogin;
         this.lastLogout = lastLogout;
-        this.darkmode = darkmode;
         this.birthDate = birthdate;
+        this.password = password;
+        this.group = group;
     }
 
     public int id { get; set; }
@@ -35,11 +36,13 @@ public partial class User
 
     public string usertype { get; set; }
 
-    public DateTime lastLogin { get; set; }
+    public string lastLogin { get; set; }
 
-    public DateTime lastLogout { get; set; }
+    public string lastLogout { get; set; }
 
-    public bool darkmode { get; set; }
+    public string birthDate { get; set; }
 
-    public DateTime birthDate { get; set; }
+    public string password { get; set; }
+
+    public int group { get; set; }
 }

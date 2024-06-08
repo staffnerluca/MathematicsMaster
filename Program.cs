@@ -11,45 +11,32 @@ using System.DirectoryServices;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting.Server;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using MathMaster.Controllers;
 
 namespace MathMaster;
 
     class Program
     {
-        //public static SqlConnection conn = new SqlConnection("Server=localhost:3306;Database=l.resch;uid= l.resch@localhost;pwd=MyDatabase130;");
-    public static MySqlConnection conn = new MySqlConnection("Server=web.hak-kitz.eu;Database=l.resch;uid=l.resch;pwd=MyDatabase130;");
-
-
-    public static MySqlCommand cmmd = new MySqlCommand("", conn);
-
         public static void Main(string[] args)
         {
+        string password = "1234323dsdaf!!";
+        string name = "test";
+        string ema = "adsdf@gfdasf";
+        int points = 10;
+        string type = "test";
+        string lasL = "12.12.12";
+        string lastL = "12.12";
+        string br = "dsa";
+        int group = 12; 
 
-        //conn.Open();
-        //Console.WriteLine("works perfectly");
-        //conn.Close();
+        HashPasswordForUse hashPasswordForUse = new HashPasswordForUse(password);
+        hashPasswordForUse.Test(password, name, ema, points, type, lasL,
+            lastL, br, group); 
+            //    ExampleTasks();
+            //    Console.WriteLine("works");
+            //I let this in, that you can see, that I did some things. Also I did need to do that once, so that we have example tasks
 
-        //string db = "MathMaster";
-
-        //if (CheckIfDatabaseExists(conn, db) == false)
-        //{
-        //    CreateDatabase(conn, cmmd, db);
-        //    CreateTables(conn, cmmd, db);
-        //    ExampleTasks();
-        //    Console.WriteLine("works");
-        //}
-
-        //else
-        //{
-        //    ExampleTasks();
-        //    Console.WriteLine("works");
-        //}
-
-        //ExampleTasks();
-        //ExampleUsers(); 
-        //IT WORKS FINALLY
-
-        var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
@@ -80,7 +67,8 @@ namespace MathMaster;
 
         public static void ExampleTasks()
         {
-            int nr = 1;
+        //Example Tasks from ChatGPT
+            int nr = 14;
             string name = "Algebra: Lineare Gleichungen";
             string sector = "A";
             int difficulty = 1;
@@ -94,7 +82,7 @@ namespace MathMaster;
             Models.Task task1 = new Models.Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath);
 
             Models.Task task2 = new Models.Task();
-            task2.nr = 2;
+            task2.nr = 22;
             task2.name = "Geometrie: Flächenberechnung";
             task2.sector = "G";
             task2.difficulty = 1;
@@ -107,7 +95,7 @@ namespace MathMaster;
             task2.imagePath = "";
 
             Models.Task task3 = new Models.Task();
-            task3.nr = 3;
+            task3.nr = 32;
             task3.name = "Analysis: Ableitungen";
             task3.sector = "A";
             task3.difficulty = 2;
@@ -120,7 +108,7 @@ namespace MathMaster;
             task3.imagePath = "";
 
             Models.Task task4 = new Models.Task();
-            task4.nr = 4;
+            task4.nr = 24;
             task4.name = "Stochastik: Wahrscheinlichkeit";
             task4.sector = "S";
             task4.difficulty = 2;
@@ -133,7 +121,7 @@ namespace MathMaster;
             task4.imagePath = "";
 
             Models.Task task5 = new Models.Task();
-            task5.nr = 5;
+            task5.nr = 53;
             task5.name = "Lineare Algebra: Matrizen";
             task5.sector = "A";
             task5.difficulty = 3;
@@ -146,7 +134,7 @@ namespace MathMaster;
             task5.imagePath = "";
 
             Models.Task task6 = new Models.Task();
-            task6.nr = 6;
+            task6.nr = 26;
             task6.name = "Trigonometrie: Winkelfunktionen";
             task6.sector = "G";
             task6.difficulty = 1;
@@ -159,7 +147,7 @@ namespace MathMaster;
             task6.imagePath = "";
 
             Models.Task task7 = new Models.Task();
-            task7.nr = 7;
+            task7.nr = 74;
             task7.name = "Zahlentheorie: Primzahlen";
             task7.sector = "A";
             task7.difficulty = 1;
@@ -172,7 +160,7 @@ namespace MathMaster;
             task7.imagePath = "";
 
             Models.Task task8 = new Models.Task();
-            task8.nr = 8;
+            task8.nr = 81;
             task8.name = "Integralrechnung: Bestimmtes Integral";
             task8.sector = "A";
             task8.difficulty = 2;
@@ -185,7 +173,7 @@ namespace MathMaster;
             task8.imagePath = "";
 
             Models.Task task9 = new Models.Task();
-            task9.nr = 9;
+            task9.nr = 92;
             task9.name = "Diskrete Mathematik: Kombinatorik";
             task9.sector = "A";
             task9.difficulty = 4;
@@ -198,7 +186,7 @@ namespace MathMaster;
             task9.imagePath = "";
 
             Models.Task task10 = new Models.Task();
-            task10.nr = 10;
+            task10.nr = 120;
             task10.name = "Finanzmathematik: Zinsrechnung";
             task10.sector = "A";
             task10.difficulty = 2;
@@ -213,53 +201,20 @@ namespace MathMaster;
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
         context.Tasks.AddRange(task1, task2, task3, task4, task5, task6, task7, task8, task9, task10);
         context.SaveChanges();
-
-
-        //using (var context = new lresch_MathMasterContext())
-        //{
-        //    var task = new Models.Task()
-        //    {
-        //        nr = 12,
-        //        name = "Gates",
-        //        sector = "d",
-        //        difficulty = 4,
-        //        points = 20,
-        //        drawing = false,
-        //        question = "3d",
-        //        answer = "12",
-        //        source = "12",
-        //        group = 1,
-        //        imagePath = "12"
-        //    };
-        //    context.Tasks.Add(task);
-
-
-        //    try
-        //    {
-        //        context.SaveChanges();
-        //        Console.Write("Task ist drinnen");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //    }
-        //}
-        //this works
-    
     }
 
         public static void ExampleUsers()
         {
+        //Example Users, also created by ChatGPT
             Models.User user1 = new Models.User();
             user1.id = 1;
             user1.username = "lily_sanchez";
             user1.E_Mail = "lily-sanchez@gmail.com";
             user1.points = 202;
             user1.usertype = "T";
-            user1.lastLogin = DateTime.Now;
-            user1.lastLogout = DateTime.Now; 
-            user1.darkmode = true;
-            user1.birthDate = DateTime.Now;
+            user1.lastLogin = "12.12.2023";
+            user1.lastLogout = "12.12.2023"; 
+            user1.birthDate = "12.12.2004";
 
             Models.User user2 = new Models.User();
             user2.id = 2;
@@ -267,10 +222,9 @@ namespace MathMaster;
             user2.E_Mail = "erias-piel@gmail.com";
             user2.points = 2012;
             user2.usertype = "S";
-            user2.lastLogin = DateTime.Now;
-            user2.lastLogout = DateTime.Now;
-            user2.darkmode = true;
-            user2.birthDate = DateTime.Now;
+            user2.lastLogin = "01.02.2024";
+            user2.lastLogout = "01.02.2024";
+            user2.birthDate = "01.12.1956";
 
             Models.User user3 = new Models.User();
             user3.id = 3;
@@ -278,10 +232,9 @@ namespace MathMaster;
             user3.E_Mail = "gina-resch@gmail.com";
             user3.points = 1230;
             user3.usertype = "S";
-            user3.lastLogin = DateTime.Now;
-            user3.lastLogout = DateTime.Now;
-            user3.darkmode = false;
-            user3.birthDate = DateTime.Now;
+            user3.lastLogin = "12.06.2024";
+            user3.lastLogout = "12.06.2023";
+            user3.birthDate = "13.12.2000";
 
             Models.User user4 = new Models.User();
             user4.id = 4;
@@ -289,10 +242,9 @@ namespace MathMaster;
             user4.E_Mail = "manuel-murizo@gmail.com";
             user4.points = 2120;
             user4.usertype = "S";
-            user4.lastLogin = DateTime.Now;
-            user4.lastLogout = DateTime.Now;
-            user4.darkmode = true;
-            user4.birthDate = DateTime.Now;
+            user4.lastLogin = "12.12.2023";
+            user4.lastLogout = "12.12.2023";
+            user4.birthDate = "12.12.1987";
 
             Models.User user5 = new Models.User();
             user5.id = 5;
@@ -300,10 +252,9 @@ namespace MathMaster;
             user5.E_Mail = "mia-reyes@gmail.com";
             user5.points = 3212;
             user5.usertype = "T";
-            user5.lastLogin = DateTime.Now;
-            user5.lastLogout = DateTime.Now;
-            user5.darkmode = true;
-            user5.birthDate = DateTime.Now;
+            user5.lastLogin = "09.03.2024";
+            user5.lastLogout = "12.04.2024";
+            user5.birthDate = "12.12.2023";
 
             Models.User user6 = new Models.User();
             user6.id = 6;
@@ -311,10 +262,9 @@ namespace MathMaster;
             user6.E_Mail = "carlo-schmidt@gmail.com";
             user6.points = 202;
             user6.usertype = "T";
-            user6.lastLogin = DateTime.Now;
-            user6.lastLogout = DateTime.Now;
-            user6.darkmode = true;
-            user6.birthDate = DateTime.Now;
+            user6.lastLogin = "12.04.2023";
+            user6.lastLogout = "12.04.2023";
+            user6.birthDate = "31.11.1999";
 
             Models.User user7 = new Models.User();
             user7.id = 7;
@@ -322,10 +272,9 @@ namespace MathMaster;
             user7.E_Mail = "guenther-steger@gmail.com";
             user7.points = 4000;
             user7.usertype = "S";
-            user7.lastLogin = DateTime.Now;
-            user7.lastLogout = DateTime.Now;
-            user7.darkmode = true;
-            user7.birthDate = DateTime.Now;
+            user7.lastLogin = "13.03.2024";
+            user7.lastLogout = "13.03.2024";
+            user7.birthDate = "15.08.1987";
 
             Models.User user8 = new Models.User();
             user8.id = 8;
@@ -333,10 +282,9 @@ namespace MathMaster;
             user8.E_Mail = "chris-foidl@gmail.com";
             user8.points = 2211;
             user8.usertype = "S";
-            user8.lastLogin = DateTime.Now;
-            user8.lastLogout = DateTime.Now;
-            user8.darkmode = false;
-            user8.birthDate = DateTime.Now;
+            user8.lastLogin = "24.04.2024";
+            user8.lastLogout = "24.04.2024";
+            user8.birthDate = "04.06.1967";
 
             Models.User user9 = new Models.User();
             user9.id = 9;
@@ -344,24 +292,22 @@ namespace MathMaster;
             user9.E_Mail = "juan-martinez@gmail.com";
             user9.points = 302;
             user9.usertype = "S";
-            user9.lastLogin = DateTime.Now;
-            user9.lastLogout = DateTime.Now;
-            user9.darkmode = true;
-            user9.birthDate = DateTime.Now;
-    
+            user9.lastLogin = "12.12.2023";
+            user9.lastLogout = "12.12.2023";
+            user9.birthDate = "12.12.2016"; 
+
             Models.User user10 = new Models.User();
             user10.id = 10;
             user10.username = "sina_bergmann";
             user10.E_Mail = "sina-bergmann@gmail.com";
             user10.points = 122;
             user10.usertype = "T";
-            user10.lastLogin = DateTime.Now;
-            user10.lastLogout = DateTime.Now;
-            user10.darkmode = true;
-            user10.birthDate = DateTime.Now;
+            user10.lastLogin = "24.07.2023";
+            user10.lastLogout = "24.07.2023";
+            user10.birthDate = "25.07.1987";
 
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
             context.Users.AddRange(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10);
             context.SaveChanges();
-    }    
+        }    
 }

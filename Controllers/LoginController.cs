@@ -22,7 +22,8 @@ public class LoginController : ControllerBase
         string username = Request.Form["username"];
         string password = Request.Form["password"];
         bool login = false;
-        if(username == "l"){
+        if(username == "l")
+        {
             login = true;
         }
         return Ok(login);
