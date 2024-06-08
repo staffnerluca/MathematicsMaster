@@ -28,7 +28,7 @@ namespace MathMaster.ClassesOfTheProject
             Models.Task returnObject = context.Tasks.FirstOrDefault(x => x.nr == nr);
             returnObject.name = name;
             returnObject.sector = sector;
-            returnObject.difficulty = difficulty;
+            returnObject.difficulty = difficulty + 100;
             returnObject.points = points;
             returnObject.drawing = drawing;
             returnObject.question = quest;

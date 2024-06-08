@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace MathMaster.Models;
 
@@ -30,8 +31,22 @@ public partial class lresch_MathMasterContext : DbContext
     public virtual DbSet<UserAndGroup> UserAndGroups { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=web.hak-kitz.eu;database=l.resch_MathMaster;uid=l.resch;pwd=MyDatabase130", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.36-mysql"));
+    {
+      try
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                //string connectionString = "Server=eduweb20;Database=l.resch;Uid=l.resch;password=MyDatabase130;"; //for school
+                string connectionString = "Server=web.hak-kitz.eu;Database=l.resch_MathMaster;Uid=l.resch;password=MyDatabase130;"; //for everfywhere else
+
+                optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)); //Here it tries to connect to the server automaticly
+            }
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

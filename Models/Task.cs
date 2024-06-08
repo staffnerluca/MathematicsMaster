@@ -7,6 +7,26 @@ namespace MathMaster.Models;
 
 public partial class Task
 {
+    public Task()
+    {
+
+    }
+
+    public Task (int nr, string name, string sector, int dif, int points, bool draw, string quest, string answer, string source, int group, string image)
+    {
+        this.nr = nr;
+        this.name = name;
+        this.sector = sector;
+        this.difficulty = dif;
+        this.points = points;
+        this.drawing = draw;
+        this.question = quest;
+        this.answer = answer;
+        this.source = source;
+        this.group = group;
+        this.imagePath = image;
+    }
+
     public int nr { get; set; }
 
     public string name { get; set; }

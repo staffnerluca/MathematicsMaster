@@ -23,7 +23,7 @@ public class GroupController : ControllerBase
     {
         GetGroup group = new GetGroup();
         group.GetGroupFromInput(id);
-        return Ok("works");
+        return Ok("ok");
     }
 
     [HttpPost]
@@ -31,8 +31,16 @@ public class GroupController : ControllerBase
     {
         Models.Group group = new Models.Group(id, name, owner);
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        context.Groups.Add(group);
-        context.SaveChanges();
-        return Ok("funktioniert");
+        Models.Group returnObject = context.Groups.FirstOrDefault(x => x.id == id);
+        if (returnObject != null)
+        {
+            context.Groups.Add(group);
+            context.SaveChanges();
+            return Ok("funktioniert");
+        }
+        else
+        {
+            return Ok("Gruppe existiert bereits!");
+        }
     }
 }

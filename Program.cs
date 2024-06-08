@@ -19,26 +19,12 @@ namespace MathMaster;
     {
         public static void Main(string[] args)
         {
-        string password = "1234323dsdaf!!";
-        string name = "test";
-        string ema = "adsdf@gfdasf";
-        int points = 10;
-        string type = "test";
-        string lasL = "12.12.12";
-        string lastL = "12.12";
-        string br2 = "12.12";
-        int group = 12; 
+        //ExampleUsers();
+        //    ExampleTasks();
+        //    Console.WriteLine("works");
+        //I let this in, that you can see, that I did some things. Also I did need to do that once, so that we have example tasks
 
-        HashPasswordForUse hashPasswordForUse = new HashPasswordForUse();
-        string br = hashPasswordForUse.HashedPW(password);
-        hashPasswordForUse.Test(br, name, ema, points, type, lasL, lastL, br2, group);
-
-        Console.Write("Works"); 
-            //    ExampleTasks();
-            //    Console.WriteLine("works");
-            //I let this in, that you can see, that I did some things. Also I did need to do that once, so that we have example tasks
-
-            var builder = WebApplication.CreateBuilder(args);
+        var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
@@ -70,18 +56,18 @@ namespace MathMaster;
         public static void ExampleTasks()
         {
         //Example Tasks from ChatGPT
-            int nr = 14;
-            string name = "Algebra: Lineare Gleichungen";
-            string sector = "A";
-            int difficulty = 1;
-            int points = 10;
-            bool drawing = false;
-            string question = "Löse die Gleichung 2x + 3 = 11.";
-            string answer = "x = 4";
-            string source = "ChatGPT";
-            int group = 1;
-            string imagePath = "";
-            Models.Task task1 = new Models.Task(nr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath);
+            Models.Task task1 = new Models.Task();    
+            task1.nr = 14;
+            task1.name = "Algebra: Lineare Gleichungen";
+            task1.sector = "A";
+            task1.difficulty = 1;
+            task1.points = 10;
+            task1.drawing = false;
+            task1.question = "Löse die Gleichung 2x + 3 = 11.";
+            task1.answer = "x = 4";
+            task1.source = "ChatGPT";
+            task1.group = 1;
+            task1.imagePath = "";
 
             Models.Task task2 = new Models.Task();
             task2.nr = 22;
@@ -208,15 +194,21 @@ namespace MathMaster;
         public static void ExampleUsers()
         {
         //Example Users, also created by ChatGPT
+            HashPasswordForUse hashPasswordForUse = new HashPasswordForUse();
+
             Models.User user1 = new Models.User();
-            user1.id = 1;
+            user1.id = 1;     
             user1.username = "lily_sanchez";
             user1.E_Mail = "lily-sanchez@gmail.com";
             user1.points = 202;
             user1.usertype = "T";
             user1.lastLogin = "12.12.2023";
             user1.lastLogout = "12.12.2023"; 
-            user1.birthDate = "12.12.2004";
+            user1.birthDate = "12.12.2004";      
+            string password1 = "234pkflöe,fä";
+            string hashedpw1 = hashPasswordForUse.HashedPW(password1);
+            user1.password = hashedpw1;
+            user1.group = 1;
 
             Models.User user2 = new Models.User();
             user2.id = 2;
@@ -227,8 +219,12 @@ namespace MathMaster;
             user2.lastLogin = "01.02.2024";
             user2.lastLogout = "01.02.2024";
             user2.birthDate = "01.12.1956";
+            string password2 = "3jnork3pö34är34";
+            string hashedpw2 = hashPasswordForUse.HashedPW(password2);
+            user2.password = hashedpw2;
+            user2.group = 1;
 
-            Models.User user3 = new Models.User();
+        Models.User user3 = new Models.User();
             user3.id = 3;
             user3.username = "gina_resch";
             user3.E_Mail = "gina-resch@gmail.com";
@@ -237,8 +233,12 @@ namespace MathMaster;
             user3.lastLogin = "12.06.2024";
             user3.lastLogout = "12.06.2023";
             user3.birthDate = "13.12.2000";
+            string password3 = "234äf+edfre";
+            string hashedpw3 = hashPasswordForUse.HashedPW(password3);
+            user3.password = hashedpw3;
+            user3.group = 1;
 
-            Models.User user4 = new Models.User();
+        Models.User user4 = new Models.User();
             user4.id = 4;
             user4.username = "manuel_murizo";
             user4.E_Mail = "manuel-murizo@gmail.com";
@@ -247,8 +247,12 @@ namespace MathMaster;
             user4.lastLogin = "12.12.2023";
             user4.lastLogout = "12.12.2023";
             user4.birthDate = "12.12.1987";
+            string password4 = "234rlf,eclfeöd#f";
+            string hashedpw4 = hashPasswordForUse.HashedPW(password4);
+            user4.password = hashedpw4;
+            user4.group = 1;
 
-            Models.User user5 = new Models.User();
+        Models.User user5 = new Models.User();
             user5.id = 5;
             user5.username = "mia_reyes";
             user5.E_Mail = "mia-reyes@gmail.com";
@@ -257,8 +261,12 @@ namespace MathMaster;
             user5.lastLogin = "09.03.2024";
             user5.lastLogout = "12.04.2024";
             user5.birthDate = "12.12.2023";
+            string password5 = "ewöf+ö3+rüö34d#efeece";
+            string hashedpw5 = hashPasswordForUse.HashedPW(password5);
+            user5.password = hashedpw5;
+            user5.group = 1;
 
-            Models.User user6 = new Models.User();
+        Models.User user6 = new Models.User();
             user6.id = 6;
             user6.username = "carlo_schmidt";
             user6.E_Mail = "carlo-schmidt@gmail.com";
@@ -267,8 +275,12 @@ namespace MathMaster;
             user6.lastLogin = "12.04.2023";
             user6.lastLogout = "12.04.2023";
             user6.birthDate = "31.11.1999";
+            string password6 = "234l2ü34l+";
+            string hashedpw6 = hashPasswordForUse.HashedPW(password6);
+            user6.password = hashedpw6;
+            user6.group = 1;
 
-            Models.User user7 = new Models.User();
+        Models.User user7 = new Models.User();
             user7.id = 7;
             user7.username = "guenther_steger";
             user7.E_Mail = "guenther-steger@gmail.com";
@@ -277,8 +289,12 @@ namespace MathMaster;
             user7.lastLogin = "13.03.2024";
             user7.lastLogout = "13.03.2024";
             user7.birthDate = "15.08.1987";
+            string password7 = "24k+234";
+            string hashedpw7 = hashPasswordForUse.HashedPW(password7);
+            user7.password = hashedpw7;
+            user7.group = 1;
 
-            Models.User user8 = new Models.User();
+        Models.User user8 = new Models.User();
             user8.id = 8;
             user8.username = "chris_foidl";
             user8.E_Mail = "chris-foidl@gmail.com";
@@ -287,8 +303,12 @@ namespace MathMaster;
             user8.lastLogin = "24.04.2024";
             user8.lastLogout = "24.04.2024";
             user8.birthDate = "04.06.1967";
+            string password8 = "234##24+23423";
+            string hashedpw8 = hashPasswordForUse.HashedPW(password8);
+            user8.password = hashedpw8;
+            user8.group = 1;
 
-            Models.User user9 = new Models.User();
+        Models.User user9 = new Models.User();
             user9.id = 9;
             user9.username = "juan_martinez";
             user9.E_Mail = "juan-martinez@gmail.com";
@@ -296,9 +316,13 @@ namespace MathMaster;
             user9.usertype = "S";
             user9.lastLogin = "12.12.2023";
             user9.lastLogout = "12.12.2023";
-            user9.birthDate = "12.12.2016"; 
+            user9.birthDate = "12.12.2016";
+            string password9 = "23490ifclpeüd!";
+            string hashedpw9 = hashPasswordForUse.HashedPW(password9);
+            user9.password = hashedpw9;
+            user9.group = 1;
 
-            Models.User user10 = new Models.User();
+        Models.User user10 = new Models.User();
             user10.id = 10;
             user10.username = "sina_bergmann";
             user10.E_Mail = "sina-bergmann@gmail.com";
@@ -307,6 +331,10 @@ namespace MathMaster;
             user10.lastLogin = "24.07.2023";
             user10.lastLogout = "24.07.2023";
             user10.birthDate = "25.07.1987";
+            string password10 = "320941dksof";
+            string hashedpw10 = hashPasswordForUse.HashedPW(password10);
+            user10.password = hashedpw10;
+            user10.group = 1;
 
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
             context.Users.AddRange(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10);
