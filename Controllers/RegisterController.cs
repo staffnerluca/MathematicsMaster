@@ -21,8 +21,8 @@ public class RegisterController : ControllerBase
     public IActionResult Post(int group, int points, bool darkmode, int id)
     {
         string password = Request.Form["password"];
-        HashPasswordForUse hashPassword = new HashPasswordForUse(password);
-        string hashedpw = hashPassword.HashedPW();
+        HashPasswordForUse hashPassword = new HashPasswordForUse();
+        string hashedpw = hashPassword.HashedPW(password);
       
         Models.User user = new Models.User();
         user.username = Request.Form["name"];

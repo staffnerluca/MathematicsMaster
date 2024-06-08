@@ -26,12 +26,14 @@ namespace MathMaster;
         string type = "test";
         string lasL = "12.12.12";
         string lastL = "12.12";
-        string br = "dsa";
+        string br2 = "12.12";
         int group = 12; 
 
-        HashPasswordForUse hashPasswordForUse = new HashPasswordForUse(password);
-        hashPasswordForUse.Test(password, name, ema, points, type, lasL,
-            lastL, br, group); 
+        HashPasswordForUse hashPasswordForUse = new HashPasswordForUse();
+        string br = hashPasswordForUse.HashedPW(password);
+        hashPasswordForUse.Test(br, name, ema, points, type, lasL, lastL, br2, group);
+
+        Console.Write("Works"); 
             //    ExampleTasks();
             //    Console.WriteLine("works");
             //I let this in, that you can see, that I did some things. Also I did need to do that once, so that we have example tasks

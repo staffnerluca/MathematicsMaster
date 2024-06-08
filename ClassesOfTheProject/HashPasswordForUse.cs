@@ -8,11 +8,11 @@ using System.Drawing.Drawing2D;
 
 namespace MathMaster
 {
-    public class HashPasswordForUse(string password)
+    public class HashPasswordForUse()
     {
-        public string HashedPW()
+        public string HashedPW(string password)
         {
-            string salt = BCrypt.GenerateSalt(2);
+            string salt = BCrypt.GenerateSalt(12);
             string hashedpassword = BCrypt.HashPassword(password, salt);
             return hashedpassword;
         }
@@ -21,11 +21,8 @@ namespace MathMaster
             int points, string type, string lastLogin, string lastLogout,
             string birthDate, int group)
         {
-            string password = password1;
-            HashPasswordForUse hashPassword = new HashPasswordForUse(password);
-            string hashedpw = hashPassword.HashedPW();
-
             Models.User user = new Models.User();
+            user.id = 201;
             user.username = name;
             user.E_Mail = mail;
             user.points = points;
@@ -33,10 +30,11 @@ namespace MathMaster
             user.lastLogin = lastLogin;
             user.lastLogout = lastLogout;
             user.birthDate = birthDate;
-            user.password = hashedpw;
+            user.password = password1;
             user.group = group;
+
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            context.Users.AddRange(user);
+            context.Users.Add(user);
             context.SaveChanges();
         }
     }

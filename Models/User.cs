@@ -7,25 +7,6 @@ namespace MathMaster.Models;
 
 public partial class User
 {
-    public User()
-    {
-
-    }
-
-    public User(int id, string username, string email, int points, string utype, string lastlogin, string lastLogout, string birthdate, string password, int group)
-    {
-        this.id = id;
-        this.username = username;
-        this.E_Mail = email;
-        this.points = points;
-        this.usertype = utype;
-        this.lastLogin = lastlogin;
-        this.lastLogout = lastLogout;
-        this.birthDate = birthdate;
-        this.password = password;
-        this.group = group;
-    }
-
     public int id { get; set; }
 
     public string username { get; set; }

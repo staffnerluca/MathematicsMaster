@@ -13,7 +13,7 @@
             context.Users.Remove(returnObject);
         }  
 
-        public static void UpdateUser(int id, string username, string email, int points, string utype, DateTime lastlogin, DateTime lastLogout, bool darkmode, DateTime birthdate)
+        public static void UpdateUser(int id, string username, string email, int points, string utype, string lastlogin, string lastLogout, string birthdate, string password, int group)
         {
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
             Models.User returnObject = context.Users.FirstOrDefault(x => x.id == id);
@@ -23,8 +23,9 @@
             returnObject.usertype = utype;
             returnObject.lastLogin = lastlogin;
             returnObject.lastLogout = lastLogout;
-            returnObject.darkmode = darkmode;
             returnObject.birthDate = birthdate;
+            returnObject.password = password;
+            returnObject.group = group;
 
             context.Users.Update(returnObject);
         }

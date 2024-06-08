@@ -12,7 +12,7 @@ namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore
         public void ChooseYourTask(int id)
         {
             Models.User user = new Models.User();
-            user.birthDate = DateTime.Now;
+            user.birthDate = "";
             user.points = 20;
             user.username = "username";
             //difficulty
