@@ -12,7 +12,8 @@ const context = [
   "/calculation",
   "/test",
   "/login",
-  "/register"
+  "/register",
+  "/group"
 ];
 
 const onError = (err, req, resp, target) => {
