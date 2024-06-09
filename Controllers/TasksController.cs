@@ -16,10 +16,10 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get(int id)
+    public IActionResult Get(int nr)
     {
         GetTask task = new GetTask();
-        task.GetTaskFromInput(id);
+        task.GetTaskFromInput(nr);
         return Ok("works");
     }
 
