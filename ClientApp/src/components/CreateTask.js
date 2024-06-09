@@ -14,7 +14,7 @@ function CreateTaskBox(){
             <br></br><br></br>
             <p>Answer: </p><input id='inpAnswer' className='usInpCreate'></input>
             <br></br><br></br>
-            <p>Group: </p><input id="inpGroup" className='usInpCreate'></input>
+            <p>Group (0 means it is available for everyone): </p><input id="inpGroup" className='usInpCreate'></input>
             <br></br><br></br><br></br>
             <p>Estimated difficulte (optional): </p>
             <p>0 to 10 easy, 10 - 35 easy medium, 35 - 65 medium, 65 - 80 hard, 80 - 100 really hard</p><br></br>
@@ -31,8 +31,8 @@ function CreateTaskBox(){
 function askServerIfGroupExists(group){  
       const handleSubmit = async () => {
         try {
-          const response = await fetch('checkIfGroupExists', {
-            method: 'POST',
+          const response = await fetch('group', {
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -58,10 +58,10 @@ function askServerIfGroupExists(group){
 async function sendDataToServer(){
     const type = document.getElementById("selType").value;
     const question = document.getElementById("inpQuestion").value;
-    const answer = document.getElementById("inpAnswer").valu;
-    const group = document.getElementById("inpGroup");
-    const difficulty = document.getElementById("inpDifficulty").value;
-    if(!askServerIfGroupExists(group)){
+    const answer = document.getElementById("inpAnswer").value;
+    const group = document.getElementById("inpGroup").value;
+    let difficulty = document.getElementById("inpDifficulty").value;
+    if(!await askServerIfGroupExists(group) && group != "0"){
         alert("Group doesn't exist.");
         document.getElementById("inpGroup").valu = "";
         return;
@@ -77,7 +77,7 @@ async function sendDataToServer(){
         difficulty: difficulty
     }
     try{
-        await fetch("createTask", {
+        await fetch("task", {
             method: "POST",
             headers: {"Content-type": "application/json"},
             body: JSON.stringify(taskData)

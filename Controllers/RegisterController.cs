@@ -21,8 +21,8 @@ public class RegisterController : ControllerBase
    [HttpPost]
     public IActionResult Post()
     {
-        //try
-        //{
+        try
+        {
             string name = Request.Form["name"];
             string mail = Request.Form["mail"];
             string password = Request.Form["password"];
@@ -55,11 +55,10 @@ public class RegisterController : ControllerBase
             context.SaveChanges();
             
             return Ok("User created");
-        //}
-        /*
+        }
         catch (Exception ex)
         {
             return StatusCode(500, "An error occurred while creating the user." );
-        }*/
+        }
     }
 }
