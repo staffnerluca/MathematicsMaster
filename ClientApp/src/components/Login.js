@@ -41,6 +41,10 @@ export function Login(){
             if(myUser && myUser !== "nf"){
                 localStorage.setItem("user", JSON.stringify(myUser));
                 console.log("Login successful");
+                console.log(localStorage.getItem("user"))
+                setTimeout(() => {
+                    navigate("/main");
+                }, 100);
                 navigate("/main");
             } else {
                 console.log("User not found");
