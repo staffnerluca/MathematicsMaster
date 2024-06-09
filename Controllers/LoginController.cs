@@ -31,22 +31,21 @@ public class LoginController : ControllerBase
                 bool login = false;
                 if (check == true)
                 {
-                    login = true;
+                    return Ok(returnObject);
                 }
                 else
                 {
-                    return Ok("Problem mit Username Passwort");
+                    return Ok("nf");
                 }
-                return Ok(login);
             }
             else
             {
-                return Ok("User gibt es nicht"); 
+                return Ok("nf"); 
             }
         }
         catch (System.NullReferenceException)
         {
-            return BadRequest("Den User gibt es nicht");
+            return BadRequest("nf");
         }
         catch(Exception ex)
         {
