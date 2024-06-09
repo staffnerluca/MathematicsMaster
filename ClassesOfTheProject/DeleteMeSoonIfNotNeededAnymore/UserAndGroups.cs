@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace MathMaster
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore
 {
     public class UserAndGroups
     {
-        public UserAndGroups(int UID, int GID) 
+        public UserAndGroups(int UID, int GID)
         {
             this.UID = UID;
             this.GID = GID;
@@ -13,13 +13,13 @@ namespace MathMaster
         private int _UID;
         public int UID
         {
-            get 
+            get
             {
                 return _UID;
             }
-            set 
+            set
             {
-                _UID = value; 
+                _UID = value;
             }
         }
 

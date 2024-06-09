@@ -1,5 +1,7 @@
 using System.Data.SqlTypes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Org.BouncyCastle.Crypto.Generators;
 
 namespace MathMaster.Controllers;
 
@@ -16,13 +18,25 @@ public class RegisterController : ControllerBase
 
 
     [HttpPost]
-    public IActionResult Post()
+    public IActionResult Post(int group, int points, bool darkmode, int id)
     {
-        //User user = new User()
-        string username = Request.Form["name"];
-        string password = Request.Form["password"];;
-        string mail = Request.Form["mail"];
-        string group = Request.Form["group"];
-        return Ok(username);
+        string password = Request.Form["password"];
+        HashPasswordForUse hashPassword = new HashPasswordForUse();
+        string hashedpw = hashPassword.HashedPW(password);
+      
+        Models.User user = new Models.User();
+        user.username = Request.Form["name"];
+        user.E_Mail = Request.Form["mail"];
+        user.points = points; 
+        user.usertype = Request.Form["type"];
+        user.lastLogin = Request.Form["lastLogin"];
+        user.lastLogout = Request.Form["lastLogout"];
+        user.birthDate = Request.Form["birthDate"];
+        user.password = hashedpw;
+        user.group = group;
+        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        context.Users.AddRange(user);
+        context.SaveChanges();
+        return Ok("User created");
     }
 }
