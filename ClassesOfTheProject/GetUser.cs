@@ -34,7 +34,7 @@ namespace MathMaster.ClassesOfTheProject
             returnObject.password = password;
             returnObject.group = group;
 
-            Models.User user = new Models.User(uid, username, email, points, type, lastLogin, lastLogout, birthdate, password, group);
+            Models.User user = new Models.User(username, email, points, type, lastLogin, lastLogout, birthdate, password, group);
             return user;
         }
     }

@@ -27,13 +27,16 @@ public class GroupController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(int id, string name, int owner)
+    public IActionResult Post(string name, int owner)
     {
-        Models.Group group = new Models.Group(id, name, owner);
+        Models.Group group = new Models.Group(name, owner);
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.Group returnObject = context.Groups.FirstOrDefault(x => x.id == id);
-        if (returnObject != null)
+        Models.Group returnObject = context.Groups.FirstOrDefault(x => x.name == name);
+        if (returnObject.id != null)
         {
+            int maxId = context.Groups.Max(u => (int?)u.id) ?? 0;
+            //because there is a error in the DB design we need to find the new key
+            group.id = maxId + 1;
             context.Groups.Add(group);
             context.SaveChanges();
             return Ok("funktioniert");

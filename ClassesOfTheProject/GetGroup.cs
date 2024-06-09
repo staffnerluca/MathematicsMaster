@@ -21,7 +21,7 @@ namespace MathMaster.ClassesOfTheProject
             returnObject.name = name;
             returnObject.owner = owner;
 
-            Models.Group group = new Models.Group(id, name, owner);
+            Models.Group group = new Models.Group(name, owner);
             return group;
         }
     }

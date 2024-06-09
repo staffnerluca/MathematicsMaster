@@ -12,7 +12,7 @@ public partial class User
 
     }
 
-    public User(int id, string user, string mail, int points, string type, string lastLogin, string LastLogout, string birthDate, string pwd, int group)
+    public User(string user, string mail, int points, string type, string lastLogin, string LastLogout, string birthDate, string pwd, int group)
     {
         this.id = id;
         this.username = user;
