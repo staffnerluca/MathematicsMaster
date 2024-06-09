@@ -40,9 +40,11 @@ export function Main() {
 
     async function getDataFromServer() {
         try {
-            const response = await fetch('task', {
+            const opt = "?nr=" + user.id;
+
+            const response = await fetch('task'+opt, {
                 headers: {
-                    method: 'POST',
+                    method: 'GET',
                     Accept: 'application/json',
                 }
             });
