@@ -24,13 +24,16 @@ public class TaskController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(int nr, string name, string sector, int difficulty, int points, bool drawing, string question, string answer, string source, int group, string image)
+    public IActionResult Post()
     {
-        Dictionary<string, string> task = new Dictionary<string, string>();
-        task.Add("name", "first task");
-        task.Add("question", "1 + 1 = ");
-        task.Add("answer", "2");
-        return Ok(task);
+        /*
+        Task task = new Task();
+        task.answer = Request.Form["name"];
+        task.difficulty = Int32.Parse(Request.Form["difficulty"]);
+        string answer = Request.Form["answer"];
+        string sec
+        */
+        return Ok("works"); 
     }
 
     //only for test purposes, delete later
@@ -39,10 +42,10 @@ public class TaskController : ControllerBase
         Dictionary<string, string> task = new Dictionary<string, string>();
         task.Add("Nr", "1");
         task.Add("name", "Gewinnspiel");
-        task.Add("question", @"Auf dem Etikett einer Getränkeflasche ist ein Code für ein Gewinnspiel aufgedruckt.
-        \n • Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von € 10 zu erzielen, beträgt 1 %.\n 
-        • Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von € 2 zu erzielen, beträgt 4 %. \n 
-        Es gibt keine weiteren Gewinne. Die Zufallsvariable X gibt den Gewinn (in €) für einen Code an.\n \n
+        task.Add("question", @"Auf dem Etikett einer Getrï¿½nkeflasche ist ein Code fï¿½r ein Gewinnspiel aufgedruckt.
+        \n ï¿½ Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von ï¿½ 10 zu erzielen, betrï¿½gt 1 %.\n 
+        ï¿½ Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von ï¿½ 2 zu erzielen, betrï¿½gt 4 %. \n 
+        Es gibt keine weiteren Gewinne. Die Zufallsvariable X gibt den Gewinn (in ï¿½) fï¿½r einen Code an.\n \n
         Aufgabenstellung:\n
         Berechnen Sie den Erwartungswert E(X).");
         task.Add("answer", "0,18");
