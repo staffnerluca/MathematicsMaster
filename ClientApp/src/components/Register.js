@@ -12,11 +12,18 @@ function RegisterBox(){
             <p>Password: </p><input id='inpPassword' type='password' className='usInpLogOrRegister'></input>
             <br></br><br></br>
             <p>Password again: </p><input id="inpPassword2" type='password' className='usInpLogOrRegister'></input>
-            <br></br>
-            <p>Join Group: </p><input id="inpGroup" className='usInpLogOrRegister'></input>
-            <br></br>
-            <br></br><button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
             <br></br><br></br>
+            <p>Join Group: </p><input id="inpGroup" className='usInpLogOrRegister'></input>
+            <br></br><br></br>
+            <p>Birthdate</p><input type='date' id="inpBirthdate"></input>
+            <br></br><br></br>
+            <p>Teacher or student?</p><select id='inpType'>
+                <option>Student</option>
+                <option>Teacher</option>
+            </select>
+            <br></br><br></br>
+            <button className="btn btn-primary" onClick={sendDataToServer}>Register</button>
+            <br></br>
             <Link to="/">Login</Link>
         </div>
     )
@@ -38,13 +45,39 @@ function checkIfMailValid(mail){
     return false;
 }
 
+
+function saveUserToLocalStorage(){
+    const user = {
+        "mail": document.getElementById("inpMail").value,
+        "name": document.getElementById("inpName").value,
+        "password": document.getElementById("inpPassword").value,
+        "group": document.getElementById("inpGroup").value,
+        "birthdate": document.getElementById("inpBirthdate").value,
+        "type": document.getElementById("inpType").value
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    console.log("local storage ", localUser);
+}
+
+
 async function sendDataToServer(){
     const mail = document.getElementById("inpMail").value;
-    alert(mail)
     const name = document.getElementById("inpName").value;
     const password = document.getElementById("inpPassword").value;
     const password2 = document.getElementById("inpPassword2").value;
     const group = document.getElementById('inpGroup').value;
+    const birthdate = document.getElementById('inpBirthdate').value;
+    let type = document.getElementById('inpType').value;
+    //DB only accepts one char for type
+    if(type === "Teacher"){
+        type = "t";
+    }
+    else{
+        type = "s";
+    }
     if(password !== password2){
         alert("The passwords are not the same! Try again.");
         document.getElementById("inpPassword").textContent = "";
@@ -64,32 +97,40 @@ async function sendDataToServer(){
         const hashedPassword = await bcrypt.hash(password, salt);
         */
         
-        const registrationData = {
-            name: name,
-            mail: mail,
-            password: password,
-            group: group
-        }
-        await fetch("register", {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('mail', mail);
+        formData.append('password', password);
+        formData.append('group', group);
+        formData.append('birthdate', birthdate);
+        formData.append('type', type);
+        const resp = await fetch("register", {
             method: "POST",
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify(registrationData)
+            body: formData
         })
+
+        if(resp.ok){
+            const text = await resp.text();
+            alert(text);
+        }
+        else{
+            alert(resp.statusText);
+        }
     }
     catch(error){
         alert("An error occured!"+toString(error));
     }
+    saveUserToLocalStorage();
     return 0;
 }
 
-export class Register extends Component{
-    render(){
-        return(
-            <div className='container d-flex justify-content-center align-items-center vh-100'>
-                <div className='text-center'>
+
+export function Register(){
+    return(
+        <div className='container d-flex justify-content-center align-items-center vh-100'>
+            <div className='text-center'>
                 <RegisterBox/>
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
