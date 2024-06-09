@@ -8,9 +8,9 @@ function LoginBox(){
     return(
         <form>
             <div className='loginOrRegBox'>
-            <p>Username: </p><input name="username" className='usInputUsername'></input>
+            <p>Username: </p><input id="inpUsername" name="username" className='usInputUsername'></input>
             <br></br><br></br>
-            <p>Password: </p><input name="username" className='usInputPassword'></input>
+            <p>Password: </p><input id="inpPassword" name="password" className='usInputPassword'></input>
             <br></br>
             <Link to="/Register">Register</Link>
             </div>
@@ -29,13 +29,12 @@ function getRegisterAddress(){
 
 async function sendDataToServerAndGetResponse(){
     let loginData = {
-        username: document.getElementsByClassName("usInputUsername").value,
-        password: document.getElementsByClassName("usInputPassword").value
+        username: document.getElementById("inpUsername").value,
+        password: document.getElementById("inpPassword").value
     };
     console.log(loginData);
     const response = await fetch("login");
-    const testJson = await response.json();
-    console.log("Server response: "+testJson["test"]);/*
+    const user = await response.json();
     await fetch("userdata", {
         method: "POST",
         headers: {"Content-type": "application/json"},
@@ -45,7 +44,7 @@ async function sendDataToServerAndGetResponse(){
         if(res){
           this.setState({message:'New Employee is Created Successfully'});
         }
-    })*/
+    })
     const success = true;
     if(success){
         window.location.href = window.location.href+"Main";
