@@ -8,9 +8,28 @@ export function Main() {
     const [card, setCard] = useState(null);
     const [latexContent, setLatexContent] = useState(``);
     const [drawing, setDrawing] = useState(false);
+    const [user, setUser] = useState({});
+    const [name, setName] = useState();
+    const [points, setPoints] = useState();
+    const [group, setGroup] = useState();
+    const [type, setType] = useState();
+    const [id, setId] = useState();
+
     useEffect(() => {
         // Load the initial task when the component mounts
         loadTask();
+        setUser(JSON.parse(localStorage.getItem("user")));
+        console.log(user);
+        setName(user["username"]);
+        setPoints(user["points"]);
+        setGroup(user["group"]);
+        const tmp_type = user["usertype"];
+        if(tmp_type == "t"){
+            setType("Teacher");
+        }
+        else{
+            setType("Student");
+        }
     }, []);
 
 
@@ -18,6 +37,7 @@ export function Main() {
         try {
             const data = await getDataFromServer();
             setCard(data);
+            alert(name);
         } catch (error) {
             alert("Internal Server error");
             let c = {
@@ -35,8 +55,9 @@ export function Main() {
         try {
             const response = await fetch("task", {
                 headers: {
+                    'method': 'POST',
                     'Accept': 'application/json',
-                },
+                }
             });
 
             if (!response.ok) {
@@ -55,8 +76,9 @@ export function Main() {
 
     function DisplayUserInfo() {
         return (
-            <div>
-                <p>One day there will be info about the user here</p>
+            <div id="userInfo" style={{ border: '1px solid black', padding: '10px', margin: "20px", }}>
+                <p>Hello {name}</p>
+                <p>You have {points} points and you are loged in as a {type}</p>
             </div>
         );
     }
