@@ -45,9 +45,26 @@ function checkIfMailValid(mail){
     return false;
 }
 
+
+function saveUserToLocalStorage(){
+    const user = {
+        "mail": document.getElementById("inpMail").value,
+        "name": document.getElementById("inpName").value,
+        "password": document.getElementById("inpPassword").value,
+        "group": document.getElementById("inpGroup").value,
+        "birthdate": document.getElementById("inpBirthdate").value,
+        "type": document.getElementById("inpType").value
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    console.log("local storage ", localUser);
+}
+
+
 async function sendDataToServer(){
     const mail = document.getElementById("inpMail").value;
-    alert(mail)
     const name = document.getElementById("inpName").value;
     const password = document.getElementById("inpPassword").value;
     const password2 = document.getElementById("inpPassword2").value;
@@ -103,17 +120,17 @@ async function sendDataToServer(){
     catch(error){
         alert("An error occured!"+toString(error));
     }
+    saveUserToLocalStorage();
     return 0;
 }
 
-export class Register extends Component{
-    render(){
-        return(
-            <div className='container d-flex justify-content-center align-items-center vh-100'>
-                <div className='text-center'>
+
+export function Register(){
+    return(
+        <div className='container d-flex justify-content-center align-items-center vh-100'>
+            <div className='text-center'>
                 <RegisterBox/>
-                </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
