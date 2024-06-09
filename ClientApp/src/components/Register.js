@@ -87,10 +87,18 @@ async function sendDataToServer(){
         formData.append('group', group);
         formData.append('birthdate', birthdate);
         formData.append('type', type);
-        await fetch("register", {
+        const resp = await fetch("register", {
             method: "POST",
             body: formData
         })
+
+        if(resp.ok){
+            const text = await resp.text();
+            alert(text);
+        }
+        else{
+            alert(resp.statusText);
+        }
     }
     catch(error){
         alert("An error occured!"+toString(error));

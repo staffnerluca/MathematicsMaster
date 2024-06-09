@@ -29,7 +29,7 @@ public class RegisterController : ControllerBase
             int group = Convert.ToInt32(Request.Form["group"]);
             string birthDate = Request.Form["birthdate"];
             string type = Request.Form["type"];
-            
+
             HashPasswordForUse hashPassword = new HashPasswordForUse();
             string hashedPassword = hashPassword.HashedPW(password);
 
@@ -47,6 +47,10 @@ public class RegisterController : ControllerBase
             };
 
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            //gets maxid from all users and returns it. If no id is found it retunrs 0, ? in front of int means it is nullable
+            int maxId = context.Users.Max(u => (int?)u.id) ?? 0;
+            //because there is a error in the DB design we need to find the new key
+            user.id = maxId + 1;
             context.Users.Add(user);
             context.SaveChanges();
             
