@@ -1,9 +1,9 @@
 using System;
 
-namespace MathMaster;
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
 
 public class Group
-{   
+{
 
     public Group(int groupID, int owner, int institutionID)
     {

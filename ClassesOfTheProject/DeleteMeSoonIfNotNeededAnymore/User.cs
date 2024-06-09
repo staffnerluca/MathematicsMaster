@@ -1,21 +1,21 @@
 ﻿using System;
 
-namespace MathMaster
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore
 {
     public class User
     {
         public User(int userid, string username, string useremail, string userpw, int points, bool isteacher, DateTime lastlogin, DateTime lastlogout, bool darkmode, DateTime birthdate)
         {
-            this.userId = userid;
-            this.userName = username;
-            this.userEmail = useremail;
-            this.userPw = userpw;
+            userId = userid;
+            userName = username;
+            userEmail = useremail;
+            userPw = userpw;
             this.points = points;
-            this.isTeacher = isteacher;
-            this.lastLogin = lastlogin;
-            this.lastLogout = lastlogout;
-            this.darkMode = darkmode;
-            this.birthDate = birthdate;
+            isTeacher = isteacher;
+            lastLogin = lastlogin;
+            lastLogout = lastlogout;
+            darkMode = darkmode;
+            birthDate = birthdate;
         }
 
         private int _userId;

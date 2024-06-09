@@ -1,6 +1,6 @@
 using System;
 
-namespace MathMaster;
+namespace MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
 
 public class Institution
 {
@@ -64,19 +64,26 @@ public class Institution
         }
         set
         {
-            if (_type.Equals("S") || _type.Equals("P"))
-            {
-                _type = value;
-            }
-            else
-            {
-                Console.WriteLine("this won't work sir or lady!");
-            }
+            _type = value;
         }
     }
 
-    private string? _phoneNumber;
-    public string? phoneNumber
+    private int _points;
+    public int points
+    {
+        get
+        {
+            return _points;
+        }
+        set
+        {
+            if(value >= 0 && value < 100)
+                _points = value;
+        }
+    }
+
+    private string _phoneNumber;
+    public string phoneNumber
     {
         get
         {
@@ -84,7 +91,7 @@ public class Institution
         }
         set
         {
-            _phoneNumber = value;
+            _phoneNumber = value; 
         }
     }
 
@@ -95,14 +102,31 @@ public class Institution
         {
             return _email;
         }
+        
+        set 
+        {
+            _email = value; 
+        }
+    }
+
+    private int _group;
+    public int group
+    {
+        get
+        {
+            return _group;
+        }
         set
         {
-            _email = value;
+            _group = value;
+            if (value != (-2))
+            {
+                _group = value;
+            }
         }
     }
 
     private char _postalcode;
-
     public char postalcode
     {
         get

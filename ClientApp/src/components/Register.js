@@ -86,10 +86,10 @@ export class Register extends Component{
     render(){
         return(
             <div className='container d-flex justify-content-center align-items-center vh-100'>
-            <div className='text-center'>
-            <RegisterBox/>
+                <div className='text-center'>
+                <RegisterBox/>
+                </div>
             </div>
-        </div>
         )
     }
 }
