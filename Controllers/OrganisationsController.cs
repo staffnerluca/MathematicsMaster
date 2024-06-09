@@ -30,9 +30,9 @@ public class OrganisationsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(int id;  string adress, string country, string type, string phonenr, string email, string plz)
+    public IActionResult Post(int id, string adress, string country, string type, string phonenr, string email, string plz)
     {
-        Models.Institution institution = new Models.Institution(adress, country, type, phonenr, email, plz);
+        Models.Institution institution = new Models.Institution(id, adress, country, type, phonenr, email, plz);
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
         Models.Institution returnObject = context.Institutions.FirstOrDefault(x => x.id == id);
         if (returnObject != null)

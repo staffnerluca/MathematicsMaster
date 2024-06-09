@@ -21,9 +21,16 @@ public class GroupController : ControllerBase
     [HttpGet]
     public IActionResult Get(int id)
     {
-        GetGroup group = new GetGroup();
-        group.GetGroupFromInput(id);
-        return Ok("ok");
+        try
+        {
+            GetGroup group = new GetGroup();
+            group.GetGroupFromInput(id);
+            return Ok("ok");
+        }
+        catch (Exception ex)
+        {
+            return Ok("Gruppe gibt es nicht");
+        }
     }
 
     [HttpPost]
@@ -32,7 +39,7 @@ public class GroupController : ControllerBase
         Models.Group group = new Models.Group(name, owner);
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
         Models.Group returnObject = context.Groups.FirstOrDefault(x => x.name == name);
-        if (returnObject.id != null)
+        if (returnObject.name != null)
         {
             int maxId = context.Groups.Max(u => (int?)u.id) ?? 0;
             //because there is a error in the DB design we need to find the new key

@@ -13,13 +13,10 @@ namespace MathMaster.ClassesOfTheProject
 
         public Models.Group GetGroupFromInput(int id)
         {
-            string name = ""; 
-            int owner = 0;
-
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
             Models.Group returnObject = context.Groups.FirstOrDefault(x => x.id == id);
-            returnObject.name = name;
-            returnObject.owner = owner;
+            string name = returnObject.name;
+            int owner = returnObject.owner;
 
             Models.Group group = new Models.Group(name, owner);
             return group;

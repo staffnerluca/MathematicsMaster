@@ -67,7 +67,7 @@ public partial class lresch_MathMasterContext : DbContext
 
             entity.Property(e => e.id).ValueGeneratedNever();
             entity.Property(e => e.name)
-                .IsRequired()
+                .IsRequired(false) //nullable variables allowed
                 .HasMaxLength(200);
         });
 
