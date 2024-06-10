@@ -22,9 +22,9 @@ public class LoginController : ControllerBase
         string username = Request.Form["username"];
         string password = Request.Form["password"];
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.User returnObject = context.Users.FirstOrDefault(x => x.username == username);
-        //try
-        //{
+        Models.User? returnObject = context.Users.FirstOrDefault(x => x.username == username);
+        try
+        {
             if (returnObject != null)
             {
                 bool check = BCrypt.CheckPassword(password, returnObject.password);
@@ -43,13 +43,13 @@ public class LoginController : ControllerBase
                 return Ok("nf"); 
             }
         }
-        /*catch (System.NullReferenceException)
+        catch (System.NullReferenceException)
         {
             return BadRequest("nf");
         }
         catch(Exception ex)
         {
             return BadRequest(ex.Message);
-        }*/
-    //}
+        }
+    }
 }

@@ -27,11 +27,17 @@ public class GroupController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(int id, string name, int owner)
+    public IActionResult Post()
     {
-        Models.Group group = new Models.Group(id, name, owner);
+        string name = Request.Form["name"];
+        int owner = Int32.Parse(Request.Form["userid"]);
+        Console.WriteLine(name);
+        Console.WriteLine(owner);
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.Group returnObject = context.Groups.FirstOrDefault(x => x.id == id);
+        int lastId = context.Users.Max(u => (int?)u.id) ?? 0;
+
+        Models.Group group = new Models.Group(lastId+1, name, owner);
+        Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
         if (returnObject != null)
         {
             context.Groups.Add(group);
