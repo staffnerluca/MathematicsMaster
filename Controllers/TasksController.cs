@@ -20,7 +20,8 @@ public class TaskController : ControllerBase
     {
         GetTask task = new GetTask();
         task.GetTaskFromInput(id);
-        return Ok("works");
+        Console.WriteLine(task);
+        return Ok(task);
     }
 
     [HttpPost]

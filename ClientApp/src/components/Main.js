@@ -22,6 +22,7 @@ export function Main() {
         }
     }, []);
 
+
     async function loadTask() {
         try {
             const data = await getDataFromServer();
@@ -37,6 +38,7 @@ export function Main() {
             setCard(c);
         }
     }
+
 
     async function getDataFromServer() {
         try {
@@ -61,6 +63,7 @@ export function Main() {
         }
     }
 
+
     function DisplayUserInfo() {
         if (loading) {
             return <div>User data is loading...</div>;
@@ -68,15 +71,18 @@ export function Main() {
         if (user) {
             const { username, points, group, usertype } = user;
             const type = usertype === 't' ? 'Teacher' : 'Student';
+            const usersGroup = group == 1 ? 'No group' : group;
             return (
                 <div id="userInfo" style={{ border: '1px solid black', padding: '10px', margin: '20px' }}>
                     <p>Hello {username}</p>
                     <p>You have {points} points and you are logged in as a {type}</p>
+                    <p>Your group is {group}</p>
                 </div>
             );
         }
         return null;
     }
+
 
     function QuestionField() {
         if (!card) {
@@ -92,6 +98,7 @@ export function Main() {
         );
     }
 
+
     function AnswerField() {
         if (!card) {
             return null;
@@ -106,6 +113,7 @@ export function Main() {
         );
     }
 
+
     function CompiledLatexNote() {
         return (
             <div>
@@ -113,6 +121,7 @@ export function Main() {
             </div>
         );
     }
+
 
     function PureLatexNote() {
         return (
@@ -124,15 +133,18 @@ export function Main() {
         );
     }
 
+
     function changeLatex() {
         const editor = document.getElementById('taLatexEditor');
         const editorText = editor.value;
         setLatexContent(latexContent + editorText);
     }
 
+
     function clearLatex() {
         setLatexContent('');
     }
+
 
     function DrawingField() {
         if (drawing) {
@@ -144,6 +156,7 @@ export function Main() {
         }
         return null;
     }
+
 
     function RenderDrawingOrLatex() {
         if (drawing) {
@@ -157,6 +170,7 @@ export function Main() {
         );
     }
 
+    
     return (
         <div>
             <center><h1>TASKS</h1></center>
