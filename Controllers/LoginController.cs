@@ -22,7 +22,7 @@ public class LoginController : ControllerBase
         string username = Request.Form["username"];
         string password = Request.Form["password"];
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.User returnObject = context.Users.FirstOrDefault(x => x.username == username);
+        Models.User? returnObject = context.Users.FirstOrDefault(x => x.username == username);
         try
         {
             if (returnObject != null)
@@ -35,7 +35,7 @@ public class LoginController : ControllerBase
                 }
                 else
                 {
-                    return Conflict(new { Message = "User already exists." });
+                    return Ok("nf");
                 }
             }
             else

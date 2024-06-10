@@ -34,10 +34,9 @@ export function CreateGroup(){
         alert("hello");
         const groupName = document.getElementById("inpGroupName").value;
     
-        if (await doesGroupExist(groupName)) {
             try {
                 const groupData = {
-                    code: groupName,
+                    name : groupName,
                     userid: user.id
                 };
     
@@ -59,11 +58,9 @@ export function CreateGroup(){
                 console.error("An error occurred!", error);
                 alert("An error occurred while creating the group: " + error.message);
             }
-        } else {
-            alert("Group does not exist!");
-        }
     }
     
+    /*
     async function doesGroupExist(groupName) {
         try {
             const idPath = "?id=" + user.id;
@@ -86,7 +83,7 @@ export function CreateGroup(){
             alert('Error communicating with the server.');
             return true; // Change to true when the server is functioning, for testing purposes
         }
-    }
+    }*/
     
     return(
         <div className='container d-flex justify-content-center align-items-center vh-100'>
