@@ -19,11 +19,18 @@ public class GroupController : ControllerBase
     //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
 
     [HttpGet]
-    public IActionResult Get(int id)
+    public IActionResult Get(string name)
     {
-        GetGroup group = new GetGroup();
-        group.GetGroupFromInput(id);
-        return Ok("ok");
+        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
+        if (returnObject == null)
+        {
+            return Ok("Gruppe existiert noch nict");
+        }
+        else
+        {
+            return Ok("Gruppe existiert bereits!");
+        }
     }
 
     [HttpPost]
@@ -34,15 +41,14 @@ public class GroupController : ControllerBase
         Console.WriteLine(name);
         Console.WriteLine(owner);
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        int lastId = context.Users.Max(u => (int?)u.id) ?? 0;
-
-        Models.Group group = new Models.Group(lastId+1, name, owner);
+        int lastId = context.Groups.Max(u => (int?)u.id) ?? 0;
+        Models.Group group = new Models.Group(lastId + 1, name, owner);
         Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
-        if (returnObject != null)
+        if (returnObject == null)
         {
             context.Groups.Add(group);
             context.SaveChanges();
-            return Ok("funktioniert");
+            return Ok("Gruppe wurde nun erstellt");
         }
         else
         {

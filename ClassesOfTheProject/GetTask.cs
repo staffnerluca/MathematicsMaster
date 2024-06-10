@@ -36,34 +36,23 @@ namespace MathMaster.ClassesOfTheProject
         }
 
         //the task controller is flawed the number nr is that you get is the user id and you first need to read the user data to get the points
-        public Models.Task GetTaskFromInput(int nr)
+        public Models.Task GetTaskFromInput(string name)
         {
-            string name = ""; 
-            string sector = "";
-            int difficulty = 0;
-            int points = 0;
-            bool drawing = false; 
-            string quest = "";
-            string answer = "";
-            string source = "";
-            int group = 0;
-            string imagePath = "";
-
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.nr == nr);
+            Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.name == name);
             if(returnObject == null){
                 return GetRandomTask();
             }
-            returnObject.name = name;
-            returnObject.sector = sector;
-            returnObject.difficulty = difficulty + 100;
-            returnObject.points = points;
-            returnObject.drawing = drawing;
-            returnObject.question = quest;
-            returnObject.answer = answer;
-            returnObject.source = source;
-            returnObject.group = group;
-            returnObject.imagePath = imagePath;
+            int nr = returnObject.nr;
+            string sector = returnObject.sector;
+            int difficulty = returnObject.difficulty + 10;
+            int points = returnObject.points;
+            bool drawing = returnObject.drawing;
+            string quest = returnObject.question;
+            string answer= returnObject.answer;
+            string source = returnObject.source;
+            int group = returnObject.group;
+            string imagePath = returnObject.imagePath;
 
             Models.Task task = new Models.Task(nr, name, sector, difficulty, points, drawing, quest, answer, source, group, imagePath);
             return task;

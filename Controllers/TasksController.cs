@@ -1,4 +1,3 @@
-using System.Data.SqlTypes;
 using MathMaster.ClassesOfTheProject;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +15,10 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get(int id)
+    public IActionResult Get(string name)
     {
         GetTask task = new GetTask();
-        task.GetTaskFromInput(id);
+        task.GetTaskFromInput(name);
         Console.WriteLine(task);
         return Ok(task);
     }
@@ -27,14 +26,34 @@ public class TaskController : ControllerBase
     [HttpPost]
     public IActionResult Post()
     {
-        /*
-        Task task = new Task();
-        task.answer = Request.Form["name"];
-        task.difficulty = Int32.Parse(Request.Form["difficulty"]);
-        string answer = Request.Form["answer"];
-        string sec
-        */
-        return Ok("works"); 
+        string name = Request.Form["name"];
+        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+        Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.name == name);
+        if (returnObject == null)
+        {
+            Models.Task task = new Models.Task();
+            int maxId = context.Tasks.Max(u => (int?)u.nr) ?? 0;
+
+            task.nr = maxId + 1;
+            task.name = Request.Form["type"];
+            task.sector = Request.Form["type"];
+            task.difficulty = Int32.Parse(Request.Form["difficulty"]);
+            task.points = Int32.Parse(Request.Form["difficulty"]);
+            task.question = Request.Form["question"];
+            task.answer = Request.Form["answer"];
+            task.source = Request.Form["type"];
+            task.group = Int32.Parse(Request.Form["group"]);
+            task.imagePath = Request.Form["type"];
+
+            context.Tasks.Add(task);
+            context.SaveChanges();
+            return Ok("Task erstellt!");
+        }
+        else
+        {
+            return Ok("Gruppe existiert bereits!");
+        }
+      
     }
 
     //only for test purposes, delete later
