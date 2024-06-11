@@ -36,8 +36,9 @@ public class TaskController : ControllerBase
 
             task.nr = maxId + 1;
             task.name = Request.Form["name"];
-            task.sector = Request.Form["sector"];
+            task.sector = "L";
             task.difficulty = Int32.Parse(Request.Form["difficulty"]);
+            Console.WriteLine(Int32.Parse(Request.Form["difficulty"]));
             task.points = Int32.Parse(Request.Form["difficulty"]);
             task.drawing = false;
             task.question = Request.Form["question"];
@@ -45,6 +46,7 @@ public class TaskController : ControllerBase
             task.source = "";
             task.group = Int32.Parse(Request.Form["group"]);
             Console.WriteLine(Int32.Parse(Request.Form["group"]));
+            Console.WriteLine("Alex mag gerne Nici");
             task.imagePath = "";
 
             context.Tasks.Add(task);

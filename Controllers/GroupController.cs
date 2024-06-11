@@ -23,13 +23,13 @@ public class GroupController : ControllerBase
     {
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
         Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
-        if (returnObject == null)
+        if (returnObject != null)
         {
-            return Ok("Gruppe existiert noch nict");
+            return Ok("Gruppe existiert schon!");
         }
         else
         {
-            return Ok("Gruppe existiert bereits!");
+            return Ok("Gruppe existiert noch nicht!");
         }
     }
 
