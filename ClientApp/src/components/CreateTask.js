@@ -46,10 +46,10 @@ async function askServerIfGroupExists(group){
     
           const result = await response.json();
           console.log(result.status);
-          if(!result.status == "ne"){
+        if (!result.status == "ne") {
             return true;
-          }
-          return false;
+        }
+        return false;
         /*} catch (error) {
           console.error('Error:', error);
           alert('Error communicating with the server.');

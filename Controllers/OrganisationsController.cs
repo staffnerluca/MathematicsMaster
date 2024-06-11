@@ -24,27 +24,43 @@ public class OrganisationsController : ControllerBase
     [HttpGet]
     public IActionResult Get(int id)
     {
-        GetInstitution inst = new GetInstitution();
-        inst.GetInstitutionFromInput(id);
-        return Ok("works");
+        try
+        {
+            GetInstitution inst = new GetInstitution();
+            inst.GetInstitutionFromInput(id);
+            return Ok("works");
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while creating the user.");
+        }
+        
     }
 
     [HttpPost]
     public IActionResult Post(int id, string adress, string country, string type, string phonenr, string email, string plz)
     {
-        Models.Institution institution = new Models.Institution(id, adress, country, type, phonenr, email, plz);
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.Institution returnObject = context.Institutions.FirstOrDefault(x => x.id == id);
-        if (returnObject != null)
+        try
         {
-            context.Institutions.Add(institution);
-            context.SaveChanges();
-            return Ok("funktioniert");
+            Models.Institution institution = new Models.Institution(id, adress, country, type, phonenr, email, plz);
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            Models.Institution returnObject = context.Institutions.FirstOrDefault(x => x.id == id);
+            if (returnObject != null)
+            {
+                context.Institutions.Add(institution);
+                context.SaveChanges();
+                return Ok("funktioniert");
+            }
+            else
+            {
+                return Ok("Gruppe existiert bereits!");
+            }
         }
-        else
+        catch (Exception)
         {
-            return Ok("Gruppe existiert bereits!");
+            return StatusCode(500, "An error occurred while creating the user.");
         }
+       
     }
 }
 

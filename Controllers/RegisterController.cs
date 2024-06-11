@@ -58,7 +58,7 @@ public class RegisterController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, "An error occurred while creating the user." );
+            return StatusCode(500, "An error occurred while registrating and creating the user." );
         }
     }
 }

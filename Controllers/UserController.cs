@@ -23,20 +23,34 @@ public class UserController : ControllerBase
     [HttpGet]
     public IActionResult Get(int id)
     {
-        GetUser user = new GetUser();
-        user.GetUserFromInput(id);
-        return Ok("works");
+        try
+        {
+            GetUser user = new GetUser();
+            user.GetUserFromInput(id);
+            return Ok("works");
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while getting the user.");
+        }
     }
 
     [HttpPost]
     public IActionResult Post(string username, string email, int points, string utype, string lastlogin, string lastLogout, string birthdate, string password, int group)
     {
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        int maxId = context.Users.Max(u => (int?)u.id) ?? 0;
-        Models.User user = new Models.User(username, email, points, utype, lastlogin, lastLogout, birthdate, password, group);
-        user.id = maxId + 1;
-        context.Users.Add(user);
-        context.SaveChanges();
-        return Ok("funktioniert");
+        try
+        {
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            int maxId = context.Users.Max(u => (int?)u.id) ?? 0;
+            Models.User user = new Models.User(username, email, points, utype, lastlogin, lastLogout, birthdate, password, group);
+            user.id = maxId + 1;
+            context.Users.Add(user);
+            context.SaveChanges();
+            return Ok("funktioniert");
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while creating the user.");
+        }
     }    
 }

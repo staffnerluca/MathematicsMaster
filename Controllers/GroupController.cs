@@ -21,38 +21,52 @@ public class GroupController : ControllerBase
     [HttpGet]
     public IActionResult Get(string name)
     {
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
-        if (returnObject != null)
+        try
         {
-            return Ok(new {status = "ne"});
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
+            if (returnObject != null)
+            {
+                return Ok(new { status = "e" });
+            }
+            else
+            {
+                return Ok(new { status = "ne" });
+            }
         }
-        else
+        catch (Exception)
         {
-            return Ok(new {status = "ne"});
+            return StatusCode(500, "An error occurred while creating the user.");
         }
     }
 
     [HttpPost]
     public IActionResult Post()
     {
-        string name = Request.Form["name"];
-        int owner = Int32.Parse(Request.Form["userid"]);
-        Console.WriteLine(name);
-        Console.WriteLine(owner);
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        int lastId = context.Groups.Max(u => (int?)u.id) ?? 0;
-        Models.Group group = new Models.Group(lastId + 1, name, owner);
-        Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
-        if (returnObject == null)
+        try
         {
-            context.Groups.Add(group);
-            context.SaveChanges();
-            return Ok("Gruppe wurde nun erstellt");
+            string name = Request.Form["name"];
+            int owner = Int32.Parse(Request.Form["userid"]);
+            Console.WriteLine(name);
+            Console.WriteLine(owner);
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            int lastId = context.Groups.Max(u => (int?)u.id) ?? 0;
+            Models.Group group = new Models.Group(lastId + 1, name, owner);
+            Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
+            if (returnObject == null)
+            {
+                context.Groups.Add(group);
+                context.SaveChanges();
+                return Ok("Gruppe wurde nun erstellt");
+            }
+            else
+            {
+                return Ok(new { status = "ne" });
+            }
         }
-        else
+        catch (Exception)
         {
-            return Ok("Gruppe existiert bereits!");
+            return StatusCode(500, "An error occurred while creating the user.");
         }
     }
 }

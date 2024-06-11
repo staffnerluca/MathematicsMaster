@@ -7,7 +7,7 @@ namespace MathMaster.Controllers;
 [Route("[controller]")]
 public class TaskController : ControllerBase
 {
-    private readonly ILogger<TaskController> _logger;
+    private readonly ILogger<TaskController> _logger; //to login in the taskcontroller
 
     public TaskController(ILogger<TaskController> logger)
     {
@@ -17,71 +17,57 @@ public class TaskController : ControllerBase
     [HttpGet]
     public IActionResult Get(int points)
     {
-        GetTask taskGetter = new GetTask();
-        Models.Task task = taskGetter.GetTaskFromInput(points);
-        Console.WriteLine(task.name);
-        return Ok(task);
+        try
+        {
+            //we are just getting the task from our class and their method and returning the task
+            GetTask taskGetter = new GetTask();
+            Models.Task task = taskGetter.GetTaskFromInput(points);
+            return Ok(task);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while trying to find a task.");
+        }
     }
 
     [HttpPost]
     public IActionResult Post()
     {
-        string name = Request.Form["name"];
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.name == name);
-        if (returnObject == null)
+        try
         {
-            Models.Task task = new Models.Task();
-            int maxId = context.Tasks.Max(u => (int?)u.nr) ?? 0;
+            string name = Request.Form["name"]; //getting the variable name from the frontend
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.name == name); //searching for the name, which is unique
+            if (returnObject == null) //if there is nothing we can create a new task
+            {
+                Models.Task task = new Models.Task();
+                int maxId = context.Tasks.Max(u => (int?)u.nr) ?? 0; //here we are looking at the maximum number, int is nullable, and then our standard value is 0
 
-            task.nr = maxId + 1;
-            task.name = Request.Form["name"];
-            task.sector = "L";
-            task.difficulty = Int32.Parse(Request.Form["difficulty"]);
-            task.points = Int32.Parse(Request.Form["difficulty"]);
-            task.drawing = false;
-            task.question = Request.Form["question"];
-            task.answer = Request.Form["answer"];
-            task.source = "";
-            task.group = Int32.Parse(Request.Form["group"]);
-            Console.WriteLine(Int32.Parse(Request.Form["group"]));
-            Console.WriteLine("Alex mag gerne Nici");
-            task.imagePath = "";
+                task.nr = maxId + 1;
+                task.name = Request.Form["name"];
+                task.sector = Request.Form["type"];
+                task.difficulty = Int32.Parse(Request.Form["difficulty"]); //we have to parse this, because there is no int available at JSON (which is the return variable)
+                task.points = Int32.Parse(Request.Form["difficulty"]); //points and difficulty we did give the same value, because that would of be a feature we might add later on
+                task.drawing = false; //feature for later
+                task.question = Request.Form["question"];
+                task.answer = Request.Form["answer"];
+                task.source = "";
+                task.group = 0; //feature for later
+                task.imagePath = "";
 
-            context.Tasks.Add(task);
-            context.SaveChanges();
-            return Ok(new {status = "Task erstellt!"});
+                context.Tasks.Add(task); //adds the task
+                context.SaveChanges(); //saves the task
+                return Ok(new { status = "Task erstellt!" }); //status, that frontend can read it
+            }
+            else
+            {
+                return Ok(new { status = "Task existiert bereits!" }); //status, that frontend can read it
+            }
         }
-        else
+        catch (Exception)
         {
-            return Ok(new {status = "Gruppe existiert bereits!"});
-        }
-      
-    }
-
-    //only for test purposes, delete later
-    public Dictionary<string, string> CreateExampleTask() 
-    {
-        Dictionary<string, string> task = new Dictionary<string, string>();
-        task.Add("Nr", "1");
-        task.Add("name", "Gewinnspiel");
-        task.Add("question", @"Auf dem Etikett einer Getr�nkeflasche ist ein Code f�r ein Gewinnspiel aufgedruckt.
-        \n � Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von � 10 zu erzielen, betr�gt 1 %.\n 
-        � Die Wahrscheinlichkeit, mit diesem Code einen Gewinn von � 2 zu erzielen, betr�gt 4 %. \n 
-        Es gibt keine weiteren Gewinne. Die Zufallsvariable X gibt den Gewinn (in �) f�r einen Code an.\n \n
-        Aufgabenstellung:\n
-        Berechnen Sie den Erwartungswert E(X).");
-        task.Add("answer", "0,18");
-        return task;
-    }
-
-        public Dictionary<string, string> CreateExampleDictionary()
-        {
-            Dictionary<string, string> users = new Dictionary<string, string>();
-            users.Add("Lukas", "I<3Billiard123"); //#BillardForLive 
-            users.Add("Alex", "3x+1");
-            users.Add("Counting", "Sort");
-            return users;
+            return StatusCode(500, "An error occurred while creating the task.");
         }
     }
+}
 

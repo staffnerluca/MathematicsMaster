@@ -21,47 +21,47 @@ namespace MathMaster
 
         public List<string> CreateElementsForPDF()
         {
-            List<string> calcs = new List<string> { };
-            Random r = new Random();
-            int i = 0;
-            while (i < 45)
-            {
-                int num1 = r.Next(1, 10);
-                int num2 = r.Next(1, 10);
-                //types: m = Multiplication, a = addition, d = division, s = subtraction
-                if (type == "m")
+                List<string> calcs = new List<string> { };
+                Random r = new Random();
+                int i = 0;
+                while (i < 45)
                 {
-                    calcs.Add(num1 + " * " + num2 + " = _____");
-                }
-
-                if (type == "d")
-                {
-                    for (int j = 0; j < 1; j++)
+                    int num1 = r.Next(1, 10);
+                    int num2 = r.Next(1, 10);
+                    //types: m = Multiplication, a = addition, d = division, s = subtraction
+                    if (type == "m")
                     {
-                        int fnumber; int snumber;
-                        do
-                        {
-                            fnumber = r.Next(1, 10);
-                            snumber = r.Next(1, 10);
-                        }
-                        while (fnumber % snumber != 0);
-
-                        calcs.Add(fnumber + " / " + snumber + "= _____");
+                        calcs.Add(num1 + " * " + num2 + " = _____");
                     }
-                }
 
-                if (type == "a")
-                {
-                    calcs.Add(num1.ToString() + "+" + num2.ToString() + "= _____");
-                }
+                    if (type == "d")
+                    {
+                        for (int j = 0; j < 1; j++)
+                        {
+                            int fnumber; int snumber;
+                            do
+                            {
+                                fnumber = r.Next(1, 10);
+                                snumber = r.Next(1, 10);
+                            }
+                            while (fnumber % snumber != 0);
 
-                if (type == "s")
-                {
-                    calcs.Add(num1.ToString() + "-" + num2.ToString() + "= _____");
+                            calcs.Add(fnumber + " / " + snumber + "= _____");
+                        }
+                    }
+
+                    if (type == "a")
+                    {
+                        calcs.Add(num1.ToString() + "+" + num2.ToString() + "= _____");
+                    }
+
+                    if (type == "s")
+                    {
+                        calcs.Add(num1.ToString() + "-" + num2.ToString() + "= _____");
+                    }
+                    i++;
                 }
-                i++;
-            }
-            return calcs;
+                return calcs;           
         }
 
         public MemoryStream GenerateToMemoryStream()

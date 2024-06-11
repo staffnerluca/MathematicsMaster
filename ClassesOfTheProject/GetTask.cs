@@ -1,4 +1,4 @@
-﻿using MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
+﻿using MathMaster.ClassesOfTheProject;
 using MathMaster.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

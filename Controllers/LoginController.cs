@@ -18,38 +18,46 @@ public class LoginController : ControllerBase
     [HttpPost]
     public IActionResult Post()
     {
-        //get data from form
-        string username = Request.Form["username"];
-        string password = Request.Form["password"];
-        Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.User? returnObject = context.Users.FirstOrDefault(x => x.username == username);
         try
         {
-            if (returnObject != null)
+            //get data from form
+            string username = Request.Form["username"];
+            string password = Request.Form["password"];
+            Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
+            Models.User? returnObject = context.Users.FirstOrDefault(x => x.username == username);
+            try
             {
-                bool check = BCrypt.CheckPassword(password, returnObject.password);
-                bool login = false;
-                if (check == true)
+                if (returnObject != null)
                 {
-                    return Ok(returnObject);
+                    bool check = BCrypt.CheckPassword(password, returnObject.password);
+                    bool login = false;
+                    if (check == true)
+                    {
+                        return Ok(returnObject);
+                    }
+                    else
+                    {
+                        return Ok(new {status ="nf"});
+                    }
                 }
                 else
                 {
-                    return Ok(new {status ="nf"});
+                    return Ok(new {status ="nf"}); 
                 }
             }
-            else
+            catch (System.NullReferenceException)
             {
-                return Ok(new {status ="nf"}); 
+                return BadRequest(new {status ="nf"});
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
-        catch (System.NullReferenceException)
+        catch (Exception)
         {
-            return BadRequest(new {status ="nf"});
+            return StatusCode(500, "An error occurred while creating the user.");
         }
-        catch(Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+
     }
 }

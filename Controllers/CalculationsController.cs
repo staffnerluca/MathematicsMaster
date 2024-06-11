@@ -22,12 +22,19 @@ public class CalculationController : ControllerBase
     [HttpGet]
     public IActionResult Get(string type)
     {
-        PrimarySchoolTasks primarySchoolTasks_WithQuestPDF = new PrimarySchoolTasks(type);
-        //MemoryStream generates the file only in the RAM
-        MemoryStream stream = primarySchoolTasks_WithQuestPDF.GenerateToMemoryStream();
-        //set the Stream to the start
-        stream.Seek(0, SeekOrigin.Begin);
-        //returns the stream and tells the frontend the type of the file is pdf and the name is calculations.pdf
-        return File(stream, "application/pdf", "calculations.pdf");
+        try
+        {
+            PrimarySchoolTasks primarySchoolTasks_WithQuestPDF = new PrimarySchoolTasks(type);
+            //MemoryStream generates the file only in the RAM
+            MemoryStream stream = primarySchoolTasks_WithQuestPDF.GenerateToMemoryStream();
+            //set the Stream to the start
+            stream.Seek(0, SeekOrigin.Begin);
+            //returns the stream and tells the frontend the type of the file is pdf and the name is calculations.pdf
+            return File(stream, "application/pdf", "calculations.pdf");
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while creating the user.");
+        }
     }
 }
