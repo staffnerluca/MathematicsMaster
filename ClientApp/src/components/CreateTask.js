@@ -34,12 +34,11 @@ function CreateTaskBox(){
 function askServerIfGroupExists(group){  
       const handleSubmit = async () => {
         try {
-          const response = await fetch('group', {
+          const response = await fetch('group'+"?name="+group, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ input: group }),
           });
     
           if (!response.ok) {
@@ -47,7 +46,7 @@ function askServerIfGroupExists(group){
           }
     
           const result = await response.json();
-    
+          alert(result);
           return result;
         } catch (error) {
           console.error('Error:', error);
@@ -63,8 +62,8 @@ async function sendDataToServer(){
     let type = document.getElementById("selType").value;
     const question = document.getElementById("inpQuestion").value;
     const answer = document.getElementById("inpAnswer").value;
-    let group = document.getElementById("inpGroup").value;
-    let difficulty = document.getElementById("inpDifficulty").value;
+    let group = parseInt(document.getElementById("inpGroup").value);
+    let difficulty = parseInt(document.getElementById("inpDifficulty").value);
     if(!await askServerIfGroupExists(group) && group != "0"){
         alert("Group doesn't exist. Stored for all");
         document.getElementById("inpGroup").value = "";
@@ -101,6 +100,13 @@ async function sendDataToServer(){
             method: "POST",
             body: taskData
         })
+        document.getElementById("inpName").value = "";
+        document.getElementById("selType").value = "";
+        document.getElementById("inpQuestion").value = "";
+        document.getElementById("inpAnswer").value = "";
+        document.getElementById("inpGroup").value = "";
+        document.getElementById("inpDifficulty").value = "";
+
 
     }catch(error){
        alert("An error occurde. Please try again.")     
