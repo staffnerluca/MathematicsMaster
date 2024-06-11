@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import { diff } from 'semver';
 
 function CreateTaskBox(){
     return(
@@ -9,6 +10,8 @@ function CreateTaskBox(){
                 <option>Algebra</option>
                 <option>Geometry</option>
             </select>
+            <br></br><br></br>
+            <p>Name: </p><input id='inpName' className='usInpCreate'></input>
             <br></br><br></br>
             <p>Question: </p><input id='inpQuestion' className='usInpCreate'></input>
             <br></br><br></br>
@@ -56,31 +59,47 @@ function askServerIfGroupExists(group){
 
 
 async function sendDataToServer(){
-    const type = document.getElementById("selType").value;
+    const name = document.getElementById("inpName").value;
+    let type = document.getElementById("selType").value;
     const question = document.getElementById("inpQuestion").value;
     const answer = document.getElementById("inpAnswer").value;
-    const group = document.getElementById("inpGroup").value;
+    let group = document.getElementById("inpGroup").value;
     let difficulty = document.getElementById("inpDifficulty").value;
     if(!await askServerIfGroupExists(group) && group != "0"){
-        alert("Group doesn't exist.");
-        document.getElementById("inpGroup").valu = "";
-        return;
+        alert("Group doesn't exist. Stored for all");
+        document.getElementById("inpGroup").value = "";
+        group = 0;
     }
     if(typeof difficulty !== "number" || difficulty === ""){
         difficulty = 50;
     }
-    const taskData = {
-        type: type,
-        question: question,
-        answer: answer,
-        group: group,
-        difficulty: difficulty
+    console.log(type);
+    switch(type){
+        case "Logic":
+            type = "l";
+            break;
+        case "Algebra":
+            type = "a";
+            break;
+        case "Geometr":
+            type = "g";
+            break;
+        default:
+            type = "n"
     }
+    console.log(type);
+    const taskData = new FormData();
+    taskData.append("name", name);
+    taskData.append("type", type);
+    taskData.append("question", question);
+    taskData.append("answer", answer);
+    taskData.append("group", group);
+    taskData.append("difficulty", difficulty);
+    console.log("Task Data:", Object.fromEntries(taskData)); // Convert FormData to object for logging
     try{
         await fetch("task", {
             method: "POST",
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify(taskData)
+            body: taskData
         })
 
     }catch(error){
