@@ -107,13 +107,30 @@ export function Main() {
 
         return (
             <div>
-                <textarea id="taAnswer"></textarea><br />
-                <button className="btn btn-primary" id="check">Check</button>
-                <button className="btn btn-primary" id="showAnswer">Show Answer</button>
+                <input id="taAnswer"></input><br />
+                <button onClick={checkAnswer} className="btn btn-primary" id="check">Check</button>
+                <button onClick={showAnswer} className="btn btn-primary" id="showAnswer">Show Answer</button>
             </div>
         );
     }
 
+    
+    function showAnswer(){
+        alert("The correct answer is: "+card.answer);
+    }
+
+
+    function checkAnswer(){
+        const userAnswer = document.getElementById("taAnswer").value;
+        if(userAnswer == card.answer){
+            alert("Super!");
+            loadTask();
+        }
+        else{
+            alert("Leider falsch, versuche es noch einmal");
+            loadTask();
+        }
+    }
 
     function CompiledLatexNote() {
         return (
