@@ -32,7 +32,7 @@ function CreateTaskBox(){
 
 
 async function askServerIfGroupExists(group){  
-        try {
+        //try {
           const response = await fetch('group'+"?name="+group, {
             method: 'GET',
             headers: {
@@ -45,13 +45,16 @@ async function askServerIfGroupExists(group){
           }
     
           const result = await response.json();
-          console.log("result");
-          return result;
-        } catch (error) {
+          console.log(result.status);
+          if(!result.status == "ne"){
+            return true;
+          }
+          return false;
+        /*} catch (error) {
           console.error('Error:', error);
           alert('Error communicating with the server.');
           return true;
-        }
+        }*/
     }
 
 
@@ -65,7 +68,7 @@ async function sendDataToServer(){
     const exists = await askServerIfGroupExists(group)
     console.log("does the group exist: "+exists);
 
-    if(!exists && group != 0){
+    if(!exists){
         alert("Group doesn't exist. Stored for all");
         document.getElementById("inpGroup").value = "";
         group = 0;
