@@ -15,11 +15,11 @@ public class TaskController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult Get(string name)
+    public IActionResult Get(int points)
     {
-        GetTask task = new GetTask();
-        task.GetTaskFromInput(name);
-        Console.WriteLine(task);
+        GetTask taskGetter = new GetTask();
+        Models.Task task = taskGetter.GetTaskFromInput(points);
+        Console.WriteLine(task.name);
         return Ok(task);
     }
 

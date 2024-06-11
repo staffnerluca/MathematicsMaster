@@ -1,4 +1,5 @@
-﻿using MathMaster.Models;
+﻿using MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
+using MathMaster.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -36,17 +37,27 @@ namespace MathMaster.ClassesOfTheProject
         }
 
         //the task controller is flawed the number nr is that you get is the user id and you first need to read the user data to get the points
-        public Models.Task GetTaskFromInput(string name)
+        public Models.Task GetTaskFromInput(int points)
         {
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.name == name);
-            if(returnObject == null){
+            int max = (int)Math.Round(Double.Parse(points.ToString())*1.1);
+            int min = (int)Math.Round(Double.Parse(points.ToString()) * 0.9);
+            List<Models.Task> tasks = context.Tasks.Where(t =>  t.points >= min && t.points <= max).ToList();
+            if (tasks.Count == 0)
+            {
+                Models.Task mytask = GetRandomTask();
+                return mytask;
+            }
+            Random random = new Random();
+            int r = random.Next(0, tasks.Count-1);
+            Models.Task? returnObject = tasks[r];
+            if (returnObject == null){
                 return GetRandomTask();
             }
+            string name = returnObject.name;
             int nr = returnObject.nr;
             string sector = returnObject.sector;
-            int difficulty = returnObject.difficulty + 10;
-            int points = returnObject.points;
+            int difficulty = returnObject.difficulty;
             bool drawing = returnObject.drawing;
             string quest = returnObject.question;
             string answer= returnObject.answer;
