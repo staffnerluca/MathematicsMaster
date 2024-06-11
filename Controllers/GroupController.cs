@@ -25,11 +25,11 @@ public class GroupController : ControllerBase
         Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
         if (returnObject != null)
         {
-            return Ok("Gruppe existiert schon!");
+            return BadRequest("Gruppe existiert noch nicht!");
         }
         else
         {
-            return Ok("Gruppe existiert noch nicht!");
+            return BadRequest("Gruppe existiert schon!");
         }
     }
 
