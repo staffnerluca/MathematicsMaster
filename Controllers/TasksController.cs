@@ -38,7 +38,6 @@ public class TaskController : ControllerBase
             task.name = Request.Form["name"];
             task.sector = "L";
             task.difficulty = Int32.Parse(Request.Form["difficulty"]);
-            Console.WriteLine(Int32.Parse(Request.Form["difficulty"]));
             task.points = Int32.Parse(Request.Form["difficulty"]);
             task.drawing = false;
             task.question = Request.Form["question"];
