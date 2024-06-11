@@ -35,17 +35,17 @@ public class LoginController : ControllerBase
                 }
                 else
                 {
-                    return Ok("nf");
+                    return Ok(new {status ="nf"});
                 }
             }
             else
             {
-                return Ok("nf"); 
+                return Ok(new {status ="nf"}); 
             }
         }
         catch (System.NullReferenceException)
         {
-            return BadRequest("nf");
+            return BadRequest(new {status ="nf"});
         }
         catch(Exception ex)
         {

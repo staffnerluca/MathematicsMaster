@@ -22,39 +22,49 @@ export function Login(){
     }
     
     
-    async function sendDataToServerAndGetResponse(){
+    async function sendDataToServerAndGetResponse() {
         const data = new FormData();
         data.append("username", document.getElementById("inpUsername").value);
         data.append("password", document.getElementById("inpPassword").value);
-        try{
-            const myUser = await fetch("login", {
+    
+        try {
+            const response = await fetch("login", {
                 method: "POST",
-                body:  data,
-            }).then(r=>{
-                if(!r.ok){
-                    alert("A network error occurred");
-                    throw new Error("Network error");
-                }
-                return r.json();
+                body: data,
             });
-
-            if(myUser && myUser !== "nf"){
-                localStorage.setItem("user", JSON.stringify(myUser));
+    
+            if (!response.ok) {
+                alert("A network error occurred");
+                throw new Error("Network error");
+            }
+    
+            const result = await response.json();
+    
+            if (result.status === "nf") {
+                alert("Not found");
+                return; // Exit the function if the user is not found
+            }
+    
+            console.log("The status is " + result.status);
+    
+            if (result) {
+                localStorage.setItem("user", JSON.stringify(result));
                 console.log("Login successful");
-                console.log(localStorage.getItem("user"))
+                console.log(localStorage.getItem("user"));
+    
+                // Give JavaScript enough time to safely synchronize the data
                 setTimeout(() => {
                     navigate("/main");
                 }, 100);
-                navigate("/main");
             } else {
                 console.log("User not found");
                 // Handle invalid user login here
             }
-        }
-        catch(error){
+        } catch (error) {
             console.error("Something went wrong:", error);
         }
     }
+    
 
     return(
         <div className='container d-flex justify-content-center align-items-center vh-100'>
