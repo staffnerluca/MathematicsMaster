@@ -10,7 +10,7 @@ export function Main() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    
+
     useEffect(() => {
         // Load the initial user data when the component mounts
         const us = JSON.parse(localStorage.getItem('user'));
@@ -43,7 +43,7 @@ export function Main() {
 
     async function getDataFromServer() {
         try {
-            const opt = "?nr=" + user.id;
+            const opt = "?points=" + user.points;
 
             const response = await fetch('task'+opt, {
                 headers: {
