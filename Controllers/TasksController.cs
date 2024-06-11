@@ -35,15 +35,17 @@ public class TaskController : ControllerBase
             int maxId = context.Tasks.Max(u => (int?)u.nr) ?? 0;
 
             task.nr = maxId + 1;
-            task.name = Request.Form["type"];
-            task.sector = Request.Form["type"];
+            task.name = Request.Form["name"];
+            task.sector = Request.Form["sector"];
             task.difficulty = Int32.Parse(Request.Form["difficulty"]);
             task.points = Int32.Parse(Request.Form["difficulty"]);
+            task.drawing = false;
             task.question = Request.Form["question"];
             task.answer = Request.Form["answer"];
-            task.source = Request.Form["type"];
+            task.source = "";
             task.group = Int32.Parse(Request.Form["group"]);
-            task.imagePath = Request.Form["type"];
+            Console.WriteLine(Int32.Parse(Request.Form["group"]));
+            task.imagePath = "";
 
             context.Tasks.Add(task);
             context.SaveChanges();
