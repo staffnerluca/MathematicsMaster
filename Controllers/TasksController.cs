@@ -26,24 +26,24 @@ public class TaskController : ControllerBase
     [HttpPost]
     public IActionResult Post()
     {
-        string name = Request.Form["name"];
         Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-        Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.name == name);
-        if (returnObject == null)
+        Models.Task? returnObject = context.Tasks.FirstOrDefault(x => x.question == Request.Form["question"]);
+        if (returnObject != null)
         {
             Models.Task task = new Models.Task();
             int maxId = context.Tasks.Max(u => (int?)u.nr) ?? 0;
 
             task.nr = maxId + 1;
-            task.name = Request.Form["type"];
-            task.sector = Request.Form["type"];
+            task.name = Request.Form["name"].ToString();
+            task.sector = Request.Form["type"].ToString();
+            Console.WriteLine(task.sector);
             task.difficulty = Int32.Parse(Request.Form["difficulty"]);
             task.points = Int32.Parse(Request.Form["difficulty"]);
-            task.question = Request.Form["question"];
-            task.answer = Request.Form["answer"];
-            task.source = Request.Form["type"];
+            task.question = Request.Form["question"].ToString();
+            task.answer = Request.Form["answer"].ToString();
+            task.source = Request.Form["type"].ToString();
             task.group = Int32.Parse(Request.Form["group"]);
-            task.imagePath = Request.Form["type"];
+            task.imagePath = "";
 
             context.Tasks.Add(task);
             context.SaveChanges();

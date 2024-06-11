@@ -10,6 +10,7 @@ export function Main() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    
     useEffect(() => {
         // Load the initial user data when the component mounts
         const us = JSON.parse(localStorage.getItem('user'));
