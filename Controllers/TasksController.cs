@@ -50,11 +50,11 @@ public class TaskController : ControllerBase
 
             context.Tasks.Add(task);
             context.SaveChanges();
-            return Ok("Task erstellt!");
+            return Ok(new {status = "Task erstellt!"});
         }
         else
         {
-            return Ok("Gruppe existiert bereits!");
+            return Ok(new {status = "Gruppe existiert bereits!"});
         }
       
     }

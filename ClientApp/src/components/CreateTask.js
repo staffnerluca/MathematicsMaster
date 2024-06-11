@@ -31,8 +31,7 @@ function CreateTaskBox(){
 }
 
 
-function askServerIfGroupExists(group){  
-      const handleSubmit = async () => {
+async function askServerIfGroupExists(group){  
         try {
           const response = await fetch('group'+"?name="+group, {
             method: 'GET',
@@ -46,15 +45,14 @@ function askServerIfGroupExists(group){
           }
     
           const result = await response.json();
-          alert(result);
+          console.log("result");
           return result;
         } catch (error) {
           console.error('Error:', error);
           alert('Error communicating with the server.');
           return true;
         }
-      };
-}
+    }
 
 
 async function sendDataToServer(){
@@ -64,7 +62,10 @@ async function sendDataToServer(){
     const answer = document.getElementById("inpAnswer").value;
     let group = parseInt(document.getElementById("inpGroup").value);
     let difficulty = parseInt(document.getElementById("inpDifficulty").value);
-    if(!await askServerIfGroupExists(group) && group != "0"){
+    const exists = await askServerIfGroupExists(group)
+    console.log("does the group exist: "+exists);
+
+    if(!exists && group != 0){
         alert("Group doesn't exist. Stored for all");
         document.getElementById("inpGroup").value = "";
         group = 0;
