@@ -12,11 +12,11 @@
             {
                 Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
                 Models.User returnObject = context.Users.FirstOrDefault(x => x.id == id);
-                context.Users.Remove(returnObject);
+                context.Users.Remove(returnObject); //deleting the object
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Etwas lief leider schief");
+                Console.WriteLine("Something went wrong");
             }
         }  
 
@@ -36,11 +36,11 @@
                 returnObject.password = password;
                 returnObject.group = group;
 
-                context.Users.Update(returnObject);
+                context.Users.Update(returnObject); //with update logically I can update my user
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Etwas lief leider schief");
+                Console.WriteLine("Something went wrong");
             }
         }
     }

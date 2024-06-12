@@ -26,31 +26,33 @@ namespace MathMaster.ClassesOfTheProject
             string answer = "I will create one";
             string source = "my brain";
             int group = 0;
-            string imagePath = "ni";
-            if(count != 0){
+            string imagePath = "";
+            if(count != 0)
+            {
                 Random r = new Random();
-                int randomNum = r.Next(0, count);
+                int randomNum = r.Next(0, count); //looks at how many tasks there are and gets a random one
                 Models.Task task = context.Tasks.FirstOrDefault(x => x.nr == randomNum);
                 return task;
-            }//error with converting and returning, you need to fix this Lug
+            }
             return new Models.Task(taskNr, name, sector, difficulty, points, drawing, question, answer, source, group, imagePath);
         }
 
         //the task controller is flawed the number nr is that you get is the user id and you first need to read the user data to get the points
         public Models.Task GetTaskFromInput(int points)
         {
+            //here with int max and int min we try to create a new difficulty, when a user has the right answer.
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            int max = (int)Math.Round(Double.Parse(points.ToString())*1.1);
-            int min = (int)Math.Round(Double.Parse(points.ToString()) * 0.9);
-            List<Models.Task> tasks = context.Tasks.Where(t =>  t.points >= min && t.points <= max).ToList();
-            if (tasks.Count == 0)
+            int max = (int)Math.Round(Double.Parse(points.ToString())*1.1); //rounding it, because we don't got a double value
+            int min = (int)Math.Round(Double.Parse(points.ToString()) * 0.9); //rounding it, because we don't got a double value
+            List<Models.Task> tasks = context.Tasks.Where(t =>  t.points >= min && t.points <= max).ToList(); //creating a list where we have all tasks in there, matching our wanted points
+            if (tasks.Count == 0) //if there are zero tasks maching we get a random one
             {
                 Models.Task mytask = GetRandomTask();
                 return mytask;
             }
             Random random = new Random();
-            int r = random.Next(0, tasks.Count-1);
-            Models.Task? returnObject = tasks[r];
+            int r = random.Next(0, tasks.Count-1); //here we are getting our task, -1 to fix the problem of an exception
+            Models.Task? returnObject = tasks[r]; //here we just get our different tasks, if it is null, then we get a random one
             if (returnObject == null){
                 return GetRandomTask();
             }
@@ -65,7 +67,7 @@ namespace MathMaster.ClassesOfTheProject
             int group = returnObject.group;
             string imagePath = returnObject.imagePath;
 
-            Models.Task task = new Models.Task(nr, name, sector, difficulty, points, drawing, quest, answer, source, group, imagePath);
+            Models.Task task = new Models.Task(nr, name, sector, difficulty, points, drawing, quest, answer, source, group, imagePath); //creating new task and returning it for Luca
             return task;
         }
     }

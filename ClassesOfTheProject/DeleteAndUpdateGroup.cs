@@ -16,7 +16,7 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Etwas lief leider schief");
+                Console.WriteLine("Something went wrong");
             }
         }  
 
@@ -33,7 +33,7 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Etwas lief leider schief");
+                Console.WriteLine("Something went wrong");
             }
         }
     }

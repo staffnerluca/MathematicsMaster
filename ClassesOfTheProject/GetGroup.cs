@@ -14,7 +14,7 @@ namespace MathMaster.ClassesOfTheProject
         public Models.Group GetGroupFromInput(string name)
         {
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name);
+            Models.Group? returnObject = context.Groups.FirstOrDefault(x => x.name == name); //gets the group by a unique name
             int id = returnObject.id;
             int owner = returnObject.owner;
 

@@ -12,8 +12,8 @@ namespace MathMaster
     {
         public string HashedPW(string password)
         {
-            string salt = BCrypt.GenerateSalt(12);
-            string hashedpassword = BCrypt.HashPassword(password, salt);
+            string salt = BCrypt.GenerateSalt(12); //just generating salt with some rounds
+            string hashedpassword = BCrypt.HashPassword(password, salt); //hashing the password with the BCrypt class and then afterwards returning the hashed one.
             return hashedpassword;
         }
     }

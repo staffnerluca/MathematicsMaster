@@ -10,15 +10,16 @@ namespace MathMaster.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private readonly ILogger<TaskController> _logger;
+    
+    private readonly ILogger<TaskController> _logger; //used for protocols
 
     public UserController(ILogger<TaskController> logger)
     {
         _logger = logger;
     }
 
-    //HTTP Get TaskController: Soll ihm dann einen Task geben
-    //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
+    //HTTP Get TaskController: gives him the user he wants, when it gets a id
+    //HTTP Post: I get data, and shall create a new user out of that
 
     [HttpGet]
     public IActionResult Get(int id)
@@ -27,11 +28,11 @@ public class UserController : ControllerBase
         {
             GetUser user = new GetUser();
             user.GetUserFromInput(id);
-            return Ok("works");
+            return Ok("works"); //just gives back, that it works
         }
         catch (Exception)
         {
-            return StatusCode(500, "An error occurred while getting the user.");
+            return StatusCode(500, "An error occurred while getting the user."); //just an errormessage
         }
     }
 
@@ -41,16 +42,16 @@ public class UserController : ControllerBase
         try
         {
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            int maxId = context.Users.Max(u => (int?)u.id) ?? 0;
-            Models.User user = new Models.User(username, email, points, utype, lastlogin, lastLogout, birthdate, password, group);
-            user.id = maxId + 1;
+            int maxId = context.Users.Max(u => (int?)u.id) ?? 0; //here we search the max id of the user, int nullable, and the standard valuable is zero.
+            Models.User user = new Models.User(username, email, points, utype, lastlogin, lastLogout, birthdate, password, group); //creating user
+            user.id = maxId + 1; //other way, than auto_increment
             context.Users.Add(user);
             context.SaveChanges();
-            return Ok("funktioniert");
+            return Ok("works");
         }
         catch (Exception)
         {
-            return StatusCode(500, "An error occurred while creating the user.");
+            return StatusCode(500, "An error occurred while creating the user."); //just an errormessage
         }
     }    
 }

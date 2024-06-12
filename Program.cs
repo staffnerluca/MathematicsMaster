@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Hosting.Server;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using MathMaster.Controllers;
 using Mysqlx.Crud;
-using MathMaster.ClassesOfTheProject.DeleteMeSoonIfNotNeededAnymore;
 
 namespace MathMaster;
 
@@ -21,12 +20,13 @@ namespace MathMaster;
     {
         public static void Main(string[] args)
         {
-        //ExampleUsers();
-        //    ExampleTasks();
-        //    Console.WriteLine("works");
-        //I let this in, that you can see, that I did some things. Also I did need to do that once, so that we have example tasks
+            //Just a Info too: I am not commenting everything again and again, if commentatet once. 
 
-        var builder = WebApplication.CreateBuilder(args);
+            //ExampleUsers();
+            //ExampleTasks();
+            //I let this be in here still, that you can see, that I did some things. Also I did need to do that once, so that we have example tasks
+
+            var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
@@ -44,7 +44,6 @@ namespace MathMaster;
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
 
             app.MapControllerRoute(
                 name: "default",
@@ -342,4 +341,4 @@ namespace MathMaster;
             context.Users.AddRange(user1, user2, user3, user4, user5, user6, user7, user8, user9, user10);
             context.SaveChanges();
         }    
-}
+    }

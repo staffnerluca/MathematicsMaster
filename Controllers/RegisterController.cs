@@ -31,7 +31,7 @@ public class RegisterController : ControllerBase
             string type = Request.Form["type"];
 
             HashPasswordForUse hashPassword = new HashPasswordForUse();
-            string hashedPassword = hashPassword.HashedPW(password);
+            string hashedPassword = hashPassword.HashedPW(password); 
 
             Models.User user = new Models.User
             {

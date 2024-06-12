@@ -18,9 +18,6 @@ public class OrganisationsController : ControllerBase
         _logger = logger;
     }
 
-    //HTTP Get TaskController: Soll ihm dann einen Task geben
-    //HTTP Post: Bekomme Daten und soll daraus den Task erstellen
-
     [HttpGet]
     public IActionResult Get(int id)
     {
@@ -32,7 +29,7 @@ public class OrganisationsController : ControllerBase
         }
         catch (Exception)
         {
-            return StatusCode(500, "An error occurred while creating the user.");
+            return StatusCode(500, "An error occurred while becoming a organisation.");
         }
         
     }
@@ -44,21 +41,21 @@ public class OrganisationsController : ControllerBase
         {
             Models.Institution institution = new Models.Institution(id, adress, country, type, phonenr, email, plz);
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            Models.Institution returnObject = context.Institutions.FirstOrDefault(x => x.id == id);
+            Models.Institution returnObject = context.Institutions.FirstOrDefault(x => x.id == id); //seaching for id, to know if organisation does exist
             if (returnObject != null)
             {
                 context.Institutions.Add(institution);
                 context.SaveChanges();
-                return Ok("funktioniert");
+                return Ok("works");
             }
             else
             {
-                return Ok("Gruppe existiert bereits!");
+                return Ok("Organisation does exist!");
             }
         }
         catch (Exception)
         {
-            return StatusCode(500, "An error occurred while creating the user.");
+            return StatusCode(500, "An error occurred while creating the organisation.");
         }
        
     }

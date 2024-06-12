@@ -23,7 +23,7 @@ namespace MathMaster.ClassesOfTheProject
             int group = 0;
 
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
-            Models.User returnObject = context.Users.FirstOrDefault(x => x.id == uid);
+            Models.User returnObject = context.Users.FirstOrDefault(x => x.id == uid); //looking at the id to get my user
             returnObject.username= username;
             returnObject.E_Mail = email;
             returnObject.points = points;

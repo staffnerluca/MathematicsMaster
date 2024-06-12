@@ -26,7 +26,7 @@ public class TaskController : ControllerBase
         }
         catch (Exception)
         {
-            return StatusCode(500, "An error occurred while trying to find a task.");
+            return StatusCode(500, "An error occurred while trying to find a task."); //just an errormessage
         }
     }
 
@@ -57,16 +57,16 @@ public class TaskController : ControllerBase
 
                 context.Tasks.Add(task); //adds the task
                 context.SaveChanges(); //saves the task
-                return Ok(new { status = "Task erstellt!" }); //status, that frontend can read it
+                return Ok(new { status = "Task created!" }); //status, that frontend can read it
             }
             else
             {
-                return Ok(new { status = "Task existiert bereits!" }); //status, that frontend can read it
+                return Ok(new { status = "Task exists!" }); //status, that frontend can read it
             }
         }
         catch (Exception)
         {
-            return StatusCode(500, "An error occurred while creating the task.");
+            return StatusCode(500, "An error occurred while creating the task."); 
         }
     }
 }
