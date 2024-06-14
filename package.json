@@ -1,11 +1,8 @@
 {
   "dependencies": {
     "katex": "^0.16.10",
+    "latex": "^0.0.1",
     "latex.js": "^0.12.6",
-<<<<<<< HEAD
-    "react-latex": "^1.2.0"
-=======
     "react-latex": "^1.6.0"
->>>>>>> parent of 56399d8 (Should work now, that it can compile)
   }
 }
