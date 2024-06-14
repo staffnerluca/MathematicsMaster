@@ -60,30 +60,31 @@ export function CreateGroup(){
             }
     }
     
-    /*
-    async function doesGroupExist(groupName) {
+    async function askServerIfGroupExists(group){  
         try {
-            const idPath = "?id=" + user.id;
-            const response = await fetch('group' + idPath + "&?name=" + groupName, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+          const response = await fetch('group'+"?name="+group, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
     
-            if (!response.ok) {
-                throw new Error('Something went wrong');
-            }
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
     
-            const exists = await response.json();
-            console.log(exists);
-            return exists; 
+          const result = await response.json();
+          console.log(result.status);
+          if(!result.status == "ne"){
+            return true;
+          }
+          return false;
         } catch (error) {
-            console.error('Error:', error);
-            alert('Error communicating with the server.');
-            return true; // Change to true when the server is functioning, for testing purposes
+          console.error('Error:', error);
+          alert('Error communicating with the server.');
+          return true;
         }
-    }*/
+    }
     
     return(
         <div className='container d-flex justify-content-center align-items-center vh-100'>
