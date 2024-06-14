@@ -3,8 +3,7 @@ Um den aktuellen Funktionsumfang des Programms zu sehen schauen Sie sich bitte d
 
 Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist dafür folgendes zu tun (Anleitung erstellt von Lukas Resch):
 1. aktuellste Visual Studio Version
-2. 
-ASP.NET + Webentwicklung und Node.js Entwicklung
+2. ASP.NET + Webentwicklung und Node.js Entwicklung
 3. Repository klonen
 4. Nuget Pakete sollten installiert sein, sonst bitte Visual Studio nochmals neu starten
 5. Visual Studio schließen
