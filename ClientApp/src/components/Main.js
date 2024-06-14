@@ -192,7 +192,7 @@ export function Main() {
     return (
         <div>
             <center><h1>TASKS</h1></center>
-            <button className='btn btn-primary p-1' onClick={loadTask}>Load task</button>
+            <button className='btn btn-primary' onClick={loadTask}>Load task</button>
             <div className='container d-flex justify-content-center align-items-center vh-100'>
                 <div className='mainContent'>
                     <div className='text-center'>
