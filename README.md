@@ -1,4 +1,4 @@
-# Math Master
+# Math Master Wie man das Programm ausführen kann
 Um den aktuellen Funktionsumfang des Programms zu sehen schauen Sie sich bitte dieses Video an in dem das Wichtigste gezeigt wird: https://youtu.be/34d31cubYEE
 
 Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist dafür folgendes zu tun (Anleitung erstellt von Lukas Resch):
