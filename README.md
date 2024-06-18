@@ -12,5 +12,10 @@ Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist daf
 ticked on) - you can install chocolatey (it should do it automaticly in the console)
 
 
+## Ausführen des Programms nach der Installation von allem Notwendigen:
+1. Beim ersten Mal starten des Programms werden alle Abhängigkeiten installiert. Dabei durchlaufen lassen, es besteht die Chance, dass es hier zu einem Fehler kommt.
+2. Beim erneuten Ausführen des Programms sollte der Fehler von oben verschwinden und das Programm danach vollständig funktionieren.
+
+
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/qBcCQxyG)
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11936885&assignment_repo_type=AssignmentRepo)
