@@ -13,7 +13,7 @@ ticked on) - you can install chocolatey (it should do it automaticly in the cons
 
 
 ## Ausführen des Programms nach der Installation von allem Notwendigen:
-1. Beim ersten Mal starten des Programms werden alle Abhängigkeiten installiert. Dabei durchlaufen lassen, es besteht die Chance, dass es hier zu einem Fehler kommt.
+1. Beim ersten Mal starten des Programms werden alle Abhängigkeiten installiert. Dabei durchlaufen lassen, es besteht die Chance, dass es hier zu einem Fehler kommt ([eslint] Plugin "react" was conflicted between "package.json » eslint-config-react-app » C:\Users\User\Source\Repos\2024-swp-4it-staffnerlresch3\ClientApp\node_modules\eslint-config-react-app\base.js" and "BaseConfig » C:\Users\User\source\repos\2024-swp-4it-staffnerlresch3\ClientApp\node_modules\eslint-config-react-app\base.js".)
 2. Beim erneuten Ausführen des Programms sollte der Fehler von oben verschwinden und das Programm danach vollständig funktionieren.
 
 
