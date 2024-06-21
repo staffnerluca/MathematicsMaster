@@ -1,166 +1,120 @@
 import React, { Component } from 'react';
 
-
-
-function createTwoRandomNumbers(maxfirst, maxsecond, condition = () => true){
-    //maxTrys does stop the condition lambda, if it is broken
+function createTwoRandomNumbers(maxfirst, maxsecond, condition = () => true) {
     let maxTrys = 100;
     let i = 0;
 
-    while (i < maxTrys)
-    {
-        //floor is rounding down, so that there will be a 'integer' value
-        //the method in the bracket is kind of Random.Next in C# 
+    while (i < maxTrys) {
         let first = Math.floor(Math.random() * maxfirst + 1);
         let second = Math.floor(Math.random() * maxsecond + 1);
-        if (condition(first, second))
-        {
+        if (condition(first, second)) {
             return [first, second];
         }
         i++;
     }
-    //if it fails it returns [0, 0]
     return [0, 0];
 }
 
-
-function CreateMultiplication({ id })
-{
+function CreateMultiplication({ id }) {
     let max = 9;
     let [first, second] = createTwoRandomNumbers(max, max);
-    //id for paragraph of calculation
     let idC = "c" + id;
-    //id for input of calculation
-    let idI = "i"+id; 
+    let idI = "i" + id; 
     return (
-        //HTML Code it creates a line for the calculation sheet and then controlls if the input of the user is the same
         <p id={idC} className='calc'>{first} * {second} = <input id={idI} className='calInp'></input></p>
-    )
+    );
 }
 
-
-function CreateDivision({ id })
-{
+function CreateDivision({ id }) {
     let maxf = 100;
     let maxs = 10;
-    let idC = "c"+id;
+    let idC = "c" + id;
     let idI = "i" + id;
-    //creates 2 random numbers | the anomyus function looks if the numbers have 0 rest and that one number divided is smaller than 10
-    let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x % y === 0 && x/y < 10)
-    return(
+    let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x % y === 0 && x / y < 10);
+    return (
         <p id={idC} className='calc'>{first} : {second} = <input id={idI} className='calInp'></input></p>
-    )
+    );
 }
 
-
-function CreateSubtraction({ id })
-{
+function CreateSubtraction({ id }) {
     let maxf = 99;
     let maxs = 99;
-    let idC = "c"+id;
+    let idC = "c" + id;
     let idI = "i" + id;
-    //this anonymus function does look that x is greater than y, since otherwise the result would be negative
     let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x >= y);
-    return(
+    return (
         <p id={idC} className='calc'>{first} - {second} = <input id={idI} className='calInp'></input></p>
-    )
+    );
 }
 
-
-function CreateAddition({ id })
-{
+function CreateAddition({ id }) {
     let maxf = 99;
     let maxs = 99;
-    let idC = "c"+id;
+    let idC = "c" + id;
     let idI = "i" + id;
-    //this anonymus function looks that the additet numbers are under 100 so that they are only 99 at max value 
-    let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x+y < 100)
-    return(
+    let [first, second] = createTwoRandomNumbers(maxf, maxs, (x, y) => x + y < 100);
+    return (
         <p id={idC} className='calc'>{first} + {second} = <input id={idI} className='calInp'></input></p>
-    )
+    );
 }
 
-
-function CreateTwentyFiveCalculations(type)
-{
+function CreateTwentyFiveCalculations({ type }) {
     let components = [];
-    if (type === "1")
-    {
-        for (let i = 0; i < 25; i++)
-        {
-            //List.Add in C# | programme creates key ... automaticly
-            components.push(<CreateAddition key={i} id={i}/>)
-        }
-    }
-    else if (type === "2")
-    {
-        for (let i = 0; i < 100; i++)
-        {
-            //List.Add in C# | programme creates key ...  automaticly
-            components.push(<CreateSubtraction key={i} id={i}/>)
-        }
-    }
-    else if (type === "3")
-    {
-        for (let i = 0; i < 100; i++)
-        {
-            //List.Add in C# | programme creates key ...  automaticly
-            components.push(<CreateMultiplication key={i} id={i}/>)
-        }
-    }
-    else if (type === "4")
-    {
-        for (let i = 0; i < 100; i++)
-        {
-            //List.Add in C# | programme creates key ...  automaticly
-            components.push(<CreateDivision key={i} id={i}/>)
-        }
-    }
-    return <div className='TwentyFiveCalcs'>{components}</div>
-  }
+    let ComponentType;
 
+    switch (type) {
+        case "1":
+            ComponentType = CreateAddition;
+            break;
+        case "2":
+            ComponentType = CreateSubtraction;
+            break;
+        case "3":
+            ComponentType = CreateMultiplication;
+            break;
+        case "4":
+            ComponentType = CreateDivision;
+            break;
+        default:
+            ComponentType = CreateAddition;
+    }
 
-function checkCalculations(option)
-{
-    for (let i = 0; i < 100; i++)
-    {
-        //you get an elemend with your id
-        let calcCo = document.getElementById("c"+i);
-        let resultCo = document.getElementById("i"+i);
-        if (calcCo !== null)
-        {
-            //.textContent gets the text of the selected item
+    for (let i = 0; i < 25; i++) {
+        components.push(<ComponentType key={i} id={i} />);
+    }
+    
+    return <div className='TwentyFiveCalcs'>{components}</div>;
+}
+
+function checkCalculations(option) {
+    for (let i = 0; i < 100; i++) {
+        let calcCo = document.getElementById("c" + i);
+        let resultCo = document.getElementById("i" + i);
+        if (calcCo !== null) {
             let text = calcCo.textContent;
             let txt = text.split(" ");
-            let firstNum = txt[0];
-            let secondNum = txt[2];
-            //.value looks at the result of the calculation 
-            let result = resultCo.value;
+            let firstNum = parseInt(txt[0]);
+            let secondNum = parseInt(txt[2]);
+            let result = parseInt(resultCo.value);
             let correct = false;
-            if (option === "1" && parseInt(firstNum) + parseInt(secondNum) === result)
-            {
+
+            if (option === "1" && firstNum + secondNum === result) {
+                correct = true;
+            } 
+            else if (option === "2" && firstNum - secondNum === result) {
+                correct = true;
+            } 
+            else if (option === "3" && firstNum * secondNum === result) {
+                correct = true;
+            } 
+            else if (option === "4" && firstNum / secondNum === result) {
                 correct = true;
             }
-            else if (option === "2" && firstNum - secondNum === result)
-            {
-                correct = true;
-            }
-            else if (option === "3" && firstNum * secondNum === result)
-            {
-                correct = true;
-            }
-            else if (option === "4" && firstNum / secondNum === result)
-            {
-                correct = true;
-            }
-            if (result !== "")
-            {
-                if (correct)
-                {
+
+            if (resultCo.value !== "") {
+                if (correct) {
                     resultCo.classList.add("correct");
-                }
-                else
-                {
+                } else {
                     resultCo.classList.add("false");
                 }
             }
@@ -168,38 +122,32 @@ function checkCalculations(option)
     }
 }
 
-
-function getCalculationsType(option){
-    if(option === 1){
-        return "a";
-    }
-    else if(option === 2){
-        return "s";
-    }
-    else if(option === 3){
-        return "m";
-    }
-    else if(option === 4){
-        return "d";
+function getCalculationsType(option) {
+    switch (option) {
+        case "1":
+            return "a";
+        case "2":
+            return "s";
+        case "3":
+            return "m";
+        case "4":
+            return "d";
+        default:
+            return "a";
     }
 }
 
-
-function download(option)
-{
-    //gets the calculation sign 
+function download(option) {
     const opt = "?type=" + getCalculationsType(option);
-    fetch('calculation'+opt)
+    fetch('calculation' + opt)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            //file-like object, text or binary data
             return response.blob();
         })
         .then(blob => {
             const url = window.URL.createObjectURL(blob);
-
             const a = document.createElement('a');
             a.href = url;
             a.download = "calculations.pdf";
@@ -210,7 +158,7 @@ function download(option)
         .catch(error => {
             console.error('There was a problem with your fetch operation:', error);
         });
-};
+}
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
@@ -231,7 +179,7 @@ export class CreateCalculationsForPrimarySchool extends Component {
             <div>
                 <center><h1>Calculations</h1></center>
                 <button className="btn btn-primary" onClick={() => download(option)}>Download</button>
-                <button className='btn btn-primary' onClick={checkCalculations.bind(option)}>Check</button>
+                <button className="btn btn-primary" onClick={() => checkCalculations(option)}>Check</button>
 
                 <select className="selectpicker form-control border-0 mb-1 px-4 py-4 rounded shadow" id="comType" onChange={this.selectionChange} value={option}>
                     <option value="1">Addition</option>
@@ -241,19 +189,19 @@ export class CreateCalculationsForPrimarySchool extends Component {
                 </select>
                 <div className='container'>
                     <div className='column'>
-                        {CreateTwentyFiveCalculations(option)}
+                        <CreateTwentyFiveCalculations type={option} />
                     </div>
                     <div className='column'>
-                        {CreateTwentyFiveCalculations(option)}
+                        <CreateTwentyFiveCalculations type={option} />
                     </div>
                     <div className='column'>
-                        {CreateTwentyFiveCalculations(option)}
+                        <CreateTwentyFiveCalculations type={option} />
                     </div>
                     <div className='column'>
-                        {CreateTwentyFiveCalculations(option)}
+                        <CreateTwentyFiveCalculations type={option} />
                     </div>
                 </div>
-                <button className="btn btn-primary" onClick={checkCalculations.bind(this, option)}>Check</button>
+                <button className="btn btn-primary" onClick={() => checkCalculations(option)}>Check</button>
             </div>
         );
     }
