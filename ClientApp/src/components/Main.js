@@ -52,6 +52,10 @@ export function Main() {
                 }
             });
 
+            if(response.status === undefined){
+                alert("Sie befinden sich vermutlich im Schulnetzwerk. Dort ist keine Verbindung zu unserer DB möglich!");
+                return;
+            }
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -191,11 +195,11 @@ export function Main() {
     
     return (
         <div>
-            <center><h1>TASKS</h1></center>
-            <button className='btn btn-primary' onClick={loadTask}>Load task</button>
             <div className='container d-flex justify-content-center align-items-center vh-100'>
                 <div className='mainContent'>
                     <div className='text-center'>
+                        <h1>TASKS</h1>
+                        <button className='btn btn-primary' onClick={loadTask}>Load task</button>
                         <DisplayUserInfo />
                         <QuestionField />
                         <AnswerField />

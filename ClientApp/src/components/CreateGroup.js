@@ -89,6 +89,7 @@ export function CreateGroup(){
     return(
         <div className='container d-flex justify-content-center align-items-center vh-100'>
             <div className='text-center'>
+                <h1>Server side code not finished!</h1>
                 <CreateGroupBox />
                 <br></br>
                 <button className='btn btn-primary' onClick={askServerToCreateGroup}>Create Group</button>

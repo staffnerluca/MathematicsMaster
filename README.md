@@ -1,7 +1,9 @@
 # Math Master: Wie man das Programm ausführen kann
+
+## Vorbemerkung
 Um den aktuellen Funktionsumfang des Programms zu sehen schauen Sie sich bitte dieses Video an in dem das Wichtigste gezeigt wird: https://youtu.be/34d31cubYEE
 
-Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist dafür folgendes zu tun (Anleitung erstellt von Lukas Resch):
+Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist dafür folgendes zu tun (Anleitung erstellt von Lukas Resch). **Achtung**: Das Programm kann sich nur mit dem Schulserver verbinden, wenn es sich in einem anderen Netzwerk befindet!!!:
 1. aktuellste Visual Studio Version
 2. ASP.NET + Webentwicklung und Node.js Entwicklung
 3. Repository klonen
@@ -12,7 +14,7 @@ Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist daf
 ticked on) - you can install chocolatey (it should do it automaticly in the console)
 
 
-## Ausführen des Programms nach der Installation von allem Notwendigen:
+## (Wichtig!!!) Ausführen des Programms nach der Installation von allem Notwendigen:
 1. Beim ersten Mal starten des Programms werden alle Abhängigkeiten installiert. Dabei durchlaufen lassen, es besteht die Chance, dass es hier zu einem Fehler kommt ([eslint] Plugin "react" was conflicted between "package.json » eslint-config-react-app » C:\Users\User\Source\Repos\2024-swp-4it-staffnerlresch3\ClientApp\node_modules\eslint-config-react-app\base.js" and "BaseConfig » C:\Users\User\source\repos\2024-swp-4it-staffnerlresch3\ClientApp\node_modules\eslint-config-react-app\base.js".)
 2. Visual Studio MUSS neu gestartet werden! Beim erneuten Ausführen des Programms sollte der Fehler von oben verschwinden und das Programm danach vollständig funktionieren.
 
