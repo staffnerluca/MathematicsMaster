@@ -1,7 +1,9 @@
 # Math Master: Wie man das Programm ausführen kann
+
+## Vorbemerkung
 Um den aktuellen Funktionsumfang des Programms zu sehen schauen Sie sich bitte dieses Video an in dem das Wichtigste gezeigt wird: https://youtu.be/34d31cubYEE
 
-Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist dafür folgendes zu tun (Anleitung erstellt von Lukas Resch):
+Sollten Sie beschliießen es auf Ihrem eigenen Computer laufen zu lassen ist dafür folgendes zu tun (Anleitung erstellt von Lukas Resch). **Achtung**: Das Programm kann sich nur mit dem Schulserver verbinden, wenn es sich in einem anderen Netzwerk befindet!!!:
 1. aktuellste Visual Studio Version
 2. ASP.NET + Webentwicklung und Node.js Entwicklung
 3. Repository klonen
