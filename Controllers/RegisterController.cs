@@ -43,7 +43,7 @@ public class RegisterController : ControllerBase
                 lastLogout = DateTime.Now.ToString(),
                 birthDate = birthDate,
                 password = hashedPassword,
-                group = group
+                group = 0
             };
 
             Models.lresch_MathMasterContext context = new Models.lresch_MathMasterContext();
