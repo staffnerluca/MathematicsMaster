@@ -36,6 +36,7 @@ public partial class lresch_MathMasterContext : DbContext
         {
             if (!optionsBuilder.IsConfigured)
             {
+                //###############################################################################
                 //string connectionString = "Server=eduweb20;Database=l.resch_MathMaster;Uid=l.resch;pwd=MyDatabase130;"; //For connecting to the schools network
                 string connectionString = "Server=web.hak-kitz.eu;Database=l.resch_MathMaster;Uid=l.resch;password=MyDatabase130;"; //For connecting everywhere else - we used the schools server for this one
 
