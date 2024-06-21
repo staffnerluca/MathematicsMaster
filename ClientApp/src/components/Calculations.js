@@ -15,6 +15,7 @@ function createTwoRandomNumbers(maxfirst, maxsecond, condition = () => true) {
     return [0, 0];
 }
 
+
 function CreateMultiplication({ id }) {
     let max = 9;
     let [first, second] = createTwoRandomNumbers(max, max);
@@ -24,6 +25,7 @@ function CreateMultiplication({ id }) {
         <p id={idC} className='calc'>{first} * {second} = <input id={idI} className='calInp'></input></p>
     );
 }
+
 
 function CreateDivision({ id }) {
     let maxf = 100;
@@ -36,6 +38,7 @@ function CreateDivision({ id }) {
     );
 }
 
+
 function CreateSubtraction({ id }) {
     let maxf = 99;
     let maxs = 99;
@@ -47,6 +50,7 @@ function CreateSubtraction({ id }) {
     );
 }
 
+
 function CreateAddition({ id }) {
     let maxf = 99;
     let maxs = 99;
@@ -57,6 +61,7 @@ function CreateAddition({ id }) {
         <p id={idC} className='calc'>{first} + {second} = <input id={idI} className='calInp'></input></p>
     );
 }
+
 
 function CreateTwentyFiveCalculations({ type }) {
     let components = [];
@@ -85,6 +90,7 @@ function CreateTwentyFiveCalculations({ type }) {
     
     return <div className='TwentyFiveCalcs'>{components}</div>;
 }
+
 
 function checkCalculations(option) {
     for (let i = 0; i < 100; i++) {
@@ -122,6 +128,7 @@ function checkCalculations(option) {
     }
 }
 
+
 function getCalculationsType(option) {
     switch (option) {
         case "1":
@@ -136,6 +143,7 @@ function getCalculationsType(option) {
             return "a";
     }
 }
+
 
 function download(option) {
     const opt = "?type=" + getCalculationsType(option);
@@ -159,6 +167,7 @@ function download(option) {
             console.error('There was a problem with your fetch operation:', error);
         });
 }
+
 
 export class CreateCalculationsForPrimarySchool extends Component {
     constructor(props) {
