@@ -45,10 +45,11 @@ export class CreateInstitution extends Component{
     render(){
         return(
             <div className='container d-flex justify-content-center align-items-center vh-100'>
-            <div className='text-center'>
-            <CreateInstitutionsBox/>
+                <div className='text-center'>
+                    <h1>Server side code not finished!</h1>
+                    <CreateInstitutionsBox/>
+                </div>
             </div>
-        </div>
         )
     }
 }
