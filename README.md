@@ -1,4 +1,7 @@
-# Math Master: Wie man das Programm ausführen kann
+# Math Master
+React Frontend mit ASP.net und Entity Framework Backend in Kooperation mit meinem Klassenkollegen Lukas Resch als ein Schulprojekt.
+
+Das Ziel ist es möglichst effizientes Lernen von Mathe zu ermöglichen.
 
 ## Vorbemerkung
 Um den aktuellen Funktionsumfang des Programms zu sehen schauen Sie sich bitte dieses Video an in dem das Wichtigste gezeigt wird: https://youtu.be/34d31cubYEE
